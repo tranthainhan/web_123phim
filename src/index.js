@@ -1,3 +1,4 @@
+
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -9,6 +10,8 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import rootReducer from "./Reducers/rootReducer";
 import Dialog from './Containers/Dialog'
+import Footer from "./Components/Footer";
+import Header from './Containers/Header';
 
 const store = createStore(
   rootReducer,
@@ -18,17 +21,21 @@ const store = createStore(
   )
 );
 
+
 ReactDOM.render(
   <Provider store={store}>
     <Router>
+<Header/>
       <Switch>
         <Route path="/" component={App} />
       </Switch>
       <Dialog/>
+      <Footer />
     </Router>
   </Provider>,
   document.getElementById("root")
 );
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
