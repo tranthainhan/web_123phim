@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import FormRegister from "../FormRegister";
 
 import "./style.scss";
+import FormLogin from "../FormLogin";
 
 const styles = theme => ({
   root: {
@@ -67,6 +68,7 @@ const MyDialog = props => {
       ></DialogTitle>
       <DialogContent className="dialog-body">
         <FormRegister />
+        <FormLogin />
       </DialogContent>
     </Dialog>
   );
