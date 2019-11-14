@@ -1,4 +1,6 @@
 .user{
+    display: flex;
+    align-items: center;
     .btn-user{
         text-transform: none;
         color: #9b9b9b;
@@ -9,7 +11,10 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            margin-right: 10px;
+            margin-right: 5px;
+        }
+        p{
+            margin-bottom: 0;
         }
     }
 }
