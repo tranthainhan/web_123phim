@@ -91,14 +91,14 @@ export default class Footer extends Component {
                             <p className="title" style={pTitleStyle}>123PHIM</p>
                             <div className="row">
                                 <div className="col-sm-6 col-xs-6 pr-0">
-                                    <a href="#" style={aStyle}>FAQ</a>
-                                    <a href="#" style={aStyle}>Brand Guidelines</a>
+                                    <a href="/" style={aStyle}>FAQ</a>
+                                    <a href="/" style={aStyle}>Brand Guidelines</a>
                                 </div>
                                 <div className="col-sm-6 col-xs-6 pl-0">
-                                    <a href="#" style={aStyle}>Thoả thuận sử dụng</a>
-                                    <a href="#" style={aStyle}>Quy chế hoạt động</a>
-                                    <a href="#" style={aStyle}>Chính sách bảo mật</a>
-                                    <a href="#" style={aStyle}>Quyền lợi thành viên</a>
+                                    <a href="/" style={aStyle}>Thoả thuận sử dụng</a>
+                                    <a href="/" style={aStyle}>Quy chế hoạt động</a>
+                                    <a href="/" style={aStyle}>Chính sách bảo mật</a>
+                                    <a href="/" style={aStyle}>Quyền lợi thành viên</a>
                                 </div>
                             </div>
                         </div>
@@ -106,67 +106,67 @@ export default class Footer extends Component {
                         <div className="col-sm-4 col-xs-12 mt-3">
                             <p className="title" style={pTitleStyle}>ĐỐI TÁC</p>
                             <div className="col-sm-12 col-xs-12 px-0 mb-3">
-                                <a target="_blank" href="http://bhdstar.vn" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="http://bhdstar.vn" className="mr-4">
                                     <img src={bhd} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://www.galaxycine.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://www.galaxycine.vn/" className="mr-4">
                                     <img src={galaxy} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://cinestar.com.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://cinestar.com.vn/" className="mr-4">
                                     <img src={cinestar} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="http://lottecinemavn.com/LCHS/index.aspx" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="http://lottecinemavn.com/LCHS/index.aspx" className="mr-4">
                                     <img src={lotte} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://www.megagscinemas.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://www.megagscinemas.vn/" className="mr-4">
                                     <img src={mega} alt="" style={imgStyle} />
                                 </a>
                             </div>
                             <div className="col-sm-12 col-xs-12 px-0 mb-3">
-                                <a target="_blank" href="https://www.betacineplex.vn/home.htm" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://www.betacineplex.vn/home.htm" className="mr-4">
                                     <img src={beta} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="http://ddcinema.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="http://ddcinema.vn/" className="mr-4">
                                     <img src={ddc} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://touchcinema.com/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://touchcinema.com/" className="mr-4">
                                     <img src={touchcinema} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://cinemaxvn.com/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://cinemaxvn.com/" className="mr-4">
                                     <img src={cinemax} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://starlight.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://starlight.vn/" className="mr-4">
                                     <img src={starlight} alt="" style={imgStyle} />
                                 </a>
                             </div>
                             <div className="col-sm-12 col-xs-12 px-0 mb-3">
-                                <a target="_blank" href="https://momo.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://momo.vn/" className="mr-4">
                                     <img src={momo} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://zalopay.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://zalopay.vn/" className="mr-4">
                                     <img src={zalo} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://www.payoo.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://www.payoo.vn/" className="mr-4">
                                     <img src={payoo} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://www.vietcombank.com.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://www.vietcombank.com.vn/" className="mr-4">
                                     <img src={vcb} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="http://www.agribank.com.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="http://www.agribank.com.vn/" className="mr-4">
                                     <img src={agri} alt="" style={imgStyle} />
                                 </a>
                             </div>
                             <div className="col-sm-12 col-xs-12 px-0 mb-3">
-                                <a target="_blank" href="https://www.vietinbank.vn/web/home/vn/index.html" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://www.vietinbank.vn/web/home/vn/index.html" className="mr-4">
                                     <img src={vietinbank} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://www.indovinabank.com.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://www.indovinabank.com.vn/" className="mr-4">
                                     <img src={ivb} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://123go.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://123go.vn/" className="mr-4">
                                     <img src={go} alt="" style={imgStyle} />
                                 </a>
-                                <a target="_blank" href="https://laban.vn/" className="mr-4">
+                                <a target="_blank" rel="noopener noreferrer" href="https://laban.vn/" className="mr-4">
                                     <img src={laban} alt="" style={imgStyle} />
                                 </a>
                             </div>
@@ -176,20 +176,20 @@ export default class Footer extends Component {
                             <div className="row justify-content-around">
                                 <div className="col-xs-6 mr-4 text-center">
                                     <p className="title" style={pTitleStyle}>MOBILE APP</p>
-                                    <a target="_blank" href="https://apps.apple.com/vn/app/123phim-gioi-phim-tren-au/id615186197" className="mr-2">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/vn/app/123phim-gioi-phim-tren-au/id615186197" className="mr-2">
                                         <img src={apple_logo} alt="" style={imgStyle} />
                                     </a>
-                                    <a target="_blank" href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=vn.com.vng.phim123">
                                         <img src={android_logo} alt="" style={imgStyle} />
                                     </a>
                                 </div>
 
                                 <div className="col-xs-6 ml-4 text-center">
                                     <p className="title" style={pTitleStyle}>SOCIAL</p>
-                                    <a target="_blank" href="https://www.facebook.com/123phim/" className="mr-2">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/123phim/" className="mr-2">
                                         <img src={facebook_logo} alt="" style={imgStyle} />
                                     </a>
-                                    <a target="_blank" href="https://zalo.me/123phim">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://zalo.me/123phim">
                                         <img src={zalo_logo} alt="" style={imgStyle} />
                                     </a>
                                 </div>
