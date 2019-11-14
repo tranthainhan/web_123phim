@@ -1,0 +1,14 @@
+.form-register{
+    min-width: 350px;
+    padding: 0px 50px 40px;
+    display: flex;
+    flex-direction: column;
+    .btn-group{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        >*{
+            width: calc(calc(100% - 15px)/2);
+        }
+    }
+}

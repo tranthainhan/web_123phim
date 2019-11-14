@@ -1,0 +1,11 @@
+.dialog {
+  .MuiDialog-container {
+    .MuiPaper-rounded {
+        transform: translateY(-100px);
+      .dialog-body {
+        width: 450px;
+        padding: 0;
+      }
+    }
+  }
+}
