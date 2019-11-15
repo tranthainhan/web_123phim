@@ -1,13 +1,18 @@
 import React from "react";
 import * as yup from "yup";
+
+
 import TextField from "@material-ui/core/TextField";
 import { Formik, Field, Form } from "formik";
 import { Button } from "@material-ui/core";
-import "./style.scss";
-import FB from "../../Assets/img/fb.svg";
-import GG from "../../Assets/img/gg.svg";
 
-const FormLogin = (props) => {
+import "./style.scss";
+import ButtonLoginWithFB from "../ButtonLoginWithFB";
+import ButtonLoginWithGG from "../ButtonLoginWithGG";
+
+const FormLogin = props => {
+
+  
   return (
     <div className="form-login">
       <Formik
@@ -63,17 +68,15 @@ const FormLogin = (props) => {
             </Button>
             <p className="dash-line">Hoặc</p>
             <div className="wrap-btn-login">
-              <Button variant="contained">
-                {" "}
-                <img src={GG} alt="hinh gg" />
-              </Button>
-              <Button variant="contained" color="primary">
-                <img src={FB} alt="hinh fb" />
-              </Button>
+              <ButtonLoginWithGG />
+              <ButtonLoginWithFB />
             </div>
-            <p className='registration-question'>
+            <p className="registration-question">
               Bạn chưa có tài khoản ? ->
-              <Button className="custom-btn-register" onClick={props.setRegister}>
+              <Button
+                className="custom-btn-register"
+                onClick={props.setRegister}
+              >
                 Đăng ký
               </Button>
             </p>
