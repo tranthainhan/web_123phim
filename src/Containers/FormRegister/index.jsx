@@ -28,7 +28,7 @@ const validationSchema = yup.object().shape({
     .typeError("Vui lòng chỉ nhập số")
 });
 
-const FormRegister = () => {
+const FormRegister = (props) => {
   return (
     <Formik
       initialValues={{
@@ -146,7 +146,7 @@ const FormRegister = () => {
               }}
             </Field>
             <div className="btn-group">
-              <Button variant="contained">Quay về</Button>
+              <Button variant="contained" onClick={() => props.setRegister()}>Quay về</Button>
               <Button variant="contained" type="submit" onClick={handleSubmit}>
                 Đăng ký
               </Button>

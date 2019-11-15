@@ -5,6 +5,8 @@
       .dialog-body {
         width: 450px;
         padding: 0;
+        display: flex;
+        overflow: hidden;
       }
     }
   }

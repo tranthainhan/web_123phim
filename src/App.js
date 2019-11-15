@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './App.css';
-import Header from './Containers/Header';
 
 
 //IMPORT COMPONENT
