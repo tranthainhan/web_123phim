@@ -33,15 +33,15 @@ export default class Footer extends Component {
         return (
             <div className="footer">
                 <div className="footer_container container">
-                    <div className="row container">
-                        <div className="col-sm-4 col-xs-12 mt-3">
-                            <p className="title">123PHIM</p>
-                            <div className="row">
-                                <div className="col-sm-6 col-xs-6 pr-0">
+                    <div className="row">
+                        <div className="col-md-4 col-sm-4 col-xs-12 mt-3">
+                            <p className="title hideOnMobile">123PHIM</p>
+                            <div className="row rule_container">
+                                <div className="col-md-6 col-sm-6 col-xs-6 pr-0 hideOnMobile">
                                     <a className="rule" href="/" >FAQ</a>
                                     <a className="rule" href="/">Brand Guidelines</a>
                                 </div>
-                                <div className="col-sm-6 col-xs-6 pl-0">
+                                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 rule_container_right">
                                     <a className="rule" href="/">Thoả thuận sử dụng</a>
                                     <a className="rule" href="/">Quy chế hoạt động</a>
                                     <a className="rule" href="/">Chính sách bảo mật</a>
@@ -50,7 +50,7 @@ export default class Footer extends Component {
                             </div>
                         </div>
 
-                        <div className="col-sm-4 col-xs-12 mt-3">
+                        <div className="col-md-4 col-sm-4 col-xs-12 mt-3 hideOnMobile">
                             <p className="title">ĐỐI TÁC</p>
                             <div className="col-sm-12 col-xs-12 px-0 mb-3">
                                 <a target="_blank" rel="noopener noreferrer" href="http://bhdstar.vn" className="mr-4">
@@ -119,9 +119,9 @@ export default class Footer extends Component {
                             </div>
                         </div>
 
-                        <div className="col-sm-4 col-xs-12 mt-3">
+                        <div className="col-md-4 col-sm-12 col-xs-12 mt-3">
                             <div className="row justify-content-around">
-                                <div className="col-xs-6 mr-4 text-center">
+                                <div className="col-xs-6 mr-4 text-center hideOnMobile">
                                     <p className="title">MOBILE APP</p>
                                     <a target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/vn/app/123phim-gioi-phim-tren-au/id615186197" className="mr-2">
                                         <img className="iconPartner" src={apple_logo} alt="" />
@@ -131,8 +131,8 @@ export default class Footer extends Component {
                                     </a>
                                 </div>
 
-                                <div className="col-xs-6 ml-4 text-center">
-                                    <p className="title">SOCIAL</p>
+                                <div className="col-sm-6 col-xs-6 ml-4 text-center social">
+                                    <p className="title hideOnMobile">SOCIAL</p>
                                     <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/123phim/" className="mr-2">
                                         <img className="iconPartner" src={facebook_logo} alt="" />
                                     </a>
@@ -147,17 +147,17 @@ export default class Footer extends Component {
                     <div className="line mt-4 mb-3"></div>
 
                     <div className="row">
-                        <div className="col-sm-1 col-xs-12">
+                        <div className="col-md-1 col-sm-12 col-xs-12">
                             <img className="zionImg" src={zion} alt="" />
                         </div>
 
-                        <div className="col-sm-9 col-xs-12">
+                        <div className="col-md-9 col-sm-12 col-xs-12">
                             <p className="pProductOf">123PHIM – SẢN PHẨM CỦA CÔNG TY CỔ PHẦN ZION</p>
                             <p className="pAddressAndTax">Địa chỉ: 52 Nguyễn Ngọc Lộc, Phường 14, Quận 10, Thành phố Hồ Chí Minh</p>
                             <p className="pAddressAndTax mb-4">Mã số thuế: 0101659783</p>
                         </div>
 
-                        <div className="col-sm-2 col-xs-12 text-right">
+                        <div className="col-md-2 col-sm-12 col-xs-12 text-right">
                             <a target="_blank" rel="noopener noreferrer" href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=55561" title="Bộ Công Thương">
                                 <img className="boCongThuong" src={dathongbao} alt="Bộ Công Thương" />
                             </a>

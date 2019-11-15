@@ -49,7 +49,7 @@
         }
 
         .zionImg {
-            border-radius: 10px;
+            border-radius: 8px;
             width: 80px;
             height: 40px;
         }
@@ -60,3 +60,74 @@
         }
     }
 }
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .pProductOf, .pAddressAndTax {
+        margin-left: 30px !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .rule_container {
+        width: 365%;
+
+        .rule_container_right {
+            display: flex !important;
+            justify-content: space-between;
+            text-align: center;
+            width: 100%;
+            margin: auto;
+        }
+    }
+    
+}
+
+@media (max-width: 991.98px) {
+    .hideOnMobile {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .social {
+        margin: auto !important;
+    }
+
+    .zionImg {
+        display: block;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .pProductOf, .pAddressAndTax {
+        display: block;
+        margin: auto;
+        margin-left: 0 !important;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .boCongThuong {
+        display: block;
+        margin: auto;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .noPaddingLeft {
+        margin: auto !important;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .rule_container_right {
+        text-align: center;
+    }
+}
+
+
+
+
+
+
