@@ -30,11 +30,11 @@ const User = props => {
         <p> {_.isEmpty(user) ? "Đăng nhập" : user.name}</p>
       </Button>
       <Menu
-        id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        className='dropdown-user'
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>

@@ -1,4 +1,5 @@
 import * as types from "../Constants/User";
+import api from "../Api/user";
 
 export const login = user => {
   return {
@@ -23,4 +24,7 @@ export const loginWithGG = user => {
     type: types.LOGIN_WITH_GG,
     user
   };
+};
+export const register = user => {
+  return api.post("DangKy", user);
 };

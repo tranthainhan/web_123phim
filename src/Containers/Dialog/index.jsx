@@ -71,7 +71,7 @@ const MyDialog = props => {
         className="dialog-title"
       ></DialogTitle>
       <DialogContent className="dialog-body">
-        {register ? <FormRegister setRegister={setRegister}/> : <FormLogin setRegister={setRegister} />}
+        {register ? <FormRegister setRegister={setRegister} handleClose={handleClose}/> : <FormLogin setRegister={setRegister} />}
       </DialogContent>
     </Dialog>
   );
