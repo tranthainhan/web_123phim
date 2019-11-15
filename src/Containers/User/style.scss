@@ -1,21 +1,26 @@
-.user{
-    display: flex;
-    align-items: center;
-    .btn-user{
-        text-transform: none;
-        color: #9b9b9b;
-        outline: none;
-        &:hover{
-            background-color: transparent;
-        }
-        img{
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
-        p{
-            margin-bottom: 0;
-        }
+.user {
+  display: flex;
+  align-items: center;
+  .btn-user {
+    text-transform: none;
+    color: #9b9b9b;
+    outline: none;
+    &:hover {
+      background-color: transparent;
     }
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
 }
+.dropdown-user {
+    .MuiPaper-rounded {
+      top: 55px !important;
+    }
+  }
