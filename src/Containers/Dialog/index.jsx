@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
 import { toggle } from "../../Actions/Dialog";
@@ -54,6 +54,11 @@ const MyDialog = props => {
   const [register, setRegister] = useState(false);
 
   const { handleClose, open } = props;
+
+  useEffect(() => {
+    if (!open) setRegister();
+  }, [open]);
+
   return (
     <Dialog
       onClose={handleClose}
@@ -67,8 +72,7 @@ const MyDialog = props => {
         className="dialog-title"
       ></DialogTitle>
       <DialogContent className="dialog-body">
-        <FormRegister />
-        <FormLogin />
+        {register ? <FormRegister setRegister={setRegister}/> : <FormLogin setRegister={setRegister} />}
       </DialogContent>
     </Dialog>
   );
