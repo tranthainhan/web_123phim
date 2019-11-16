@@ -20,7 +20,12 @@
   }
 }
 .dropdown-user {
-    .MuiPaper-rounded {
-      top: 55px !important;
-    }
+  .MuiPaper-rounded {
+    top: 55px !important;
   }
+}
+@media screen and (max-width: 768px) {
+  .user{
+    display: none;
+  }
+}

@@ -10,6 +10,9 @@ const reducer = (state = initialState, action) => {
     case types.LOGIN_WITH_GG: {
       return action.user;
     }
+    case types.LOGOUT:{
+      return {}
+    }
     default:
       return state;
   }

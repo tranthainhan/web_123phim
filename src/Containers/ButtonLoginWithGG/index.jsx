@@ -4,8 +4,9 @@ import { Button } from "@material-ui/core";
 import GG from "../../Assets/img/gg.svg";
 import { connect } from "react-redux";
 import { loginWithGG } from "../../Actions/User";
+import { toggle } from "../../Actions/Dialog";
 
-const ButtonLoginWithGG = (props) => {
+const ButtonLoginWithGG = props => {
   const responseGoogle = response => {
     if (!response.error) {
       const { ig, Eea, U3, Paa } = response.w3;
@@ -16,6 +17,7 @@ const ButtonLoginWithGG = (props) => {
         picture: Paa
       };
       props.getUser(user);
+      props.toggleDialog();
     }
   };
   return (
@@ -38,6 +40,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getUser: user => {
       dispatch(loginWithGG(user));
+    },
+    toggleDialog: () => {
+      dispatch(toggle());
     }
   };
 };

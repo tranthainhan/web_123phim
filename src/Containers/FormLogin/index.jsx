@@ -5,10 +5,10 @@ import * as yup from "yup";
 import TextField from "@material-ui/core/TextField";
 import { Formik, Field, Form } from "formik";
 import { Button } from "@material-ui/core";
-
-import "./style.scss";
 import ButtonLoginWithFB from "../ButtonLoginWithFB";
 import ButtonLoginWithGG from "../ButtonLoginWithGG";
+
+import "./style.scss";
 
 const FormLogin = props => {
 

@@ -4,24 +4,28 @@ import { Button } from "@material-ui/core";
 import FB from "../../Assets/img/fb.svg";
 import { connect } from "react-redux";
 import { loginWithFB } from "../../Actions/User";
+import { toggle } from "../../Actions/Dialog";
 
 const ButtonLoginWithFB = props => {
   const responseFacebook = response => {
     if (!response.status) {
-      const { name, id, email, picture } = response;
-      const user = {
-        id: id,
-        name: name,
-        email: email,
-        picture: picture.data.url
-      };
-      props.getUser(user);
+    const { name, id, email, picture } = response;
+    const user = {
+      id: id,
+      name: name,
+      email: email,
+      picture: picture.data.url
+    };
+    props.getUser(user);
+    props.toggleDialog()
     }
   };
+  
   return (
     <FacebookLogin
       appId="426821308016857"
       fields="name,email,picture"
+      autoLoad={false}
       callback={responseFacebook}
       render={renderProps => (
         <Button
@@ -39,6 +43,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getUser: user => {
       dispatch(loginWithFB(user));
+    },
+    toggleDialog: () => {
+      dispatch(toggle());
     }
   };
 };

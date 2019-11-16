@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Menu, MenuItem } from "@material-ui/core";
 import { connect } from "react-redux";
 import { toggle } from "../../Actions/Dialog";
+import { logout } from "../../Actions/User";
 import _ from "lodash";
 
 import userDefault from "../../Assets/img/user-default.png";
@@ -17,16 +18,19 @@ const User = props => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const { user } = props;
+  const { user, logout } = props;
   return (
     <div className="user">
       <Button
         className="btn-user"
-        onClick={(event) => {
-          _.isEmpty(user) ? props.toggleModal() :  handleClick(event) ;
+        onClick={event => {
+          _.isEmpty(user) ? props.toggleModal() : handleClick(event);
         }}
       >
-        <img src={ _.isEmpty(user) ? userDefault : user.picture} alt="hinh user" />
+        <img
+          src={_.isEmpty(user) ? userDefault : user.picture}
+          alt="hinh user"
+        />
         <p> {_.isEmpty(user) ? "Đăng nhập" : user.name}</p>
       </Button>
       <Menu
@@ -34,11 +38,17 @@ const User = props => {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
-        className='dropdown-user'
+        className="dropdown-user"
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>Thông tin cá nhân</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            logout();
+          }}
+        >
+          Đăng xuất
+        </MenuItem>
       </Menu>
     </div>
   );
@@ -54,6 +64,9 @@ const mapDispatchToProps = dispatch => {
   return {
     toggleModal: () => {
       dispatch(toggle());
+    },
+    logout: () => {
+      dispatch(logout());
     }
   };
 };
