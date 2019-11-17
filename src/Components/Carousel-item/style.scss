@@ -7,9 +7,8 @@
   }
   &:hover{
     .play-trailer{
-        opacity: 1;
         .btn-play{
-            display: flex;
+            opacity: 1;
         }
     }
   }
@@ -24,17 +23,18 @@
     align-items: center;
     justify-content: center;
     transition: opacity 0.5s;
-    opacity: 0;
+    background: linear-gradient(to top,#000,transparent 20%);
     .btn-play {
       width: 80px;
       height: 80px;
       border: 2px solid white;
       border-radius: 50%;
       background-color: rgba(0,0,0,0.3);
-      display: none;
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      opacity: 0;
       transition: opacity 0.3s;
       .icon-play {
         width: 60px;
