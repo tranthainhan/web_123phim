@@ -30,7 +30,7 @@ const Carousel = () => {
   const [filmList, setFilmList] = useState([]);
   useEffect(() => {
     getFilm().then(result => {
-      setFilmList(result.data)
+      setFilmList(result.data);
       // result.data.forEach((item) => {
       //   axios.get(item.hinhAnh).then(() => setFilmList([...filmList, item]))
       // })
@@ -38,28 +38,19 @@ const Carousel = () => {
       //   if(axios.get(item)) return item;
       // })
     });
-    
-  });
+  }, []);
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
+    autoplay: true,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    pauseOnHover: false,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    appendDots: dots => (
-      <div
-        style={{
-          backgroundColor: "#ddd",
-          borderRadius: "10px",
-          padding: "10px"
-        }}
-      >
-        <ul style={{ margin: "0px" }}> {dots} </ul>
-      </div>
-    ),
   };
 
   return (
