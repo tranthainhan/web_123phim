@@ -23,7 +23,7 @@ code {
 .header{
   flex-shrink: 0;
 }
-.main{
+.App{
   flex: 1 0 auto;
 }
 .footer{
