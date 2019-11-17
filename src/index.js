@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -24,11 +26,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <Header />
-      <div className='main'>
       <Switch>
         <Route path="/" component={App} />
       </Switch>
-      </div>
       <Dialog />
       <Footer />
     </Router>
