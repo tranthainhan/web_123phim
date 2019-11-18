@@ -53,7 +53,7 @@ const FimlList = () => {
 
     return (
         <div className="mt-5">
-            <ul className="nav nav-pills mb-3 container text-center justify-content-center" id="pills-tab" role="tablist">
+            <ul className="nav nav-pills mb-3 container text-center justify-content-center mb-5" id="pills-tab" role="tablist">
                 <li className="nav-item nowShowingFilms_container">
                     <a className="nowShowingFilms nav-link active" id="pills-nowShowingFilms-tab" data-toggle="pill" href="#pills-nowShowingFilms" role="tab" aria-controls="pills-nowShowingFilms" aria-selected="true">Đang Chiếu</a>
                 </li>
@@ -68,16 +68,16 @@ const FimlList = () => {
                         {filmList.map((film) => {
                             return (
                                 <React.Fragment>
-                                    <div className="col-sm-3 col-xs-12 w-25 d-inline-block film-item_container">
+                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
                                         <FilmItem film={film} key={film.maPhim} />
                                     </div>
-                                    <div className="col-sm-3 col-xs-12 w-25 d-inline-block film-item_container">
+                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
                                         <FilmItem film={film} key={film.maPhim} />
                                     </div>
-                                    <div className="col-sm-3 col-xs-12 w-25 d-inline-block film-item_container">
+                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
                                         <FilmItem film={film} key={film.maPhim} />
                                     </div>
-                                    <div className="col-sm-3 col-xs-12 w-25 d-inline-block film-item_container">
+                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
                                         <FilmItem film={film} key={film.maPhim} />
                                     </div>
                                 </React.Fragment>
