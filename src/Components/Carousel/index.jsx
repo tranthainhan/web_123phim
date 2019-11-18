@@ -5,7 +5,7 @@ import "./style.scss";
 import CarouselItem from "../Carousel-item";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-// import axios from "axios";
+import HomeTools from "../../Containers/HomeTools";
 
 const NextArrow = ({ className, style, onClick }) => {
   return (
@@ -25,18 +25,11 @@ const PrevArrow = ({ className, style, onClick }) => {
     />
   );
 };
-
 const Carousel = () => {
   const [filmList, setFilmList] = useState([]);
   useEffect(() => {
     getFilm().then(result => {
       setFilmList(result.data);
-      // result.data.forEach((item) => {
-      //   axios.get(item.hinhAnh).then(() => setFilmList([...filmList, item]))
-      // })
-      //  result.data.filter(item=> item.hinhAnh).map(item => {
-      //   if(axios.get(item)) return item;
-      // })
     });
   }, []);
 
@@ -48,17 +41,20 @@ const Carousel = () => {
     autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    pauseOnHover: false,
+    pauseOnHover: true,
     nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    prevArrow: <PrevArrow />
   };
-
+  
   return (
-    <Slider {...settings} className="my-carousel">
-      {filmList.map(item => (
-        <CarouselItem item={item} key={item.maPhim} />
-      ))}
-    </Slider>
+    <div className="wrap-carousel">
+      <Slider {...settings} className="my-carousel">
+        {filmList.map(item => {
+        return <CarouselItem item={item} key={item.maPhim} />;
+      })}
+      </Slider>
+      <HomeTools />
+    </div>
   );
 };
 

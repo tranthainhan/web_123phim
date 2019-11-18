@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import FormRegister from "../FormRegister";
+import _ from "lodash";
 
 import "./style.scss";
 import FormLogin from "../FormLogin";
@@ -55,9 +56,19 @@ const MyDialog = props => {
   const { handleClose, open } = props;
 
   useEffect(() => {
-    if (!open) setRegister();
+    if (!open) {
+      setRegister();
+      const styleTagHtml = _.debounce(
+        () => (document.documentElement.style.overflow = "visible !important"),
+        1000
+      );
+      styleTagHtml();
+      // console.log(document.documentElement.style.overflow = 'visible !important')
+    }
+    return () => {
+      console.log(1)
+    }
   }, [open]);
-
   return (
     <Dialog
       onClose={handleClose}
@@ -71,7 +82,11 @@ const MyDialog = props => {
         className="dialog-title"
       ></DialogTitle>
       <DialogContent className="dialog-body">
-        {register ? <FormRegister setRegister={setRegister} handleClose={handleClose}/> : <FormLogin setRegister={setRegister} />}
+        {register ? (
+          <FormRegister setRegister={setRegister} handleClose={handleClose} />
+        ) : (
+          <FormLogin setRegister={setRegister} />
+        )}
       </DialogContent>
     </Dialog>
   );
