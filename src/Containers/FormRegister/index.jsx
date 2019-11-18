@@ -1,9 +1,15 @@
 import React from "react";
+import * as yup from "yup";
+import { connect } from "react-redux";
+import { register } from "../../Actions/User";
+import Swal from "sweetalert2";
+// import api from '../../Api/user';
+
 import TextField from "@material-ui/core/TextField";
 import { Formik, Field, Form } from "formik";
-import "./style.scss";
 import { Button } from "@material-ui/core";
-import * as yup from "yup";
+
+import "./style.scss";
 
 const validationSchema = yup.object().shape({
   hoTen: yup.string().required("Vui lòng không để trống"),
@@ -12,23 +18,27 @@ const validationSchema = yup.object().shape({
     .required("Vui lòng không để trống")
     .min(8, "Độ dài tối thiểu 8 ký tự")
     .max(32, "Độ dài tối đa 32 ký tự"),
+    // .test('tai-khoan-trung', 'Tài khoản bị trùng', (values) => {
+    //   const trung = false;
+    //   api.get(`TimKiemNguoiDung?MaNhom=GP09&tuKhoa=${values}`).then((result) => {
+    //   })
+    // })
   matKhau: yup
     .string()
     .required("Vui lòng không để trống")
     .min(8, "Độ dài tối thiểu 8 ký tự")
     .max(32, "Độ dài tối đa 32 ký tự"),
   email: yup
-    .string()
-    .email()
-    .required("Vui lòng không để trống")
-    .typeError("Vui lòng nhập đúng định dạng, ví dụ: abc@xyz.xxx"),
+    .string().email('Vui lòng nhập đúng định dạng')
+    .matches(/(^[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+\.[a-z0-9]+$|^[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+$)/,'Vui lòng nhập đúng định dạng')
+    .required("Vui lòng không để trống"),
   soDt: yup
     .number()
     .required("Vui lòng không để trống")
     .typeError("Vui lòng chỉ nhập số")
 });
 
-const FormRegister = (props) => {
+const FormRegister = props => {
   return (
     <Formik
       initialValues={{
@@ -38,7 +48,24 @@ const FormRegister = (props) => {
         email: "",
         soDt: ""
       }}
-      onSubmit={(values, touched) => {}}
+      onSubmit={(values, errors) => {
+        const newUser = {
+          ...values,
+          maNhom: "GP09",
+          maLoaiNguoiDung: "KhachHang"
+        };
+        register(newUser)
+          .then(() => {
+            props.handleClose();
+          })
+          .then(result => {
+            Swal.fire({
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: true
+            });
+          }).catch(error => console.log(error.response.body) );
+      }}
       validationSchema={validationSchema}
     >
       {({ handleBlur, handleChange, handleSubmit }) => {
@@ -146,7 +173,9 @@ const FormRegister = (props) => {
               }}
             </Field>
             <div className="btn-group">
-              <Button variant="contained" onClick={() => props.setRegister()}>Quay về</Button>
+              <Button variant="contained" onClick={() => props.setRegister()}>
+                Quay về
+              </Button>
               <Button variant="contained" type="submit" onClick={handleSubmit}>
                 Đăng ký
               </Button>
@@ -158,4 +187,4 @@ const FormRegister = (props) => {
   );
 };
 
-export default FormRegister;
+export default connect(null, { register })(FormRegister);

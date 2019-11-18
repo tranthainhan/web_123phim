@@ -8,6 +8,7 @@ import User from '../User';
 
 
 import './style.scss'
+import MenuMobile from '../MenuMobile';
 
 const Header = () => {
     return (
@@ -15,6 +16,7 @@ const Header = () => {
             <Logo/>
             <AnchorLink />
             <User />
+            <MenuMobile />
         </div>
     )
 }

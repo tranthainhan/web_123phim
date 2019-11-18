@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import classNames from "classnames";
 import { toggle } from "../../Actions/Dialog";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
@@ -72,7 +71,7 @@ const MyDialog = props => {
         className="dialog-title"
       ></DialogTitle>
       <DialogContent className="dialog-body">
-        {register ? <FormRegister setRegister={setRegister}/> : <FormLogin setRegister={setRegister} />}
+        {register ? <FormRegister setRegister={setRegister} handleClose={handleClose}/> : <FormLogin setRegister={setRegister} />}
       </DialogContent>
     </Dialog>
   );
