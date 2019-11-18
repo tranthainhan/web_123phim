@@ -53,7 +53,7 @@ const FimlList = () => {
 
     return (
         <div className="mt-5">
-            <ul className="nav nav-pills mb-3 container text-center justify-content-center" id="pills-tab" role="tablist">
+            <ul className="nav nav-pills mb-3 container text-center justify-content-center mb-5" id="pills-tab" role="tablist">
                 <li className="nav-item nowShowingFilms_container">
                     <a className="nowShowingFilms nav-link active" id="pills-nowShowingFilms-tab" data-toggle="pill" href="#pills-nowShowingFilms" role="tab" aria-controls="pills-nowShowingFilms" aria-selected="true">Đang Chiếu</a>
                 </li>
