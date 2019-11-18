@@ -5,11 +5,11 @@
     width: 100%;
     height: 100%;
   }
-  &:hover{
-    .play-trailer{
-        .btn-play{
-            opacity: 1;
-        }
+  &:hover {
+    .play-trailer {
+      .btn-play {
+        opacity: 1;
+      }
     }
   }
   .play-trailer {
@@ -23,13 +23,13 @@
     align-items: center;
     justify-content: center;
     transition: opacity 0.5s;
-    background: linear-gradient(to top,#000,transparent 20%);
+    background: linear-gradient(to top, #000, transparent 20%);
     .btn-play {
       width: 80px;
       height: 80px;
       border: 2px solid white;
       border-radius: 50%;
-      background-color: rgba(0,0,0,0.3);
+      background-color: rgba(0, 0, 0, 0.3);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -41,9 +41,39 @@
         height: 60px;
         color: white;
       }
-      &:hover{
-          opacity: 0.7;
-          cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+        cursor: pointer;
+      }
+    }
+  }
+}
+.dialog-trailer {
+  .MuiDialog-container {
+    .MuiPaper-rounded {
+      max-width: 900px;
+      width: 900px;
+      height: 510px;
+      overflow-y: visible;
+      border-radius: 5px;
+      background-color: black;
+      .close-trailer {
+        position: absolute;
+        top: -15px;
+        right: -25px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        &:hover{
+          opacity: 0.5;
+        }
+      }
+      .wrap-iframe{
+        width: 100%;
+        height: 100%;
+       iframe{
+         border: 0;
+         border-radius: 5px;
+       }
       }
     }
   }

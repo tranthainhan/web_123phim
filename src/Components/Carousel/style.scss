@@ -35,7 +35,7 @@
     }
   }
   .slick-dots {
-    bottom: 50px;
+    bottom: 90px;
     li {
       &.slick-active {
         button {
@@ -43,7 +43,7 @@
         }
       }
       button {
-        background: white;
+        background:#d8d8d8;
         border-radius: 50%;
         width: 12px;
         height: 12px;
