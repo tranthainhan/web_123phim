@@ -68,16 +68,16 @@ const FimlList = () => {
                         {filmList.map((film) => {
                             return (
                                 <React.Fragment>
-                                    <div className="col-sm-3 col-xs-12 w-25 d-inline-block film-item_container">
+                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
                                         <FilmItem film={film} key={film.maPhim} />
                                     </div>
-                                    <div className="col-sm-3 col-xs-12 w-25 d-inline-block film-item_container">
+                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
                                         <FilmItem film={film} key={film.maPhim} />
                                     </div>
-                                    <div className="col-sm-3 col-xs-12 w-25 d-inline-block film-item_container">
+                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
                                         <FilmItem film={film} key={film.maPhim} />
                                     </div>
-                                    <div className="col-sm-3 col-xs-12 w-25 d-inline-block film-item_container">
+                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
                                         <FilmItem film={film} key={film.maPhim} />
                                     </div>
                                 </React.Fragment>
