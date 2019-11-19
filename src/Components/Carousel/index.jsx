@@ -6,6 +6,7 @@ import CarouselItem from "../Carousel-item";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import HomeTools from "../../Containers/HomeTools";
+import axios from 'axios'
 
 const NextArrow = ({ className, style, onClick }) => {
   return (
@@ -45,7 +46,6 @@ const Carousel = () => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />
   };
-  
   return (
     <div className="wrap-carousel">
       <Slider {...settings} className="my-carousel">

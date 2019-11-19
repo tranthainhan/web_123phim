@@ -92,7 +92,7 @@ const HomeTools = () => {
       </div>
       <div className="select end-item">
       <Button variant="contained" color="secondary" className={classNames({'done': false})}>
-        Mua vé
+        Mua vé ngay
       </Button>
       </div>
       
