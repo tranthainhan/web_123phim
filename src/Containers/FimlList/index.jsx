@@ -67,7 +67,7 @@ const FimlList = () => {
                     <Slider {...settings} className="film-list container">
                         {filmList.map((film) => {
                             return (
-                                <React.Fragment>
+                                <React.Fragment key={film.maPhim}>
                                     <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
                                         <FilmItem film={film} key={film.maPhim} />
                                     </div>
