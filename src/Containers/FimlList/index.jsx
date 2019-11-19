@@ -32,7 +32,6 @@ const FimlList = () => {
         getFilm()
             .then((result) => {
                 setFilmList(result.data);
-                console.log(result.data)
             })
     }, []);
 

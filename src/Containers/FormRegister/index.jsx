@@ -2,14 +2,28 @@ import React from "react";
 import * as yup from "yup";
 import { connect } from "react-redux";
 import { register } from "../../Actions/User";
+import _ from "lodash";
 import Swal from "sweetalert2";
-// import api from '../../Api/user';
-
+import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import { Formik, Field, Form } from "formik";
 import { Button } from "@material-ui/core";
 
 import "./style.scss";
+
+const checkUsername = _.debounce((values) => {
+  return axios.get(
+    `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP09&tuKhoa=${values}`
+  ).then(result => {
+    const taiKhoan = result.data;
+    if(taiKhoan.length === 0) return false;
+    taiKhoan.forEach((item) => {
+      if(item.taiKhoan.toUpperCase() === values.toUpperCase()){
+        return true
+      }
+    }) 
+  })
+}, 1000)
 
 const validationSchema = yup.object().shape({
   hoTen: yup.string().required("Vui lòng không để trống"),
@@ -17,20 +31,22 @@ const validationSchema = yup.object().shape({
     .string()
     .required("Vui lòng không để trống")
     .min(8, "Độ dài tối thiểu 8 ký tự")
-    .max(32, "Độ dài tối đa 32 ký tự"),
-    // .test('tai-khoan-trung', 'Tài khoản bị trùng', (values) => {
-    //   const trung = false;
-    //   api.get(`TimKiemNguoiDung?MaNhom=GP09&tuKhoa=${values}`).then((result) => {
-    //   })
-    // })
+    .max(32, "Độ dài tối đa 32 ký tự")
+    .test("taiKhoan", "Tài khoản bị trùng", values => {
+      return checkUsername(values);
+    }),
   matKhau: yup
     .string()
     .required("Vui lòng không để trống")
     .min(8, "Độ dài tối thiểu 8 ký tự")
     .max(32, "Độ dài tối đa 32 ký tự"),
   email: yup
-    .string().email('Vui lòng nhập đúng định dạng')
-    .matches(/(^[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+\.[a-z0-9]+$|^[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+$)/,'Vui lòng nhập đúng định dạng')
+    .string()
+    .email("Vui lòng nhập đúng định dạng")
+    .matches(
+      /(^[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+\.[a-z0-9]+$|^[a-z0-9]+@[a-z0-9]+\.[a-z0-9]+$)/,
+      "Vui lòng nhập đúng định dạng"
+    )
     .required("Vui lòng không để trống"),
   soDt: yup
     .number()
@@ -64,11 +80,12 @@ const FormRegister = props => {
               title: "Your work has been saved",
               showConfirmButton: true
             });
-          }).catch(error => console.log(error.response.body) );
+          })
+          .catch(error => console.log(error.response.body));
       }}
       validationSchema={validationSchema}
     >
-      {({ handleBlur, handleChange, handleSubmit }) => {
+      {({ handleBlur, handleChange, handleSubmit, errors }) => {
         return (
           <Form onSubmit={handleSubmit} className="form-register">
             <Field>
