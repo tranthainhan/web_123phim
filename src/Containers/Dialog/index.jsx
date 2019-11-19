@@ -66,7 +66,6 @@ const MyDialog = props => {
       // console.log(document.documentElement.style.overflow = 'visible !important')
     }
     return () => {
-      console.log(1)
     }
   }, [open]);
   return (
