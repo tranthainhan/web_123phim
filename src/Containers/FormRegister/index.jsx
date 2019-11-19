@@ -34,7 +34,7 @@ const validationSchema = yup.object().shape({
     .min(8, "Độ dài tối thiểu 8 ký tự")
     .max(32, "Độ dài tối đa 32 ký tự")
     .test("check taiKhoan", "Tài khoản bị trùng", value => {
-      return checkUsername(value)
+      return checkUsername(value);
     }),
   matKhau: yup
     .string()
@@ -46,7 +46,7 @@ const validationSchema = yup.object().shape({
     .email("Vui lòng nhập đúng định dạng")
     .matches(
       /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-      "Vui lòng nhập đúng định dạng"
+      "Vui lòng nhập đúng định dạng1"
     )
     .required("Vui lòng không để trống"),
   soDt: yup
@@ -56,6 +56,7 @@ const validationSchema = yup.object().shape({
 });
 
 const FormRegister = props => {
+  
   return (
     <Formik
       initialValues={{
@@ -65,7 +66,7 @@ const FormRegister = props => {
         email: "",
         soDt: ""
       }}
-      onSubmit={(values, errors) => {
+      onSubmit={(values, {setFieldError}) => {
         const newUser = {
           ...values,
           maNhom: "GP09",
@@ -82,18 +83,11 @@ const FormRegister = props => {
               showConfirmButton: true
             });
           })
-          .catch(error => console.log(error.response.body));
+          .catch(() => setFieldError('email', 'Email bị trùng'));
       }}
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
     >
-      {({
-        handleBlur,
-        handleChange,
-        handleSubmit,
-        errors,
-        touched,
-        values
-      }) => {
+      {({ handleBlur, handleChange, handleSubmit }) => {
         return (
           <Form onSubmit={handleSubmit} className="form-register">
             <Field>
@@ -106,10 +100,7 @@ const FormRegister = props => {
                     margin="normal"
                     variant="outlined"
                     onBlur={handleBlur}
-                    value={values.hoTen}
-                    onChange={e => {
-                      handleChange(e);
-                    }}
+                    onChange={handleChange}
                     helperText={
                       form.touched.hoTen && form.errors.hoTen
                         ? form.errors.hoTen
@@ -128,12 +119,12 @@ const FormRegister = props => {
                     margin="normal"
                     variant="outlined"
                     onBlur={handleBlur}
-                    onChange={e => {
-                      handleChange(e);
-                    }}
+                    onChange={handleChange}
                     error={form.touched.taiKhoan && !!form.errors.taiKhoan}
                     helperText={
-                      touched.taiKhoan && errors.taiKhoan ? errors.taiKhoan : ""
+                      form.touched.taiKhoan && form.errors.taiKhoan
+                        ? form.errors.taiKhoan
+                        : ""
                     }
                   />
                 );
@@ -150,7 +141,6 @@ const FormRegister = props => {
                     type="password"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    value={values.matKhau}
                     error={form.touched.matKhau && !!form.errors.matKhau}
                     helperText={
                       form.touched.matKhau && form.errors.matKhau
@@ -170,8 +160,10 @@ const FormRegister = props => {
                     margin="normal"
                     variant="outlined"
                     onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.email}
+                    onChange={ (e) => {
+                      new Promise((resolve, reject) => handleChange(e)).then(()=> console.log(form.values))
+                       
+                    }}
                     error={form.touched.email && !!form.errors.email}
                     helperText={
                       form.touched.email && form.errors.email
@@ -192,7 +184,6 @@ const FormRegister = props => {
                     variant="outlined"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    value={values.soDt}
                     error={form.touched.soDt && !!form.errors.soDt}
                     helperText={
                       form.touched.soDt && form.errors.soDt
