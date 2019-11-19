@@ -31,7 +31,7 @@ const CarouselItem = ({ item, ...props }) => {
           <iframe
             width="100%"
             height="100%"
-            title={item.maphim}
+            title={item.maPhim}
             src={`${item.trailer}?autoplay=1`}
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           ></iframe>
