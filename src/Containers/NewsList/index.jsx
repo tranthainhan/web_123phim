@@ -49,30 +49,46 @@ const NewsList = () => {
                                     </div>
 
                                     <div className="col-md-4 col-xs-12">
-                                        <div className="col-xs-12">
-                                            <div className="thumbnail mr-3">
-                                                <a href="/"><img src={film.hinhAnh} /></a>
+                                        <div className="col-xs-12 mb-4">
+                                            <div className="row">
+                                                <div className="col-md-2 col-xs-2 thumbnail pr-0">
+                                                    <a href="/"><img src={film.hinhAnh} /></a>
+                                                </div>
+                                                <div className="col-md-10 col-xs-10">
+                                                    <p className="news_title"><a href="/">{film.moTa}</a></p>
+                                                </div>
                                             </div>
-                                            <p className="title"><a href="/">{film.moTa}</a></p>
                                         </div>
-                                        <div className="col-xs-12">
-                                            <div className="thumbnail mr-3">
-                                                <a href="/"><img src={film.hinhAnh} /></a>
+                                        <div className="col-xs-12 mb-4">
+                                            <div className="row">
+                                                <div className="col-md-2 col-xs-2 thumbnail pr-0">
+                                                    <a href="/"><img src={film.hinhAnh} /></a>
+                                                </div>
+                                                <div className="col-md-10 col-xs-10">
+                                                    <p className="news_title"><a href="/">{film.moTa}</a></p>
+                                                </div>
                                             </div>
-                                            <p className="title"><a href="/">{film.moTa}</a></p>
                                         </div>
-                                        <div className="col-xs-12">
-                                            <div className="thumbnail mr-3">
-                                                <a href="/"><img src={film.hinhAnh} /></a>
+                                        <div className="col-xs-12 mb-4">
+                                            <div className="row">
+                                                <div className="col-md-2 col-xs-2 thumbnail pr-0">
+                                                    <a href="/"><img src={film.hinhAnh} /></a>
+                                                </div>
+                                                <div className="col-md-10 col-xs-10">
+                                                    <p className="news_title"><a href="/">{film.moTa}</a></p>
+                                                </div>
                                             </div>
-                                            <p className="title"><a href="/">{film.moTa}</a></p>
                                         </div>
-                                        <div className="col-xs-12">
-                                            <div className="thumbnail mr-3">
-                                                <a href="/"><img src={film.hinhAnh} /></a>
+                                        <div className="col-xs-12 mb-4">
+                                            <div className="row">
+                                                <div className="col-md-2 col-xs-2 thumbnail pr-0">
+                                                    <a href="/"><img src={film.hinhAnh} /></a>
+                                                </div>
+                                                <div className="col-md-10 col-xs-10">
+                                                    <p className="news_title"><a href="/">{film.moTa}</a></p>
+                                                </div>
                                             </div>
-                                            <p className="title"><a href="/">{film.moTa}</a></p>
-                                        </div>  
+                                        </div>
                                     </div>
                                 </div>
                             </React.Fragment>
