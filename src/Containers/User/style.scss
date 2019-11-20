@@ -1,6 +1,8 @@
 .user {
   display: flex;
   align-items: center;
+  width: 125px;
+  white-space: nowrap;
   .btn-user {
     text-transform: none;
     color: #9b9b9b;

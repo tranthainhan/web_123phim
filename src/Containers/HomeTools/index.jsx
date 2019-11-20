@@ -1,101 +1,187 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, memo, useEffect } from "react";
 import "./style.scss";
-import { getFilm } from "../../Actions/film";
 import _ from "lodash";
+import apiCinema from "../../Api/cinema";
+import apiFilm from "../../Api/film";
 import IconDropDown from "@material-ui/icons/KeyboardArrowDown";
-import Button from '@material-ui/core/Button';
-import classNames from 'classnames';    
+import Button from "@material-ui/core/Button";
+import classNames from "classnames";
 
-const HomeTools = () => {
-  const [choseFilm, setChoseFilm] = useState({});
-  const [listFilm, setListFilm] = useState([]);
+const HomeTools = props => {
+  const [film, setFilm] = useState({
+    filmList: [],
+    choseFilm: {}
+  });
+  const [cinema, setCinema] = useState({
+    cinemaList: [],
+    choseCinema: {}
+  });
+
+  const [date, setDates] = useState({ list: {}, choseDate: "" });
+
+  const [showings, setShowings] = useState({
+    list: [],
+    choseShowings: { time: "", code: "" }
+  });
+
+  const [open, setOpen] = useState({ film: false, cinema: false, date: false });
+
   useEffect(() => {
-    getFilm().then(res => {
-      setListFilm(
-        res.data.map(item => ({ maPhim: item.maPhim, tenPhim: item.tenPhim }))
-      );
-    });
+    getFilmList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getFilmList = () => {
+    apiFilm.get("LayDanhSachPhim?maNhom=GP09").then(result => {
+      setFilm({
+        ...film,
+        filmList: result.data.map(item => ({
+          maPhim: item.maPhim,
+          tenPhim: item.tenPhim
+        }))
+      });
+    });
+  };
+
+  const getCinemaList = maPhim => {
+    apiCinema.get(`LayThongTinLichChieuPhim?MaPhim=${maPhim}`).then(result => {
+      setCinema({
+        ...cinema,
+        cinemaList: result.data.heThongRapChieu.map(item => ({
+          maRap: item.maHeThongRap,
+          tenRap: item.tenHeThongRap
+        }))
+      });
+      setDates(() => {
+        const list = Object.assign(
+          {},
+          ...result.data.heThongRapChieu.map(item => {
+            const key = item.maHeThongRap;
+            let value = item.cumRapChieu[0].lichChieuPhim.map(item => {
+              const date = new Date(item.ngayChieuGioChieu);
+              return date.toLocaleDateString();
+            });
+            const uniqueSet = new Set(value);
+            value = [...uniqueSet];
+            return { [key]: value };
+          })
+        );
+        return { ...date, list };
+      });
+    });
+  };
+
+  const toggleOpen = nameState => {
+    setOpen(() => {
+      let newOpen = { ...open };
+      const array = Object.entries(newOpen);
+      array.map(item =>
+        item[0] === nameState ? (item[1] = !open[nameState]) : (item[1] = false)
+      );
+      newOpen = Object.assign(
+        {},
+        ...array.map(item => ({ [item[0]]: item[1] }))
+      );
+      return newOpen;
+    });
+  };
+  const dropdownClose = nameState => {
+    setOpen({ ...open, [nameState]: false });
+  };
   return (
     <div className="home-tools">
       <div className="select film">
-        <div className="dropdown-toggle">
-          <p>{_.isEmpty(choseFilm) ? "Phim" : choseFilm.tenPhim}</p>
-          <IconDropDown className='icon-dropdown'/>
+        <div className="dropdown-toggle" onClick={() => toggleOpen("film")}>
+          <p>{_.isEmpty(film.choseFilm) ? "Phim" : film.choseFilm.tenPhim}</p>
+          <IconDropDown className="icon-dropdown" />
         </div>
-        <ul className="select-film-dropdown">
-          {listFilm.map((item, index) => (
-            <li
-            key={index}
-              onClick={() =>
-                setChoseFilm({ maPhim: item.maPhim, tenPhim: item.tenPhim })
-              }
-            >
-              {item.tenPhim}
-            </li>
-          ))}
+        <ul
+          className={classNames("select-film-dropdown", {
+            open: open.film
+          })}
+        >
+          {film.filmList.map((item, index) => {
+            return (
+              <li
+                key={index}
+                onClick={() => {
+                  setFilm({
+                    ...film,
+                    openSelectFilm: !film.openSelectFilm,
+                    choseFilm: {
+                      maPhim: item.maPhim,
+                      tenPhim: item.tenPhim
+                    }
+                  });
+                  getCinemaList(item.maPhim);
+                  dropdownClose("film");
+                }}
+              >
+                {item.tenPhim}
+              </li>
+            );
+          })}
         </ul>
       </div>
-      <div className="select">
-        <div className="dropdown-toggle">
-          <p>{_.isEmpty(choseFilm) ? "Rạp" : choseFilm.tenPhim}</p>
-          <IconDropDown className='icon-dropdown'/>
+      <div className="select cinema">
+        <div className="dropdown-toggle" onClick={() => toggleOpen("cinema")}>
+          <p>
+            {_.isEmpty(cinema.choseCinema) ? "Rạp" : cinema.choseCinema.tenRap}
+          </p>
+          <IconDropDown className="icon-dropdown" />
         </div>
-        <ul className="select-film-dropdown">
-          {listFilm.map((item, index) => (
-            <li
-            key={index}
-              onClick={() =>
-                setChoseFilm({ maPhim: item.maPhim, tenPhim: item.tenPhim })
-              }
-            >
-              {item.tenPhim}
-            </li>
-          ))}
+        <ul
+          className={classNames("select-cinema-dropdown", {
+            open: open.cinema
+          })}
+        >
+          {_.isEmpty(film.choseFilm) ? (
+            <li>Vui lòng chọn phim</li>
+          ) : (
+            cinema.cinemaList.map((item, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  setCinema({
+                    ...cinema,
+                    choseCinema: {
+                      maRap: item.maRap,
+                      tenRap: item.tenRap
+                    },
+                    openSelectCinema: !cinema.openSelectCinema
+                  });
+                  dropdownClose("cinema");
+                }}
+              >
+                {item.tenRap}
+              </li>
+            ))
+          )}
         </ul>
       </div>
-      <div className="select">
-        <div className="dropdown-toggle">
-          <p>{_.isEmpty(choseFilm) ? "Ngày xem" : choseFilm.tenPhim}</p>
-          <IconDropDown className='icon-dropdown'/>
+      <div className="select dayView">
+        <div className="dropdown-toggle" onClick={() => toggleOpen("date")}>
+          <p>{_.isEmpty(date.choseDate) ? "Ngày xem" : date.choseDate}</p>
+          <IconDropDown className="icon-dropdown" />
         </div>
-        <ul className="select-film-dropdown">
-          {listFilm.map((item, index) => (
-            <li
-            key={index}
-              onClick={() =>
-                setChoseFilm({ maPhim: item.maPhim, tenPhim: item.tenPhim })
-              }
-            >
-              {item.tenPhim}
-            </li>
-          ))}
+        <ul className={classNames("select-dropdown-date", { open: open.date })}>
+          {(_.isEmpty(film.choseFilm) && _.isEmpty(cinema.choseCinema) && (
+            <li>Vui lòng chọn phim và rạp</li>
+          )) ||
+            (_.isEmpty(cinema.choseCinema) && <li>Vui lòng chọn rạp</li>) ||
+            date.list[cinema.choseCinema.maRap].map((item, index) => (
+              <li
+              key={index}
+                onClick={() => {
+                  setDates({ ...date, choseDate: item });
+                  dropdownClose("date");
+                }}
+              >
+                {item}
+              </li>
+            ))}
         </ul>
       </div>
-      <div className="select">
-        <div className="dropdown-toggle">
-          <p>{_.isEmpty(choseFilm) ? "Suất chiếu" : choseFilm.tenPhim}</p>
-          <IconDropDown className='icon-dropdown'/>
-        </div>
-        <ul className="select-film-dropdown">
-          {listFilm.map((item, index) => (
-            <li
-            key={index}
-              onClick={() =>
-                setChoseFilm({ maPhim: item.maPhim, tenPhim: item.tenPhim })
-              }
-            >
-              {item.tenPhim}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="select end-item">
-      <Button variant="contained" color="secondary" className={classNames({'done': false})}>
-        Mua vé ngay
-      </Button>
-      </div>
-      
     </div>
   );
 };
