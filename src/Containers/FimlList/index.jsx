@@ -36,7 +36,7 @@ const FimlList = () => {
     }, []);
 
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         autoplay: false,
