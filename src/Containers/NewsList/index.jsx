@@ -29,7 +29,7 @@ const NewsList = () => {
                 <div className="tab-pane fade show active" id="pills-nowShowingFilms-news" role="tabpanel" aria-labelledby="pills-nowShowingFilms-news-tab">
                     {filmList.map((film) => {
                         return (
-                            <React.Fragment>
+                            <React.Fragment key={film.maPhim}>
                                 <div className="row">
                                     <div className="col-md-6 col-xs-12">
                                         <NewsItem film={film} />
@@ -52,7 +52,7 @@ const NewsList = () => {
                                         <div className="col-xs-12 mb-4">
                                             <div className="row">
                                                 <div className="col-md-2 col-xs-2 thumbnail pr-0">
-                                                    <a href="/"><img src={film.hinhAnh} /></a>
+                                                    <a href="/"><img src={film.hinhAnh} alt="" /></a>
                                                 </div>
                                                 <div className="col-md-10 col-xs-10">
                                                     <p className="news_title"><a href="/">{film.moTa}</a></p>
@@ -62,7 +62,7 @@ const NewsList = () => {
                                         <div className="col-xs-12 mb-4">
                                             <div className="row">
                                                 <div className="col-md-2 col-xs-2 thumbnail pr-0">
-                                                    <a href="/"><img src={film.hinhAnh} /></a>
+                                                    <a href="/"><img src={film.hinhAnh} alt="" /></a>
                                                 </div>
                                                 <div className="col-md-10 col-xs-10">
                                                     <p className="news_title"><a href="/">{film.moTa}</a></p>
@@ -72,7 +72,7 @@ const NewsList = () => {
                                         <div className="col-xs-12 mb-4">
                                             <div className="row">
                                                 <div className="col-md-2 col-xs-2 thumbnail pr-0">
-                                                    <a href="/"><img src={film.hinhAnh} /></a>
+                                                    <a href="/"><img src={film.hinhAnh} alt="" /></a>
                                                 </div>
                                                 <div className="col-md-10 col-xs-10">
                                                     <p className="news_title"><a href="/">{film.moTa}</a></p>
@@ -82,7 +82,7 @@ const NewsList = () => {
                                         <div className="col-xs-12 mb-4">
                                             <div className="row">
                                                 <div className="col-md-2 col-xs-2 thumbnail pr-0">
-                                                    <a href="/"><img src={film.hinhAnh} /></a>
+                                                    <a href="/"><img src={film.hinhAnh} alt="" /></a>
                                                 </div>
                                                 <div className="col-md-10 col-xs-10">
                                                     <p className="news_title"><a href="/">{film.moTa}</a></p>

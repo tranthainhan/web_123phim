@@ -5,11 +5,17 @@ import Dialog from "@material-ui/core/Dialog";
 
 import imgClose from "../../Assets/img/close.png";
 
+import { withRouter } from "react-router-dom";
+
 const FilmItem = (props) => {
     const [open, setOpen] = useState(false);
 
     const handleClose = () => {
         setOpen(!open);
+    }
+
+    const goToBuyTicket = () => {
+        props.history.push(`/phim/${props.film.maPhim}`)
     }
 
     return (
@@ -26,7 +32,7 @@ const FilmItem = (props) => {
                 <p className="filmName text-left">{props.film.tenPhim}</p>
                 <p className="filmDate text-left">{props.film.ngayKhoiChieu}</p>
                 <div className="btn_Buy">
-                    <button className="btn w-100">MUA VÉ</button>
+                    <button className="btn w-100" onClick={goToBuyTicket}>MUA VÉ</button>
                 </div>
             </div>
             <Dialog
@@ -50,4 +56,4 @@ const FilmItem = (props) => {
     );
 };
 
-export default FilmItem;
+export default withRouter(FilmItem);
