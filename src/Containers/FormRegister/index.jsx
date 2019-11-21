@@ -1,10 +1,10 @@
 import React from "react";
 import * as yup from "yup";
 import { connect } from "react-redux";
-import { register } from "../../Actions/User";
-import _ from "lodash";
+import { register, login } from "../../Actions/User";
 import Swal from "sweetalert2";
 import api from "../../Api/user";
+import { withSnackbar } from "notistack";
 import TextField from "@material-ui/core/TextField";
 import { Formik, Field, Form } from "formik";
 import { Button } from "@material-ui/core";
@@ -33,7 +33,7 @@ const validationSchema = yup.object().shape({
     .required("Vui lòng không để trống")
     .min(8, "Độ dài tối thiểu 8 ký tự")
     .max(32, "Độ dài tối đa 32 ký tự")
-    .test("check taiKhoan", "Tài khoản bị trùng", value => {
+    .test("check taiKhoan", "Tài khoản đã tồn tại", value => {
       return checkUsername(value);
     }),
   matKhau: yup
@@ -55,8 +55,7 @@ const validationSchema = yup.object().shape({
     .typeError("Vui lòng chỉ nhập số")
 });
 
-const FormRegister = props => {
-  
+const FormRegister = ({ enqueueSnackbar, ...props }) => {
   return (
     <Formik
       initialValues={{
@@ -66,7 +65,7 @@ const FormRegister = props => {
         email: "",
         soDt: ""
       }}
-      onSubmit={(values, {setFieldError}) => {
+      onSubmit={(values, { setFieldError }) => {
         const newUser = {
           ...values,
           maNhom: "GP09",
@@ -79,13 +78,34 @@ const FormRegister = props => {
           .then(result => {
             Swal.fire({
               icon: "success",
-              title: "Your work has been saved",
-              showConfirmButton: true
+              title: "Đăng kí thành công",
+              showCancelButton: true,
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Đăng nhập",
+              cancelButtonText: "không",
+              reverseButtons: true
+            }).then(result => {
+              result &&
+                api
+                  .post("DangNhap", {
+                    taiKhoan: newUser.taiKhoan,
+                    matKhau: newUser.matKhau
+                  })
+                  .then(result => {
+                    props.login(result.data)
+                    enqueueSnackbar(`Xin chào ${result.data.hoTen}`, {
+                      variant: "success",
+                      anchorOrigin: {
+                        vertical: "top",
+                        horizontal: "right"
+                      }
+                    });
+                  });
             });
           })
-          .catch(() => setFieldError('email', 'Email bị trùng'));
+          .catch(err => setFieldError("email", err.response.message));
       }}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
     >
       {({ handleBlur, handleChange, handleSubmit }) => {
         return (
@@ -160,10 +180,7 @@ const FormRegister = props => {
                     margin="normal"
                     variant="outlined"
                     onBlur={handleBlur}
-                    onChange={ (e) => {
-                      new Promise((resolve, reject) => handleChange(e)).then(()=> console.log(form.values))
-                       
-                    }}
+                    onChange={handleChange}
                     error={form.touched.email && !!form.errors.email}
                     helperText={
                       form.touched.email && form.errors.email
@@ -208,5 +225,14 @@ const FormRegister = props => {
     </Formik>
   );
 };
-
-export default connect(null, { register })(FormRegister);
+const mapDispatchToProps = ( dispatch ) => {
+  return{ 
+    register: (user) => {
+      register(user)
+    },
+    login: (user) => {
+      dispatch(login(user))
+    }
+  }
+}
+export default connect(null,mapDispatchToProps)(withSnackbar(FormRegister));

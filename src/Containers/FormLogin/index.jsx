@@ -17,20 +17,23 @@ const FormLogin = props => {
     <div className="form-login">
       <Formik
         initialValues={{
-          username: "",
-          password: ""
+          taiKhoan: "",
+          matKhau: ""
         }}
         validationSchema={yup.object().shape({
-          username: yup.string().required("Vui lòng không để trống"),
-          password: yup.string().required("Vui lòng không để trống")
+          taiKhoan: yup.string().required("Vui lòng không để trống"),
+          matKhau: yup.string().required("Vui lòng không để trống"),
         })}
+        onSubmit={values => {
+
+        }}
       >
         {({ handleBlur, handleChange, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
             <Field>
               {({ form }) => (
                 <TextField
-                  name="username"
+                  name="taiKhoan"
                   label="Tài khoản"
                   margin="normal"
                   variant="outlined"
@@ -48,7 +51,7 @@ const FormLogin = props => {
             <Field>
               {({ form }) => (
                 <TextField
-                  name="password"
+                  name="matKhau"
                   label="Mật khẩu"
                   margin="normal"
                   variant="outlined"
@@ -63,7 +66,7 @@ const FormLogin = props => {
                 />
               )}
             </Field>
-            <Button variant="contained" type="submit">
+            <Button variant="contained" type="submit" >
               Đăng nhập
             </Button>
             <p className="dash-line">Hoặc</p>
