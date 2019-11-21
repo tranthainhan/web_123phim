@@ -20,11 +20,11 @@ const HomeTools = props => {
   const [date, setDates] = useState({ list: {}, choseDate: "" });
 
   const [showings, setShowings] = useState({
-    list: [],
-    choseShowings: { time: "", code: "" }
+    list: {},
+    choseShowings: {}
   });
 
-  const [open, setOpen] = useState({ film: false, cinema: false, date: false });
+  const [open, setOpen] = useState({ film: false, cinema: false, date: false, showings: false });
 
   useEffect(() => {
     getFilmList();
@@ -68,6 +68,21 @@ const HomeTools = props => {
         );
         return { ...date, list };
       });
+      setShowings(() => {
+        const list = Object.assign({}, ...result.data.heThongRapChieu.map(item => {
+          const key = item.maHeThongRap;
+          const value = item.cumRapChieu[0].lichChieuPhim.reduce( (object, item) => {
+            const date = new Date(item.ngayChieuGioChieu)
+            const key = date.toLocaleDateString();
+            object[key] = object[key] || [];
+            const value = {time: `${date.getHours()}:${date.getMinutes()}`, code: item.maLichChieu}
+            object[key].push(value);
+            return object;
+          }, {})
+          return {[key]: value}
+        }))
+        return {...showings, list}
+      })
     });
   };
 
@@ -182,6 +197,36 @@ const HomeTools = props => {
             ))}
         </ul>
       </div>
+      <div className='select showings'>
+        <div className='dropdown-toggle' onClick={()=> toggleOpen('showings')}>
+          <p>{_.isEmpty(showings.choseShowings) ? 'Suất chiếu': showings.choseShowings.time}</p>
+          <IconDropDown className="icon-dropdown" />
+        </div>
+        <ul className={classNames('select-dropdown-showing', {'open': open.showings})}>
+                {
+                  (_.isEmpty(film.choseFilm) && _.isEmpty(cinema.choseCinema) && _.isEmpty(date.choseDate) && <li>Vui lòng chọn phim, rạp và ngày xem</li>) ||
+                  ( _.isEmpty(cinema.choseCinema) && _.isEmpty(date.choseDate) && <li>Vui lòng chọn rạp và ngày xem</li>) || 
+                  ( _.isEmpty(date.choseDate) && <li>Vui lòng chọn ngày xem</li>) || 
+                  
+                    (
+                      showings.list[cinema.choseCinema.maRap][date.choseDate].map(item => (
+                      <li onClick={ ()=> {
+                        setShowings({
+                          ...showings, choseShowings: { time: item.time, code: item.code}
+                        })
+                        dropdownClose('showings')
+                      }}>{item.time}</li>
+                      ))
+                      )
+                  
+                }
+        </ul>
+      </div>
+    <div className='select button'>
+    <Button variant="contained" color="secondary" >
+        Mua vé ngay
+      </Button>
+    </div>
     </div>
   );
 };
