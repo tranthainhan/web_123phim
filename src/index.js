@@ -14,6 +14,7 @@ import rootReducer from "./Reducers/rootReducer";
 import Dialog from "./Containers/Dialog";
 import Footer from "./Components/Footer";
 import Header from "./Containers/Header";
+import BuyTicket from "./Containers/BuyTicket";
 
 const store = createStore(
   rootReducer,
@@ -29,7 +30,8 @@ ReactDOM.render(
       <Router>
         <Header />
         <Switch>
-          <Route path="/" component={App} />
+          <Route path="/" exact component={App} />
+          <Route path="/phim/:maPhim" exact component={BuyTicket} />
         </Switch>
         <Dialog />
         <Footer />

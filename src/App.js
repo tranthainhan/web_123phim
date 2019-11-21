@@ -7,12 +7,14 @@ import './App.css';
 import AppDownload from "./Components/AppDownload";
 import Carousel from './Components/Carousel';
 import FimlList from './Containers/FimlList';
+import NewsList from './Containers/NewsList';
 
 function App() {
   return (
     <div className="App">
       <Carousel />
       <FimlList />
+      <NewsList />
       <AppDownload />
     </div>
   );
