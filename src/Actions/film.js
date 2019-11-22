@@ -19,6 +19,23 @@ export const getFilmList = () => {
     }
 }
 
+export const getFilmPagination = (maNhom, soTrang, soPhanTuTrenTrang, callback) => {
+    return (dispatch) => {
+        api
+            .get('LayDanhSachPhimPhanTrang', {
+                params: { maNhom, soTrang, soPhanTuTrenTrang }
+            })
+            .then((result) => {
+                dispatch({
+                    type: Types.GET_MOVIES_PAGINATION,
+                    payload: result.data,
+                })
+                if (callback) callback();
+            })
+            .catch(err => console.log(err.message))
+    }
+}
+
 export const getTicket = (maPhim, callback) => {
     return (dispatch) => {
         api
