@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { toggle } from "../../Actions/Dialog";
 import { withStyles } from "@material-ui/core/styles";
@@ -55,36 +55,24 @@ const MyDialog = props => {
 
   const { handleClose, open } = props;
 
-  useEffect(() => {
-    if (!open) {
-      setRegister();
-      const styleTagHtml = _.debounce(
-        () => (document.documentElement.style.overflow = "visible !important"),
-        1000
-      );
-      styleTagHtml();
-      // console.log(document.documentElement.style.overflow = 'visible !important')
-    }
-    return () => {
-    }
-  }, [open]);
+  const closeFormRegister =  _.debounce(()=> setRegister(), 150);
   return (
     <Dialog
-      onClose={handleClose}
+      onClose={() => {handleClose(); closeFormRegister()}}
       aria-labelledby="customized-dialog-title"
       open={open}
       className="dialog"
     >
       <DialogTitle
         id="customized-dialog-title"
-        onClose={handleClose}
+        onClose={() => {handleClose(); closeFormRegister()}}
         className="dialog-title"
       ></DialogTitle>
       <DialogContent className="dialog-body">
         {register ? (
           <FormRegister setRegister={setRegister} handleClose={handleClose} />
         ) : (
-          <FormLogin setRegister={setRegister} />
+          <FormLogin setRegister={setRegister} handleClose={handleClose}/>
         )}
       </DialogContent>
     </Dialog>

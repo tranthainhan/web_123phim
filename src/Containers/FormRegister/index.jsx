@@ -66,6 +66,7 @@ const FormRegister = ({ enqueueSnackbar, ...props }) => {
         soDt: ""
       }}
       onSubmit={(values, { setFieldError }) => {
+       
         const newUser = {
           ...values,
           maNhom: "GP09",
@@ -85,7 +86,8 @@ const FormRegister = ({ enqueueSnackbar, ...props }) => {
               cancelButtonText: "không",
               reverseButtons: true
             }).then(result => {
-              result &&
+              
+              result.value &&
                 api
                   .post("DangNhap", {
                     taiKhoan: newUser.taiKhoan,

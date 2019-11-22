@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
-
+import classNames from "classnames";
+import apiUser from "../../Api/user";
+import _ from "lodash";
+import { withSnackbar } from "notistack";
+import { connect } from "react-redux";
+import { login } from "../../Actions/User";
 
 import TextField from "@material-ui/core/TextField";
 import { Formik, Field, Form } from "formik";
@@ -11,8 +16,7 @@ import ButtonLoginWithGG from "../ButtonLoginWithGG";
 import "./style.scss";
 
 const FormLogin = props => {
-
-  
+  const [error, setError] = useState("");
   return (
     <div className="form-login">
       <Formik
@@ -22,10 +26,23 @@ const FormLogin = props => {
         }}
         validationSchema={yup.object().shape({
           taiKhoan: yup.string().required("Vui lòng không để trống"),
-          matKhau: yup.string().required("Vui lòng không để trống"),
+          matKhau: yup.string().required("Vui lòng không để trống")
         })}
         onSubmit={values => {
-
+          apiUser
+            .post("DangNhap", values)
+            .then(result => {
+              props.login(result.data);
+              props.handleClose();
+              props.enqueueSnackbar(`Xin chào ${result.data.hoTen}`, {
+                variant: "success",
+                anchorOrigin: {
+                  vertical: "top",
+                  horizontal: "right"
+                }
+              });
+            })
+            .catch(err => setError(`*${err.response.data}`));
         }}
       >
         {({ handleBlur, handleChange, handleSubmit }) => (
@@ -37,12 +54,15 @@ const FormLogin = props => {
                   label="Tài khoản"
                   margin="normal"
                   variant="outlined"
-                  onBlur={handleBlur}
+                  onBlur={e => {
+                    handleBlur(e);
+                    setError("");
+                  }}
                   onChange={handleChange}
-                  error={form.touched.username && !!form.errors.username}
+                  error={form.touched.taiKhoan && !!form.errors.taiKhoan}
                   helperText={
-                    form.touched.username && form.errors.username
-                      ? form.errors.username
+                    form.touched.taiKhoan && form.errors.taiKhoan
+                      ? form.errors.taiKhoan
                       : ""
                   }
                 />
@@ -55,18 +75,25 @@ const FormLogin = props => {
                   label="Mật khẩu"
                   margin="normal"
                   variant="outlined"
-                  onBlur={handleBlur}
+                  type="password"
+                  onBlur={e => {
+                    handleBlur(e);
+                    setError("");
+                  }}
                   onChange={handleChange}
-                  error={form.touched.password && !!form.errors.password}
+                  error={form.touched.matKhau && !!form.errors.matKhau}
                   helperText={
-                    form.touched.password && form.errors.password
-                      ? form.errors.password
+                    form.touched.matKhau && form.errors.matKhau
+                      ? form.errors.matKhau
                       : ""
                   }
                 />
               )}
             </Field>
-            <Button variant="contained" type="submit" >
+            <div className={classNames("error", { open: !_.isEmpty(error) })}>
+              {error}
+            </div>
+            <Button variant="contained" type="submit">
               Đăng nhập
             </Button>
             <p className="dash-line">Hoặc</p>
@@ -90,4 +117,12 @@ const FormLogin = props => {
   );
 };
 
-export default FormLogin;
+const mapDispatchToProps = dispatch => {
+  return {
+    login: user => {
+      dispatch(login(user));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(withSnackbar(FormLogin));

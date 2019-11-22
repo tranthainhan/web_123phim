@@ -37,7 +37,6 @@
         width: 30px;
       }
     }
-
     .registration-question {
       text-align: center;
       font-size: 14px;
@@ -51,5 +50,14 @@
         }
       }
     }
+    .error{
+      color: red;
+      height: 0px;
+      transition: height 0.2s;
+      &.open{
+        height: 35px;
+      }
+    }
+
   }
 }
