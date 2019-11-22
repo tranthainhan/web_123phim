@@ -1,6 +1,4 @@
-img {
-  width: 100%;
-}
+
 
 .thumbnail {
   width: 50px;
@@ -33,6 +31,9 @@ img {
 }
 .news-list {
   margin-bottom: 30px;
+  img {
+    width: 100%;
+  }
   .tab-content {
     display: flex;
     flex-direction: column;
