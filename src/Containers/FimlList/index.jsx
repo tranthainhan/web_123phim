@@ -31,6 +31,7 @@ const PrevArrow = ({ className, style, onClick }) => {
 const FimlList = (props) => {
     useEffect(() => {
         props.getFilmList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const settings = {
