@@ -26,7 +26,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <SnackbarProvider maxSnack={3}>
+    <SnackbarProvider maxSnack={3} className='snackbar'>
       <Router>
         <Header />
         <Switch>

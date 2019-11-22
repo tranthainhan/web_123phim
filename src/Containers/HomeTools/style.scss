@@ -74,7 +74,7 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       top: calc(100% - 5px);
       left: 0;
-      padding: 0;
+      padding: 5px 0;
       max-height: 300px;
       overflow: auto;
       &::-webkit-scrollbar
@@ -101,6 +101,13 @@
         white-space: nowrap;
         padding: 3px 20px;
         font-size: 14px;
+        transition: all 0.1s;
+        color: black;
+        background: transparent;
+        &:hover{
+          background: #60c5ef;
+          color: white;
+        }
       }
     }
     &.film {

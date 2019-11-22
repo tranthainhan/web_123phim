@@ -31,3 +31,6 @@ code {
 .footer{
   flex-shrink: 0;
 }
+[class*='makeStyles-top']{
+  top: 60px !important;
+}
