@@ -22,9 +22,9 @@ const NewsList = () => {
         }
     }, [filmList,show]);
 
-    const createNews = async () => {
+    const createNews = () => {
         const index = show.amount + 1;
-        await setShow({list: [...show.list, filmList[index]], amount: index});
+        setShow({list: [...show.list, filmList[index]], amount: index});
 
     }
 
