@@ -6,6 +6,8 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FilmItem from '../FilmItem';
 import { connect } from "react-redux";
 import { getFilmList } from "../../Actions/film";
+// import { getFilmPagination } from "../../Actions/film";
+import _ from "lodash";
 
 const NextArrow = ({ className, style, onClick }) => {
     return (
@@ -41,10 +43,32 @@ const FimlList = (props) => {
         slidesToScroll: 1,
         pauseOnHover: false,
         draggable: true,
-        rows: 2,
+        rows: 1,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
     };
+
+    const renderFilmList = () => {
+        let filmListPagination = _.chunk(props.filmList, 8);
+        // return <React.Fragment>
+        //     {filmListPagination.map((wrap) => {
+        //         return wrap.map((film, index) => {
+        //             return <div key={index} className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
+        //                 <FilmItem film={film} />
+        //             </div>
+        //         })
+        //     })}
+        // </React.Fragment>
+        return filmListPagination.map((wrap, index) => {
+            return <div key={index}>
+                {wrap.map((film, index) => {
+                    return <div key={index} className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
+                        <FilmItem film={film} />
+                    </div>
+                })}
+            </div>
+        })
+    }
 
     return (
         <div className="mt-5">
@@ -60,7 +84,7 @@ const FimlList = (props) => {
             <div className="tab-content" id="pills-tabContent">
                 <div className="tab-pane fade show active" id="pills-nowShowingFilms" role="tabpanel" aria-labelledby="pills-nowShowingFilms-tab">
                     <Slider {...settings} className="film-list container">
-                        {props.filmList.map((film) => {
+                        {/* {props.filmList.map((film) => {
                             return (
                                 <React.Fragment key={film.maPhim}>
                                     <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
@@ -77,7 +101,10 @@ const FimlList = (props) => {
                                     </div>
                                 </React.Fragment>
                             )
-                        })}
+                        })} */}
+                        {
+                            renderFilmList()
+                        }
                     </Slider>
                 </div>
                 <div className="tab-pane fade" id="pills-upComingFilms" role="tabpanel" aria-labelledby="pills-upComingFilms-tab">
