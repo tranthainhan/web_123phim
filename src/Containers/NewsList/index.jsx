@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { getFilm } from "../../Actions/film";
+import _ from 'lodash';
 
 import "./style.scss";
 import NewsItem from '../NewsItem';
 
 const NewsList = () => {
     const [filmList, setFilmList] = useState([]);
+    const [show, setShow] = useState({list: [], amount: 0});
 
     useEffect(() => {
-        getFilm()
+        if(_.isEmpty(filmList)){
+            getFilm()
             .then((result) => {
                 setFilmList(result.data);
+                setShow({...show, list: [result.data[0]]})
             })
-    }, []);
+        }
+        if(!_.isEmpty(show.list)){
+           document.getElementById('pills-nowShowingFilms-news').lastElementChild.classList.add('open')
+        }
+    }, [filmList,show]);
+    const createNews = async () => {
+        const index = show.amount + 1;
+        await setShow({list: [...show.list, filmList[index]], amount: index});
 
+    }
+    console.log(show)
     return (
-        <div className="mt-5 container">
+        <div className="mt-5 container news-list">
             <ul className="nav nav-pills mb-3 container text-center justify-content-center mb-5" id="pills-news-tab" role="tablist">
                 <li className="nav-item nowShowingFilms_container">
                     <a className="nowShowingFilms nav-link active" id="pills-nowShowingFilms-news-tab" data-toggle="pill" href="#pills-nowShowingFilms-news" role="tab" aria-controls="pills-nowShowingFilms-news" aria-selected="true">Điện Ảnh 24h</a>
@@ -27,9 +40,9 @@ const NewsList = () => {
 
             <div className="tab-content" id="pills-news-tabContent">
                 <div className="tab-pane fade show active" id="pills-nowShowingFilms-news" role="tabpanel" aria-labelledby="pills-nowShowingFilms-news-tab">
-                    {filmList.map((film) => {
+                    {show.list.map((film) => {
                         return (
-                            <React.Fragment key={film.maPhim}>
+                            <div className='wrap-item'>
                                 <div className="row">
                                     <div className="col-md-6 col-xs-12">
                                         <NewsItem film={film} />
@@ -91,10 +104,11 @@ const NewsList = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </React.Fragment>
+                            </div>
                         )
                     })}
                 </div>
+                <button className='btn-create-news' onClick={createNews}> XEM THÊM</button>
 
                 <div className="tab-pane fade" id="pills-upComingFilms-news" role="tabpanel" aria-labelledby="pills-upComingFilms-news-tab"></div>
             </div>

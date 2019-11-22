@@ -8,6 +8,7 @@ const BuyTicket = (props) => {
     useEffect(() => {
         const maPhim = props.match.params.maPhim;
         props.getTicket(maPhim);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
