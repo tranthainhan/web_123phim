@@ -21,12 +21,13 @@ const NewsList = () => {
            document.getElementById('pills-nowShowingFilms-news').lastElementChild.classList.add('open')
         }
     }, [filmList,show]);
+
     const createNews = async () => {
         const index = show.amount + 1;
         await setShow({list: [...show.list, filmList[index]], amount: index});
 
     }
-    console.log(show)
+    
     return (
         <div className="mt-5 container news-list">
             <ul className="nav nav-pills mb-3 container text-center justify-content-center mb-5" id="pills-news-tab" role="tablist">
