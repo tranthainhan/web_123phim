@@ -1,23 +1,32 @@
-import React from 'react';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 
 //IMPORT COMPONENT
 // import Footer from "./Components/Footer";
-import AppDownload from "./Components/AppDownload";
-import Carousel from './Components/Carousel';
-import FimlList from './Containers/FimlList';
-import NewsList from './Containers/NewsList';
-import Session from './Containers/Session';
+import FilmDetail from "./Layout/FilmDetail/FilmDetail";
+import HomeLayout from "./Layout/Home";
+import Header from "./Containers/Header";
+import Dialog from "./Containers/Dialog";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
     <div className="App">
-      <Carousel />
-      <FimlList />
-      <Session />
-      <NewsList />
-      <AppDownload />
+      <Switch>
+        <Route path="/">
+          <Header />
+          <main className="main">
+            <Switch>
+              <Route path="/" exact component={HomeLayout} />
+              <Route path="/phim/:bidanh" component={FilmDetail} />
+            </Switch>
+          </main>
+          <Dialog />
+          <Footer />
+        </Route>
+      </Switch>
     </div>
   );
 }

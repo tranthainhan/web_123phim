@@ -25,7 +25,6 @@ const NewsList = () => {
     const createNews = () => {
         const index = show.amount + 1;
         setShow({ list: [...show.list, filmList[index]], amount: index });
-
     }
 
     return (

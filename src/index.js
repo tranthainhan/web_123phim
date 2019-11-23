@@ -5,16 +5,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { SnackbarProvider } from "notistack";
 import rootReducer from "./Reducers/rootReducer";
-import Dialog from "./Containers/Dialog";
-import Footer from "./Components/Footer";
-import Header from "./Containers/Header";
-import BuyTicket from "./Containers/BuyTicket";
 
 const store = createStore(
   rootReducer,
@@ -26,16 +22,10 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <SnackbarProvider maxSnack={3} className='snackbar'>
-      <Router>
-        <Header />
-        <Switch>
-          <Route path="/" exact component={App} />
-          <Route path="/phim/:maPhim" exact component={BuyTicket} />
-        </Switch>
-        <Dialog />
-        <Footer />
-      </Router>
+    <SnackbarProvider maxSnack={3} className="snackbar">
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </SnackbarProvider>
   </Provider>,
   document.getElementById("root")

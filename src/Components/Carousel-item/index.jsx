@@ -3,6 +3,7 @@ import "./style.scss";
 import imgClose from '../../Assets/img/close.png'
 import Play from "@material-ui/icons/PlayArrow";
 import Dialog from "@material-ui/core/Dialog";
+import {Link} from 'react-router-dom';
 
 
 const CarouselItem = ({ item, ...props }) => {
@@ -14,7 +15,9 @@ const CarouselItem = ({ item, ...props }) => {
   return (
     <React.Fragment>
       <div className="carousel-item" {...props}>
-        <img src={item.hinhAnh} alt="hinh anh" />
+        <Link to={`/phim/${item.maPhim}-${item.biDanh}`}><img src={item.hinhAnh} alt="hinh anh" />
+        </Link>
+        
         <div className="play-trailer">
           <div className="btn-play" onClick={handleClose}>
             <Play className="icon-play" />
