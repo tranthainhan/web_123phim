@@ -21,10 +21,9 @@ const NewsList = () => {
            document.getElementById('pills-nowShowingFilms-news').lastElementChild.classList.add('open')
         }
     }, [filmList,show]);
-    const createNews = async () => {
+    const createNews = () => {
         const index = show.amount + 1;
-        await setShow({list: [...show.list, filmList[index]], amount: index});
-
+        setShow({list: [...show.list, filmList[index]], amount: index});
     }
     return (
         <div className="mt-5 container news-list">

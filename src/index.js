@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
@@ -14,7 +14,6 @@ import rootReducer from "./Reducers/rootReducer";
 import Dialog from "./Containers/Dialog";
 import Footer from "./Components/Footer";
 import Header from "./Containers/Header";
-import BuyTicket from "./Containers/BuyTicket";
 
 const store = createStore(
   rootReducer,
@@ -26,15 +25,16 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <SnackbarProvider maxSnack={3} className='snackbar'>
+    <SnackbarProvider maxSnack={3} className="snackbar">
       <Router>
-        <Header />
         <Switch>
-          <Route path="/" exact component={App} />
-          <Route path="/phim/:maPhim" exact component={BuyTicket} />
+          <Route  path="/">
+            <Header />
+            <App />
+            <Dialog />
+            <Footer />
+          </Route>
         </Switch>
-        <Dialog />
-        <Footer />
       </Router>
     </SnackbarProvider>
   </Provider>,
