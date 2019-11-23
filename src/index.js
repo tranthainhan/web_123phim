@@ -5,15 +5,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { SnackbarProvider } from "notistack";
 import rootReducer from "./Reducers/rootReducer";
-import Dialog from "./Containers/Dialog";
-import Footer from "./Components/Footer";
-import Header from "./Containers/Header";
 
 const store = createStore(
   rootReducer,
@@ -26,16 +23,9 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <SnackbarProvider maxSnack={3} className="snackbar">
-      <Router>
-        <Switch>
-          <Route  path="/">
-            <Header />
-            <App />
-            <Dialog />
-            <Footer />
-          </Route>
-        </Switch>
-      </Router>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </SnackbarProvider>
   </Provider>,
   document.getElementById("root")
