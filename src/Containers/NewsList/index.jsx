@@ -7,24 +7,26 @@ import NewsItem from '../NewsItem';
 
 const NewsList = () => {
     const [filmList, setFilmList] = useState([]);
-    const [show, setShow] = useState({list: [], amount: 0});
+    const [show, setShow] = useState({ list: [], amount: 0 });
 
     useEffect(() => {
-        if(_.isEmpty(filmList)){
+        if (_.isEmpty(filmList)) {
             getFilm()
-            .then((result) => {
-                setFilmList(result.data);
-                setShow({...show, list: [result.data[0]]})
-            })
+                .then((result) => {
+                    setFilmList(result.data);
+                    setShow({ ...show, list: [result.data[0]] })
+                })
         }
-        if(!_.isEmpty(show.list)){
-           document.getElementById('pills-nowShowingFilms-news').lastElementChild.classList.add('open')
+        if (!_.isEmpty(show.list)) {
+            document.getElementById('pills-nowShowingFilms-news').lastElementChild.classList.add('open')
         }
-    }, [filmList,show]);
+    }, [filmList, show]);
+
     const createNews = () => {
         const index = show.amount + 1;
-        setShow({list: [...show.list, filmList[index]], amount: index});
+        setShow({ list: [...show.list, filmList[index]], amount: index });
     }
+
     return (
         <div className="mt-5 container news-list">
             <ul className="nav nav-pills mb-3 container text-center justify-content-center mb-5" id="pills-news-tab" role="tablist">
