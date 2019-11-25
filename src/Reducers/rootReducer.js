@@ -6,6 +6,7 @@ import movieDetailReducer from "./MovieDetailReducer";
 import user from './User';
 import cinemaReducer from "./CinemaReducer";
 import addressCinemaReducer from "./AddressCinemaReducer";
+import showTimesReducer from "./ShowTimesReducer";
 
 const rootReducer = combineReducers({
     toggleDialog,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     movieDetail: movieDetailReducer,
     cinemaList: cinemaReducer,
     addressCinema: addressCinemaReducer,
+    showTimes: showTimesReducer,
 })
 
 export default rootReducer;
