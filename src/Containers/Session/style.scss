@@ -29,7 +29,41 @@
     }
   }
 
-  .session_addressCinema {
-      border: 1px solid #ebebec;
+  .session_detail {
+    border: 1px solid #ebebec;
+    .session_addressCinema {
+      .nav-pills {
+        .nav-link {
+          text-decoration: none;
+          background-color: transparent !important;
+          border-bottom: 1px solid #ebebec;
+          padding-bottom: 11px;
+          opacity: 0.5;
+          &:hover, &.active {
+            opacity: 1;
+          }
+          .session_addressCinema_wrap {
+            .titleCinema {
+              color: #000;
+              font-weight: 500;
+              margin-bottom: 0;
+            }
+            .addressCinema {
+              color: #333;
+              margin-bottom: 0;
+            }
+            .detailCinema {
+              text-decoration: none;
+              color: #fb4226;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+
+    .session_dateCinema {
+      border-left: 1px solid #ebebec;
+    }
   }
 }

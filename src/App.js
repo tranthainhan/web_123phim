@@ -10,6 +10,7 @@ import HomeLayout from "./Layout/Home";
 import Header from "./Containers/Header";
 import Dialog from "./Containers/Dialog";
 import Footer from "./Components/Footer";
+// import AppDownload from "./Components/AppDownload";
 
 function App() {
   return (
