@@ -43,14 +43,14 @@ const Session = (props) => {
                                                     props.showTimesList.map((wrap) => {
                                                         return wrap.lstCumRap.map((itemAddress) => {
                                                             return <a key={itemAddress.maCumRap} className="nav-link" id={`v-pills-${itemAddress.maCumRap}-tab`} data-toggle="pill" href={`#v-pills-${itemAddress.maCumRap}`} role="tab" aria-controls={`v-pills-${itemAddress.maCumRap}`} aria-selected="true" >
-                                                            <div className="session_addressCinema_wrap">
-                                                                <p className="titleCinema">{itemAddress.tenCumRap}</p>
-                                                                <p className="addressCinema">{itemAddress.diaChi}</p>
-                                                                <a className="detailCinema" href="/">[chi tiết]</a>
-                                                            </div>
-                                                        </a>
+                                                                <div className="session_addressCinema_wrap">
+                                                                    <p className="titleCinema">{itemAddress.tenCumRap}</p>
+                                                                    <p className="addressCinema">{itemAddress.diaChi}</p>
+                                                                    <a className="detailCinema" href="/">[chi tiết]</a>
+                                                                </div>
+                                                            </a>
                                                         })
-                                                        
+
                                                     })
                                                 }
                                             </div>
@@ -62,10 +62,19 @@ const Session = (props) => {
                                                     props.showTimesList.map((wrap) => {
                                                         return wrap.lstCumRap.map((item) => {
                                                             return <div className="tab-pane fade show" id={`v-pills-${item.maCumRap}`} role="tabpanel" aria-labelledby={`v-pills-${item.maCumRap}-tab`}>
-                                                           
+                                                                <div>
+                                                                    {
+                                                                        item.danhSachPhim.map((film) => {
+                                                                            return <div className="session_dateCinema_wrap">
+                                                                                <p>{film.tenPhim}</p>
+                                                                                
+                                                                            </div>
+                                                                        })
+                                                                    }
+                                                                </div>
                                                             </div>
                                                         })
-                                                
+
                                                     })
                                                 }
                                             </div>
