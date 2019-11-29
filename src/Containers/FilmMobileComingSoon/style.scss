@@ -1,0 +1,22 @@
+.film {
+  &.coming-soon {
+    width: 50%;
+    position: relative;
+    box-shadow: none;
+    height: auto;
+    padding: 10px;
+    img {
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    span {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px;
+      border-radius: 4px;
+      background: rgba(12, 27, 54, 0.8);
+      color: white;
+    }
+  }
+}
