@@ -1,0 +1,39 @@
+.film-detail_tabs {
+  transform: translateY(-125px);
+  .MuiTabs-root {
+    .MuiTabs-fixed {
+      .MuiTabs-flexContainer {
+        justify-content: center;
+        .MuiButtonBase-root {
+          outline: none;
+          text-transform: none;
+          font-size: 18px;
+          span {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  > .showtimes {
+    background: white;
+    border-radius: 5px;
+    margin-top: 40px;
+    padding-bottom: 40px;
+    overflow: hidden;
+    .MuiBox-root {
+      display: flex;
+      &[class*="MuiBox-root-"] {
+        padding: 0;
+      }
+    }
+  }
+  > .rating {
+    margin-top: 40px;
+    .MuiBox-root {
+      &[class*="MuiBox-root-"] {
+        padding: 0;
+      }
+    }
+  }
+}
