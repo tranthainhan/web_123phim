@@ -1,0 +1,35 @@
+.session {
+  .session_logoCinema {
+    border: 1px solid #ebebec;
+    padding: 0;
+    .nav-pills {
+      width: 80%;
+      margin: auto;
+      .nav-link {
+        width: 80%;
+        margin: auto;
+        background-color: transparent !important;
+        text-align: center;
+        padding: 0;
+      }
+      .nav-link.active {
+        .session_logo {
+          opacity: 1;
+        }
+      }
+      .session_logo {
+        width: 50%;
+        padding: 15px 0;
+        border-bottom: 1px solid #ebebec;
+        opacity: 0.5;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .session_addressCinema {
+      border: 1px solid #ebebec;
+  }
+}
