@@ -7,31 +7,31 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-html{
+html {
   overflow: visible !important;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-*{
+* {
   box-sizing: border-box;
 }
-#root{
+.App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
-.header{
+.header {
   flex-shrink: 0;
 }
-.App{
+.main {
   flex: 1 0 auto;
   padding-top: 60px;
 }
-.footer{
+.footer {
   flex-shrink: 0;
 }
-[class*='makeStyles-top']{
+[class*="makeStyles-top"] {
   top: 60px !important;
 }

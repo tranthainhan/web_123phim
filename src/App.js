@@ -5,7 +5,7 @@ import "./App.css";
 
 //IMPORT COMPONENT
 // import Footer from "./Components/Footer";
-import FilmDetail from "./Layout/FilmDetail/FilmDetail";
+import FilmDetail from "./Layout/FilmDetail";
 import HomeLayout from "./Layout/Home";
 import Header from "./Containers/Header";
 import Dialog from "./Containers/Dialog";
