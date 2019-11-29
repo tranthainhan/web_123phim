@@ -49,10 +49,10 @@ const Carousel = () => {
     <div className="wrap-carousel">
       <Slider {...settings} className="my-carousel">
         {filmList.map(item => {
-        return <CarouselItem item={item} key={item.maPhim} />;
-      })}
+          return <CarouselItem item={item} key={item.maPhim} />;
+        })}
       </Slider>
-      <HomeTools/>
+      <HomeTools />
     </div>
   );
 };
