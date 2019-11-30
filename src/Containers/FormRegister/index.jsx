@@ -66,7 +66,6 @@ const FormRegister = ({ enqueueSnackbar, ...props }) => {
         soDt: ""
       }}
       onSubmit={(values, { setFieldError }) => {
-       
         const newUser = {
           ...values,
           maNhom: "GP09",
@@ -86,7 +85,6 @@ const FormRegister = ({ enqueueSnackbar, ...props }) => {
               cancelButtonText: "không",
               reverseButtons: true
             }).then(result => {
-              
               result.value &&
                 api
                   .post("DangNhap", {
@@ -94,7 +92,7 @@ const FormRegister = ({ enqueueSnackbar, ...props }) => {
                     matKhau: newUser.matKhau
                   })
                   .then(result => {
-                    props.login(result.data)
+                    props.login(result.data);
                     enqueueSnackbar(`Xin chào ${result.data.hoTen}`, {
                       variant: "success",
                       anchorOrigin: {
@@ -181,6 +179,7 @@ const FormRegister = ({ enqueueSnackbar, ...props }) => {
                     label="Email"
                     margin="normal"
                     variant="outlined"
+                    type="email"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     error={form.touched.email && !!form.errors.email}
@@ -227,14 +226,14 @@ const FormRegister = ({ enqueueSnackbar, ...props }) => {
     </Formik>
   );
 };
-const mapDispatchToProps = ( dispatch ) => {
-  return{ 
-    register: (user) => {
-      register(user)
+const mapDispatchToProps = dispatch => {
+  return {
+    register: user => {
+      register(user);
     },
-    login: (user) => {
-      dispatch(login(user))
+    login: user => {
+      dispatch(login(user));
     }
-  }
-}
-export default connect(null,mapDispatchToProps)(withSnackbar(FormRegister));
+  };
+};
+export default connect(null, mapDispatchToProps)(withSnackbar(FormRegister));
