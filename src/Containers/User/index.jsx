@@ -28,10 +28,16 @@ const User = props => {
         }}
       >
         <img
-          src={_.isEmpty(user) ? userDefault : (user.picture ? user.picture : userDefault)}
+          src={
+            _.isEmpty(user)
+              ? userDefault
+              : user.picture
+              ? user.picture
+              : userDefault
+          }
           alt="hinh user"
         />
-        <p> {_.isEmpty(user) ? "Đăng nhập" : (user.name || user.hoTen)}</p>
+        <p> {_.isEmpty(user) ? "Đăng nhập" : user.name || user.hoTen}</p>
       </Button>
       <Menu
         anchorEl={anchorEl}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
+import dataImg from "../../dataImg";
 import playVideo from "../../Assets/img/play-video.png";
 import cinemaApi from "../../Api/cinema";
 import Rating from "@material-ui/lab/Rating";
@@ -51,12 +52,19 @@ const FilmDetail = props => {
   }, []);
   let { hinhAnh, ngayKhoiChieu, tenPhim, lichChieu } = film;
   ngayKhoiChieu = new Date(ngayKhoiChieu);
-  console.log(film);
   return (
     <div className="film-detail">
       <div className="film-detail-top">
         <div className="style-blur">
-          <img src={hinhAnh} alt="..." />
+          <img
+            src={dataImg[film.biDanh]}
+            alt="..."
+            onError={e => {
+              if (e.target.src !== dataImg[`${film.biDanh}`]) {
+                e.target.src = dataImg[`${film.biDanh}`];
+              }
+            }}
+          />
           <div className="detail-film-overlay"></div>
           <div className="trailer" onClick={handleClose}>
             <img src={playVideo} alt="..." />
@@ -69,7 +77,15 @@ const FilmDetail = props => {
           </div>
         </div>
         <div className="film-detail-info">
-          <img src={hinhAnh} alt="... " />
+          <img
+            src={hinhAnh}
+            alt="... "
+            onError={e => {
+              if (e.target.src !== dataImg[`${film.biDanh}-doc`]) {
+                e.target.src = dataImg[`${film.biDanh}-doc`];
+              }
+            }}
+          />
           <div className="content">
             <div>
               <span>{ngayKhoiChieu.toLocaleDateString()}</span>
