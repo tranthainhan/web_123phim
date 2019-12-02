@@ -15,10 +15,10 @@ export const getCinema = () => {
     }
 }
 
-export const getShowTimes = (maHeThongRap) => {
+export const getShowTimes = (maNhom) => {
     return (dispatch) => {
         api
-            .get(`LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}`)
+            .get(`LayThongTinLichChieuHeThongRap?maNhom=${maNhom}`)
             .then((result) => {
                 dispatch({
                     type: Types.GET_SHOWTIMES,
