@@ -1,144 +1,120 @@
 import React, { useEffect } from "react";
+import classNames from "classnames";
+import _ from "lodash";
 import { connect } from "react-redux";
 import { getCinema } from "../../Actions/Cinema";
 import { getAddressCinema } from "../../Actions/AddressCinema";
 import { getShowTimes } from "../../Actions/Cinema";
 
 import "./style.scss";
-
 const Session = props => {
-  useEffect(() => {
-    props.getCinema();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const { cinemaList, showTimesList } = props;
+    useEffect(() => {
+        if (_.isEmpty(cinemaList)) {
+            props.getCinema();
+        } else {
+            onClickLogo(cinemaList[0].maHeThongRap);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cinemaList]);
 
-  const onClickLogo = maRap => {
-    props.getAddressCinema(maRap);
-    props.getShowTimes(maRap);
-  };
-
-  return (
-    <div className="session container mt-5">
-      <div className="row">
-        <div className="col-2 session_logoCinema text-center">
-          <div
-            className="nav flex-column nav-pills"
-            id="v-pills-tab"
-            role="tablist"
-            aria-orientation="vertical"
-          >
-            {props.cinemaList.map(item => {
-              return (
-                <a
-                  key={item.maHeThongRap}
-                  className="nav-link"
-                  id={`v-pills-${item.maHeThongRap}-tab`}
-                  data-toggle="pill"
-                  href={`#v-pills-${item.maHeThongRap}`}
-                  role="tab"
-                  aria-controls={`v-pills-${item.maHeThongRap}`}
-                  aria-selected="true"
-                >
-                  <img
-                    className="session_logo"
-                    src={item.logo}
-                    alt=""
-                    onClick={() => {
-                      onClickLogo(item.maHeThongRap);
-                    }}
-                  />
-                </a>
-              );
-            })}
-          </div>
-        </div>
-        <div className="col-10 session_detail">
-          <div className="tab-content" id="v-pills-tabContent">
-            {props.cinemaList.map(item => {
-              return (
-                <div
-                  key={item.maHeThongRap}
-                  className="tab-pane fade show"
-                  id={`v-pills-${item.maHeThongRap}`}
-                  role="tabpanel"
-                  aria-labelledby={`v-pills-home-${item.maHeThongRap}`}
-                >
-                  <div className="row">
-                    <div className="col-4 session_addressCinema">
-                      <div
-                        className="nav flex-column nav-pills"
-                        id="v-pills-tab"
-                        role="tablist"
-                        aria-orientation="vertical"
-                      >
-                        {props.showTimesList.map(wrap => {
-                          return wrap.lstCumRap.map(itemAddress => {
+    const onClickLogo = maRap => {
+        props.getAddressCinema(maRap);
+        props.getShowTimes(maRap);
+    };
+    return (
+        <div className="session container mt-5">
+            <div className="row">
+                <div className="col-2 session_logoCinema text-center">
+                    <div className="nav flex-column nav-pills">
+                        {props.cinemaList.map((item, index) => {
                             return (
-                              <a
-                                key={itemAddress.maCumRap}
-                                className="nav-link"
-                                id={`v-pills-${itemAddress.maCumRap}-tab`}
-                                data-toggle="pill"
-                                href={`#v-pills-${itemAddress.maCumRap}`}
-                                role="tab"
-                                aria-controls={`v-pills-${itemAddress.maCumRap}`}
-                                aria-selected="true"
-                              >
-                                <div className="session_addressCinema_wrap">
-                                  <p className="titleCinema">
-                                    {itemAddress.tenCumRap}
-                                  </p>
-                                  <p className="addressCinema">
-                                    {itemAddress.diaChi}
-                                  </p>
-                                  <a className="detailCinema" href="/">
-                                    [chi tiết]
-                                  </a>
-                                </div>
-                              </a>
+                                <a
+                                    className={classNames("nav-link", { "active ": index === 0 })}
+                                    data-toggle="pill"
+                                    href={`#${item.maHeThongRap}`}
+                                    key={item.maHeThongRap}
+                                    onClick={() => {
+                                        onClickLogo(item.maHeThongRap);
+                                    }}
+                                >
+                                    <img
+                                        className="session_logo"
+                                        src={item.logo}
+                                        alt="..."
+                                        onClick={() => {
+                                            onClickLogo(item.maHeThongRap);
+                                        }}
+                                    />
+                                </a>
                             );
-                          });
                         })}
-                      </div>
                     </div>
-
-                    <div className="col-8 session_dateCinema">
-                      <div className="tab-content" id="v-pills-tabContent">
-                        {props.showTimesList.map(wrap => {
-                          return wrap.lstCumRap.map(item => {
-                            return (
-                              <div
-                                className="tab-pane fade show"
-                                id={`v-pills-${item.maCumRap}`}
-                                role="tabpanel"
-                                aria-labelledby={`v-pills-${item.maCumRap}-tab`}
-                              ></div>
-                            );
-                          });
-                        })}
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              );
-            })}
-          </div>
+                <div className="col-10 tab-content session_detail">
+                    {props.cinemaList.map((item, index) => (
+                        <div
+                            className={classNames("tab-pane fade", {
+                                "show active": index === 0
+                            })}
+                            id={item.maHeThongRap}
+                            key={item.maHeThongRap}
+                        >
+                            <div className="row">
+                                <div className="col-4 session_addressCinema">
+                                    <div className="nav flex-column nav-pills ">
+                                        {!_.isEmpty(showTimesList) &&
+                                            showTimesList[0].lstCumRap.map((item, index) => (
+                                                <a
+                                                    key={item.maCumRap}
+                                                    className={classNames("nav-link", {
+                                                        active: index === 0
+                                                    })}
+                                                    data-toggle="pill"
+                                                    href={`#${item.maCumRap}`}
+                                                >
+                                                    <div className="session_addressCinema_wrap">
+                                                        <p className="titleCinema">{item.tenCumRap}</p>
+                                                        <p className="addressCinema">{item.diaChi}</p>
+                                                        <p className="detailCinema">[chi tiết]</p>
+                                                    </div>
+                                                </a>
+                                            ))}
+                                    </div>
+                                </div>
+                                <div className="col-8 tab-content session_dateCinema">
+                                    {!_.isEmpty(showTimesList) &&
+                                        showTimesList[0].lstCumRap.map((item, index) => (
+                                            <div
+                                                className={classNames("tab-pane fade", {
+                                                    "show active": index === 0
+                                                })}
+                                                id={item.maCumRap}
+                                                key={item.maCumRap}
+                                            >
+                                                {item.diaChi}
+                                            </div>
+                                        ))}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 const mapStateToProps = state => {
-  return {
-    cinemaList: state.cinemaList,
-    addressCinemaList: state.addressCinema,
-    showTimesList: state.showTimes
-  };
+    return {
+        cinemaList: state.cinemaList,
+        addressCinemaList: state.addressCinema,
+        showTimesList: state.showTimes
+    };
 };
 
 export default connect(mapStateToProps, {
-  getCinema,
-  getAddressCinema,
-  getShowTimes
+    getCinema,
+    getAddressCinema,
+    getShowTimes
 })(Session);
