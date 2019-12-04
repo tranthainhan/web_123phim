@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "./style.scss";
-import dataImg from "../../dataImg";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FilmItem from "../FilmItem";

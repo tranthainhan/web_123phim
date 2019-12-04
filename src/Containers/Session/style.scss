@@ -26,7 +26,7 @@
 
 .colum3 {
   width: 70%;
-  height: 100%;
+  height: 487.84px !important;
   border-left: 1px solid #ebebec;
 }
 
@@ -41,7 +41,11 @@
   border: 1px solid #ebebec;
 }
 
-.MuiBox-root-194 {
+.MuiBox-root {
+  padding: 0 !important;
+}
+
+.wrap23_content {
   height: 100%;
   width: 100%;
   flex-grow: 1;

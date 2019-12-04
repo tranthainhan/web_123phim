@@ -137,50 +137,52 @@ function Session(props) {
                 filterShowTimesList.map((wrap) => {
                     return wrap.map((item) => {
                         return <TabPanel className="wrap23" value={value1} index={value1}>
-                            <Tabs
-                                orientation="vertical"
-                                variant="scrollable"
-                                value={value2}
-                                onChange={handleChange2}
-                                aria-label="Vertical tabs example"
-                                className="colum2"
-                            >
-                                {
-                                    item.lstCumRap.map((film, index) => {
-                                        return <div className={index === value2 ? "session_addressCinema_wrap active" : "session_addressCinema_wrap"} onClick={() => { onClickAddress(film.maCumRap); toggleActiveCol2(index) }}>
-                                            <p className="titleCinema">{film.tenCumRap}</p>
-                                            <p className="addressCinema">{film.diaChi}</p>
-                                            <p className="detailCinema"><a href="/">[chi tiết]</a></p>
-                                        </div>
-                                    })
-                                }
-                            </Tabs>
+                            <div className="wrap23_content">
+                                <Tabs
+                                    orientation="vertical"
+                                    variant="scrollable"
+                                    value={value2}
+                                    onChange={handleChange2}
+                                    aria-label="Vertical tabs example"
+                                    className="colum2"
+                                >
+                                    {
+                                        item.lstCumRap.map((film, index) => {
+                                            return <div className={index === value2 ? "session_addressCinema_wrap active" : "session_addressCinema_wrap"} onClick={() => { onClickAddress(film.maCumRap); toggleActiveCol2(index) }}>
+                                                <p className="titleCinema">{film.tenCumRap}</p>
+                                                <p className="addressCinema">{film.diaChi}</p>
+                                                <p className="detailCinema"><a href="/">[chi tiết]</a></p>
+                                            </div>
+                                        })
+                                    }
+                                </Tabs>
 
-                            {
-                                filterAddressList.map((wrap1) => {
-                                    return wrap1.map((wrap2) => {
-                                        return wrap2.map((item) => {
-                                            return item.danhSachPhim.map((film) => {
-                                                return <TabPanel className="colum3" value={value2} index={value2}>
-                                                    <div className="colum3_wrap">
-                                                        <div className="title" ><p>{film.tenPhim}</p></div>
-                                                        <ul className="showTimes_wrap">
-                                                            {
-                                                                film.lstLichChieuTheoPhim.map((item, index) => {
-                                                                    const prefix = '2019-01-01T';
-                                                                    if (item.ngayChieuGioChieu.slice(0, 11) === prefix) {
-                                                                        return <li key={index} onClick={() => { toggleActiveLi(index) }} className={index === liValue ? "showTimes active" : "showTimes"}>{convertTime(item.ngayChieuGioChieu)}</li>
-                                                                    }
-                                                                })
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                </TabPanel>
+                                {
+                                    filterAddressList.map((wrap1) => {
+                                        return wrap1.map((wrap2) => {
+                                            return wrap2.map((item) => {
+                                                return item.danhSachPhim.map((film) => {
+                                                    return <TabPanel className="colum3" value={value2} index={value2}>
+                                                        <div className="colum3_wrap">
+                                                            <div className="title" ><p>{film.tenPhim}</p></div>
+                                                            <ul className="showTimes_wrap">
+                                                                {
+                                                                    film.lstLichChieuTheoPhim.map((item, index) => {
+                                                                        const prefix = '2019-01-01T';
+                                                                        if (item.ngayChieuGioChieu.slice(0, 11) === prefix) {
+                                                                            return <li key={index} onClick={() => { toggleActiveLi(index) }} className={index === liValue ? "showTimes active" : "showTimes"}>{convertTime(item.ngayChieuGioChieu)}</li>
+                                                                        }
+                                                                    })
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </TabPanel>
+                                                })
                                             })
                                         })
                                     })
-                                })
-                            }
+                                }
+                            </div>
                         </TabPanel>
                     })
                 })
