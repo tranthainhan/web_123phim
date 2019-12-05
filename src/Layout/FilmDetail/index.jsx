@@ -52,6 +52,7 @@ const FilmDetail = props => {
   }, []);
   let { hinhAnh, ngayKhoiChieu, tenPhim, lichChieu } = film;
   ngayKhoiChieu = new Date(ngayKhoiChieu);
+  console.log(film);
   return (
     <div className="film-detail">
       <div className="film-detail-top">

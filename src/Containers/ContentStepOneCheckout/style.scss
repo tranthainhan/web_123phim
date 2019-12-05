@@ -1,0 +1,150 @@
+.checkout {
+  .content {
+    .step {
+      .step-1 {
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        .info-showtimes {
+          display: flex;
+          align-items: center;
+          img {
+            width: 44px;
+            height: 44px;
+            margin-right: 13px;
+          }
+          > div {
+            line-height: 1;
+            font-weight: 500;
+            p {
+              margin-bottom: 5px;
+            }
+            span {
+              font-size: 14px;
+            }
+          }
+        }
+        .choose-type-ticket {
+          font-weight: 500;
+          margin-top: 50px;
+          border-top: 1px solid rgba(233, 233, 233, 0.8);
+          border-bottom: 1px solid rgba(233, 233, 233, 0.8);
+          .ticket {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 25px;
+            padding-bottom: 20px;
+            &:nth-child(1) {
+              border-bottom: 1px solid rgba(233, 233, 233, 0.8);
+            }
+            > span {
+              width: 100px;
+            }
+            .price-ticket {
+              color: #44c020;
+            }
+            .quantity {
+              input[type="number"]::-webkit-inner-spin-button,
+              input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+              input {
+                width: 32px;
+                height: 32px;
+                border-radius: 4px;
+                border: 1px solid #e9e9e9;
+                font-weight: 500;
+                text-align: center;
+              }
+              svg {
+                font-size: 18px;
+                cursor: pointer;
+              }
+              .minus {
+                margin-right: 10px;
+              }
+              .plus {
+                margin-left: 10px;
+              }
+            }
+          }
+        }
+        .wrap-choose-ticket {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          .choose-ticket {
+            width: 100%;
+            height: 100px;
+            border: 1px solid rgba(233, 233, 233, 0.8);
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            button {
+              background: linear-gradient(223deg, #b4ec51 0, #429321 100%);
+              border: none;
+              color: white;
+              font-weight: 500;
+              padding: 0 30px;
+              height: 100%;
+              border-top-right-radius: 5px;
+              border-bottom-right-radius: 5px;
+            }
+            .total-money {
+              padding-left: 20px;
+              p {
+                margin-bottom: 0;
+                font-size: 14px;
+                color: #9b9b9b;
+                font-weight: 500;
+              }
+              span {
+                font-size: 22px;
+                color: #44c020;
+                font-weight: 500;
+              }
+            }
+          }
+          .note {
+            color: #9b9b9b;
+            font-size: 12px;
+            text-align: center;
+            padding: 20px;
+          }
+          .hotline {
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+            justify-content: center;
+            .title {
+              display: flex;
+              flex-direction: column;
+              text-align: right;
+              line-height: 1;
+              p {
+                margin-bottom: 0;
+                color: #9b9b9b;
+                font-weight: 500;
+              }
+              span {
+                font-size: 10px;
+                padding-top: 1px;
+              }
+            }
+            .phone {
+              font-weight: 500;
+              font-size: 34px;
+              line-height: 1;
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

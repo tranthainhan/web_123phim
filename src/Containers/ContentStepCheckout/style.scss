@@ -1,0 +1,12 @@
+.checkout {
+  .content {
+    .step {
+      flex: 1;
+      > * {
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+      }
+    }
+  }
+}

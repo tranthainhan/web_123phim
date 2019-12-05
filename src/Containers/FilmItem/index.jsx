@@ -3,6 +3,7 @@ import "./style.scss";
 import dataImg from "../../dataImg";
 import Play from "@material-ui/icons/PlayArrow";
 import Dialog from "@material-ui/core/Dialog";
+import Rating from "@material-ui/lab/Rating";
 
 import imgClose from "../../Assets/img/close.png";
 
@@ -18,7 +19,9 @@ const FilmItem = props => {
   const goToBuyTicket = () => {
     props.history.push(`/phim/${props.film.maPhim}-${props.film.biDanh}`);
   };
-
+  const goToDetailFilm = () => {
+    props.history.push(`/phim/${props.film.maPhim}-${props.film.biDanh}`);
+  };
   return (
     <div className="film-item_container">
       <div className="film-item mb-3">
@@ -31,15 +34,21 @@ const FilmItem = props => {
             }
           }}
         />
-        <div className="play-trailer">
+        <div className="play-trailer" onClick={goToDetailFilm}>
           <div className="btn-play" onClick={handleClose}>
             <Play className="icon-play" />
           </div>
         </div>
+        <div className="point">
+          <p>9.6</p>
+          <Rating readOnly value={8.5} precision={0.5} />
+        </div>
       </div>
       <div className="film-item_detail">
         <p className="filmName text-left">{props.film.tenPhim}</p>
-        <p className="filmDate text-left">{props.film.ngayKhoiChieu}</p>
+        <p className="filmDate text-left">
+          {new Date(props.film.ngayKhoiChieu).toLocaleDateString()}
+        </p>
         <div className="btn_Buy">
           <button className="btn w-100" onClick={goToBuyTicket}>
             MUA VÉ

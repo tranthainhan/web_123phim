@@ -1,0 +1,9 @@
+.checkout {
+  .content {
+    display: flex;
+    transition: transform 0.5s;
+    &.step-1-done {
+      transform: translateX(-400px);
+    }
+  }
+}
