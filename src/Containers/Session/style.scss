@@ -1,3 +1,12 @@
+.wrap {
+  flex-grow: 1;
+  background-color: #fff;
+  display: flex;
+  height: auto;
+  width: 60%;
+  margin: auto;
+  margin-top: 30px;
+}
 .session_logoCinema {
   width: 50%;
   padding: 15px 0;
@@ -39,6 +48,7 @@
 
 .wrap23 {
   border: 1px solid #ebebec;
+  width: 90%;
 }
 
 .MuiBox-root {
@@ -67,15 +77,18 @@
       margin-bottom: 0;
       text-overflow: ellipsis;
       overflow: hidden;
+      font-size: 16px;
     }
     .addressCinema {
       color: #333;
       margin-bottom: 0;
       text-overflow: ellipsis;
       overflow: hidden;
+      font-size: 16px;
     }
     .detailCinema {
       margin-bottom: 5px;
+      font-size: 16px;
       a {
         text-decoration: none;
         color: #fb4226;
@@ -86,7 +99,7 @@
 }
 
 .MuiBox-root-195 {
-  padding: 0 !important; 
+  padding: 0 !important;
 }
 
 .showTimes_wrap {
@@ -105,9 +118,66 @@
     font-size: 22px;
     color: #417500;
     cursor: pointer;
-    &:hover, &.active {
+    &:hover,
+    &.active {
       color: red;
       transform: scale(1.1);
+    }
+  }
+}
+
+@media (max-width: 1800px) {
+  .wrap {
+    width: 65%;
+  }
+  .wrap23_content {
+    .session_addressCinema_wrap {
+      .titleCinema {
+        font-size: 14px;
+      }
+      .addressCinema {
+        font-size: 14px;
+      }
+      .detailCinema {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1450px) {
+  .wrap {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1050px) {
+  .wrap {
+    width: 90%;
+  }
+}
+
+@media (max-width: 870px) {
+  .showTimes_wrap {
+    .showTimes {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .showTimes_wrap {
+    flex-wrap: wrap;
+    justify-content: left;
+    .showTimes {
+      font-size: 16px;
+      padding: 10px 5px;
     }
   }
 }
