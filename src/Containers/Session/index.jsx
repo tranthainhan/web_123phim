@@ -34,15 +34,9 @@ TabPanel.propTypes = {
 };
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
-        display: 'flex',
-        height: 'auto',
-        width: '60%',
-        margin: 'auto',
-        marginTop: '30px',
-    },
+    // root: {
+        
+    // },
     tabs: {
         border: `1px solid #ebebec`,
         width: '10%',
@@ -116,7 +110,7 @@ function Session(props) {
     }
 
     return (
-        <div className={classes.root}>
+        <div className="wrap">
             <Tabs
                 orientation="vertical"
                 variant="scrollable"
