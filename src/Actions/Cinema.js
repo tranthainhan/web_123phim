@@ -3,28 +3,26 @@ import api from "../Api/cinema";
 
 export const getCinema = () => {
     return (dispatch) => {
-        api
+        return api
             .get('LayThongTinHeThongRap')
             .then((result) => {
-                dispatch({
+                return dispatch({
                     type: Types.GET_CINEMA_LIST,
                     payload: result.data,
                 })
             })
-            .catch(err => console.log(err.message))
     }
 }
 
 export const getShowTimes = (maNhom) => {
     return (dispatch) => {
-        api
+        return api
             .get(`LayThongTinLichChieuHeThongRap?maNhom=${maNhom}`)
             .then((result) => {
-                dispatch({
+                return dispatch({
                     type: Types.GET_SHOWTIMES,
                     payload: result.data
                 })
             })
-            .catch(err => console.log(err.message))
     }
 }
