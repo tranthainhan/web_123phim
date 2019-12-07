@@ -6,13 +6,24 @@
   width: 60%;
   margin: auto;
   margin-top: 30px;
+  flex-direction: column;
 }
+
+.col1_wrap {
+  border: 1px solid #ebebec;
+  width: 10%;
+  .session_logoCinema_wrap {
+    width: 70%;
+    margin: auto;
+    border-bottom: 1px solid #ebebec;
+  }
+}
+
 .session_logoCinema {
-  width: 50%;
-  padding: 15px 0;
-  margin: auto;
-  border-bottom: 1px solid #ebebec;
+  width: 100%;
+  padding: 15px 10px;
   opacity: 0.5;
+  cursor: pointer;
   &:hover,
   &.active {
     opacity: 1;
