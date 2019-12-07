@@ -1,0 +1,35 @@
+.checkout {
+  .content {
+    .left {
+      width: 500px;
+      position: relative;
+      img {
+        width: 100%;
+        height: calc(100vh - 80px);
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.4);
+      }
+      .back {
+        color: white;
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        font-size: 36px;
+        cursor: pointer;
+      }
+      .info-film {
+        position: absolute;
+        color: white;
+        left: 38px;
+        bottom: 125px;
+        font-weight: 500;
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.checkout {
+  > .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 80px;
+    width: 100%;
+    transition: width 0.5s;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    &.step-1-done {
+      width: calc(100% - 400px);
+      display: inline-flex;
+    }
+    .stepper {
+      flex: 1;
+      padding-right: 0;
+      padding-left: 0;
+      .MuiStep-completed {
+        cursor: pointer;
+      }
+    }
+    .info-user {
+      margin-left: 20%;
+      img {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+      }
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+}

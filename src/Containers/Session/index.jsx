@@ -5,10 +5,12 @@ import Tabs from '@material-ui/core/Tabs';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { connect } from "react-redux";
+import _ from "lodash";
 import { getCinema } from "../../Actions/Cinema";
 import { getShowTimes } from "../../Actions/Cinema";
 import _ from "lodash";
 import "./style.scss";
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -48,6 +50,7 @@ function Session(props) {
     const toggleActiveCol = (index) => {
         setValue(index);
     }
+
 
     const convertTime = (time) => {
         var d = new Date(time + 'Z');

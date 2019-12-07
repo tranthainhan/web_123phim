@@ -10,12 +10,13 @@ import HomeLayout from "./Layout/Home";
 import Header from "./Containers/Header";
 import Dialog from "./Containers/Dialog";
 import Footer from "./Components/Footer";
-// import AppDownload from "./Components/AppDownload";
+import CheckoutLayout from "./Layout/CheckoutLayout";
 
 function App() {
   return (
     <div className="App">
       <Switch>
+        <Route path="/checkout/:maLichChieu" component={CheckoutLayout} />
         <Route path="/">
           <Header />
           <main className="main">

@@ -2,6 +2,7 @@ import * as Types from "../Constants/Cinema";
 import api from "../Api/cinema";
 
 export const getCinema = () => {
+
     return (dispatch) => {
         return api
             .get('LayThongTinHeThongRap')
@@ -26,3 +27,6 @@ export const getShowTimes = (maNhom) => {
             })
     }
 }
+export const getCinemaDetail = codeCinema => {
+  return api.get(`LayThongTinHeThongRap?maHeThongRap=${codeCinema}`);
+};

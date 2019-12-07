@@ -48,7 +48,6 @@ export default function Showtimes({ cinema }) {
     }
 
     if (cinema) {
-      // refs.current = refs.current.slice(0, cinema.length);
       const node = ReactDOM.findDOMNode(refs.current[0]);
       node.classList.add("active");
     }
@@ -57,8 +56,8 @@ export default function Showtimes({ cinema }) {
   const toggleActive = location => {
     refs.current.forEach((item, index) => {
       if (location === index) {
-        ReactDOM.findDOMNode(item).classList.add("active");
-      } else ReactDOM.findDOMNode(item).classList.remove("active");
+        item.classList.add("active");
+      } else item.classList.remove("active");
     });
   };
   return (
@@ -75,7 +74,7 @@ export default function Showtimes({ cinema }) {
                 }}
                 ref={li => (refs.current[index] = li)}
               >
-                <img src={logos[item.maHeThongRap]} alt="" />
+                <img src={logos[item.maHeThongRap]} alt="..." />
                 <p>{item.tenHeThongRap}</p>
               </li>
             );

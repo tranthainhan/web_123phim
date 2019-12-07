@@ -9,18 +9,18 @@ import { toggle } from "../../Actions/Dialog";
 const ButtonLoginWithFB = props => {
   const responseFacebook = response => {
     if (!response.status) {
-    const { name, id, email, picture } = response;
-    const user = {
-      id: id,
-      name: name,
-      email: email,
-      picture: picture.data.url
-    };
-    props.getUser(user);
-    props.toggleDialog()
+      const { name, id, email, picture } = response;
+      const user = {
+        id: id,
+        name: name,
+        email: email,
+        picture: picture.data.url
+      };
+      props.getUser(user);
+      props.toggleDialog();
     }
   };
-  
+
   return (
     <FacebookLogin
       appId="426821308016857"

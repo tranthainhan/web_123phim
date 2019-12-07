@@ -112,24 +112,6 @@ const FimlList = props => {
           aria-labelledby="pills-nowShowingFilms-tab"
         >
           <Slider {...settings} className="film-list container">
-            {/* {props.filmList.map((film) => {
-                            return (
-                                <React.Fragment key={film.maPhim}>
-                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
-                                        <FilmItem film={film} key={film.maPhim} />
-                                    </div>
-                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
-                                        <FilmItem film={film} key={film.maPhim} />
-                                    </div>
-                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
-                                        <FilmItem film={film} key={film.maPhim} />
-                                    </div>
-                                    <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
-                                        <FilmItem film={film} key={film.maPhim} />
-                                    </div>
-                                </React.Fragment>
-                            )
-                        })} */}
             {renderFilmList()}
           </Slider>
         </div>
@@ -140,24 +122,7 @@ const FimlList = props => {
           aria-labelledby="pills-upComingFilms-tab"
         >
           <Slider {...settings} className="film-list container">
-            {props.filmList.map(film => {
-              return (
-                <React.Fragment key={film.maPhim}>
-                  <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
-                    <FilmItem film={film} key={film.maPhim} />
-                  </div>
-                  <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
-                    <FilmItem film={film} key={film.maPhim} />
-                  </div>
-                  <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
-                    <FilmItem film={film} key={film.maPhim} />
-                  </div>
-                  <div className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container">
-                    <FilmItem film={film} key={film.maPhim} />
-                  </div>
-                </React.Fragment>
-              );
-            })}
+            {renderFilmList()}
           </Slider>
         </div>
       </div>

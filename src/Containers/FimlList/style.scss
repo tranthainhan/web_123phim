@@ -5,20 +5,21 @@
   font-weight: 500;
   transition: all 0.2s;
   height: 20px;
+  line-height: 1;
   &:hover {
     font-size: 27px;
-    .nav-pills .nav-item .upComingFilms.active {
-      padding-left: 20px;
-    }
+    // .nav-pills .nav-item .upComingFilms.active {
+    //   padding-left: 20px;
+    // }
   }
 }
 
-.nav-pills .nav-item .nowShowingFilms.active {
-  background-color: transparent;
-  color: #fa5238;
-  font-size: 24px;
-  font-weight: 500;
-}
+// .nav-pills .nav-item .nowShowingFilms.active {
+//   background-color: transparent;
+//   color: #fa5238;
+//   font-size: 24px;
+//   font-weight: 500;
+// }
 
 .nav-pills .nav-item .upComingFilms {
   background-color: transparent;
@@ -27,6 +28,7 @@
   font-weight: 500;
   transition: all 0.2s;
   height: 20px;
+  line-height: 1;
   &:hover {
     font-size: 27px;
     .nav-pills .nav-item .nowShowingFilms.active {
@@ -42,7 +44,9 @@
   font-weight: 500;
 }
 
-.film-list {
+.mt-5.film-list {
+  padding-top: 50px;
+  overflow: hidden;
   .slick-prev {
     top: 400px;
     left: -40px;
@@ -60,9 +64,29 @@
     height: 100px;
     transition: color 0.2s;
   }
+  > ul {
+    .nowShowingFilms_container {
+      a.active {
+        color: #fa5238;
+        font-size: 27px;
+      }
+    }
+    .upComingFilms_container {
+      a.active {
+        color: #fa5238;
+        font-size: 27px;
+      }
+    }
+  }
 }
 @media screen and (max-width: 768px) {
   .film-list {
     display: none;
+  }
+}
+@media screen and (max-width: 992px) {
+  .film-list {
+    width: 100%;
+    max-width: none;
   }
 }

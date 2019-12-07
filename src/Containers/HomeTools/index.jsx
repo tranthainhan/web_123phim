@@ -1,13 +1,14 @@
-import React, { useState, memo, useEffect } from "react";
+import React, { useState, memo, useEffect, useRef } from "react";
 import "./style.scss";
 import _ from "lodash";
+import { withRouter } from "react-router-dom";
 import apiCinema from "../../Api/cinema";
 import apiFilm from "../../Api/film";
 import IconDropDown from "@material-ui/icons/KeyboardArrowDown";
 import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 
-const HomeTools = props => {
+const HomeTools = ({ history }) => {
   const [film, setFilm] = useState({
     filmList: [],
     choseFilm: {}
@@ -30,6 +31,7 @@ const HomeTools = props => {
     date: false,
     showings: false
   });
+  const refs = useRef();
 
   useEffect(() => {
     getFilmList();
@@ -117,8 +119,19 @@ const HomeTools = props => {
   const dropdownClose = nameState => {
     setOpen({ ...open, [nameState]: false });
   };
+
+  const scrollDown = () => {
+    refs.current.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  };
   return (
-    <div className="home-tools">
+    <div
+      className="home-tools"
+      ref={div => (refs.current = div)}
+      onClick={scrollDown}
+    >
       <div className="select film">
         <div className="dropdown-toggle" onClick={() => toggleOpen("film")}>
           <p>{_.isEmpty(film.choseFilm) ? "Phim" : film.choseFilm.tenPhim}</p>
@@ -252,7 +265,11 @@ const HomeTools = props => {
         </ul>
       </div>
       <div className="select button">
-        <Button variant="contained" color="secondary">
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => history.push("/checkout/15645")}
+        >
           Mua vé ngay
         </Button>
       </div>
@@ -260,4 +277,4 @@ const HomeTools = props => {
   );
 };
 
-export default memo(HomeTools);
+export default memo(withRouter(HomeTools));
