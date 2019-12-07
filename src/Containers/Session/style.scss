@@ -1,69 +1,194 @@
-.session {
-  .session_logoCinema {
-    border: 1px solid #ebebec;
-    padding: 0;
-    .nav-pills {
-      width: 80%;
-      margin: auto;
-      .nav-link {
-        width: 80%;
-        margin: auto;
-        background-color: transparent !important;
-        text-align: center;
-        padding: 0;
-      }
-      .nav-link.active {
-        .session_logo {
-          opacity: 1;
-        }
-      }
-      .session_logo {
-        width: 50%;
-        padding: 15px 0;
-        border-bottom: 1px solid #ebebec;
-        opacity: 0.5;
-        &:hover {
-          opacity: 1;
-        }
+.wrap {
+  flex-grow: 1;
+  background-color: #fff;
+  display: flex;
+  height: auto;
+  width: 60%;
+  margin: auto;
+  margin-top: 30px;
+  flex-direction: column;
+}
+
+.col1_wrap {
+  border: 1px solid #ebebec;
+  width: 10%;
+  .session_logoCinema_wrap {
+    width: 70%;
+    margin: auto;
+    border-bottom: 1px solid #ebebec;
+  }
+}
+
+.session_logoCinema {
+  width: 100%;
+  padding: 15px 10px;
+  opacity: 0.5;
+  cursor: pointer;
+  &:hover,
+  &.active {
+    opacity: 1;
+  }
+}
+
+.MuiTabs-indicator {
+  display: none;
+}
+
+.MuiTypography-root {
+  width: 100%;
+}
+
+.colum2 {
+  width: 30%;
+  height: 487.84px;
+  overflow-y: auto;
+}
+
+.colum3 {
+  width: 70%;
+  height: 487.84px !important;
+  border-left: 1px solid #ebebec;
+}
+
+.colum3_wrap {
+  margin: 20px 0;
+  .title p {
+    margin-left: 20px;
+  }
+}
+
+.wrap23 {
+  border: 1px solid #ebebec;
+  width: 90%;
+}
+
+.MuiBox-root {
+  padding: 0 !important;
+}
+
+.wrap23_content {
+  height: 100%;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  padding: 0 !important;
+  .session_addressCinema_wrap {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ebebec;
+    opacity: 0.5;
+    margin: 10px 15px 0 15px;
+    cursor: pointer;
+    &:hover,
+    &.active {
+      opacity: 1;
+    }
+    .titleCinema {
+      color: #000;
+      font-weight: 500;
+      margin-bottom: 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 16px;
+    }
+    .addressCinema {
+      color: #333;
+      margin-bottom: 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 16px;
+    }
+    .detailCinema {
+      margin-bottom: 5px;
+      font-size: 16px;
+      a {
+        text-decoration: none;
+        color: #fb4226;
+        font-weight: 500;
       }
     }
   }
+}
 
-  .session_detail {
-    border: 1px solid #ebebec;
-    .session_addressCinema {
-      .nav-pills {
-        .nav-link {
-          text-decoration: none;
-          background-color: transparent !important;
-          border-bottom: 1px solid #ebebec;
-          padding-bottom: 11px;
-          opacity: 0.5;
-          &:hover, &.active {
-            opacity: 1;
-          }
-          .session_addressCinema_wrap {
-            .titleCinema {
-              color: #000;
-              font-weight: 500;
-              margin-bottom: 0;
-            }
-            .addressCinema {
-              color: #333;
-              margin-bottom: 0;
-            }
-            .detailCinema {
-              text-decoration: none;
-              color: #fb4226;
-              font-weight: 500;
-            }
-          }
-        }
+.MuiBox-root-195 {
+  padding: 0 !important;
+}
+
+.showTimes_wrap {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  margin: 0;
+  width: 80%;
+  padding: 0;
+  margin: auto;
+  .showTimes {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0;
+    font-weight: 500;
+    font-size: 22px;
+    color: #417500;
+    cursor: pointer;
+    &:hover,
+    &.active {
+      color: red;
+      transform: scale(1.1);
+    }
+  }
+}
+
+@media (max-width: 1800px) {
+  .wrap {
+    width: 65%;
+  }
+  .wrap23_content {
+    .session_addressCinema_wrap {
+      .titleCinema {
+        font-size: 14px;
+      }
+      .addressCinema {
+        font-size: 14px;
+      }
+      .detailCinema {
+        font-size: 14px;
       }
     }
+  }
+}
 
-    .session_dateCinema {
-      border-left: 1px solid #ebebec;
+@media (max-width: 1450px) {
+  .wrap {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1050px) {
+  .wrap {
+    width: 90%;
+  }
+}
+
+@media (max-width: 870px) {
+  .showTimes_wrap {
+    .showTimes {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .showTimes_wrap {
+    flex-wrap: wrap;
+    justify-content: left;
+    .showTimes {
+      font-size: 16px;
+      padding: 10px 5px;
     }
   }
 }

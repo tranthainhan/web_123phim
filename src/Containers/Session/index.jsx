@@ -1,145 +1,89 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import { connect } from "react-redux";
 import _ from "lodash";
 import { getCinema } from "../../Actions/Cinema";
-import { getAddressCinema } from "../../Actions/AddressCinema";
 import { getShowTimes } from "../../Actions/Cinema";
-
+import _ from "lodash";
 import "./style.scss";
 
-const Session = props => {
-  useEffect(() => {
-    props.getCinema();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
 
-  const onClickLogo = maRap => {
-    props.getAddressCinema(maRap);
-    props.getShowTimes(maRap);
-  };
-  return (
-    <div className="session container mt-5">
-      <div className="row">
-        <div className="col-2 session_logoCinema text-center">
-          <div
-            className="nav flex-column nav-pills"
-            id="v-pills-tab"
-            role="tablist"
-            aria-orientation="vertical"
-          >
-            {props.cinemaList.map(item => {
-              return (
-                <a
-                  key={item.maHeThongRap}
-                  className="nav-link"
-                  id={`v-pills-${item.maHeThongRap}-tab`}
-                  data-toggle="pill"
-                  href={`#v-pills-${item.maHeThongRap}`}
-                  role="tab"
-                  aria-controls={`v-pills-${item.maHeThongRap}`}
-                  aria-selected="true"
-                >
-                  <img
-                    className="session_logo"
-                    src={item.logo}
-                    alt=""
-                    onClick={() => {
-                      onClickLogo(item.maHeThongRap);
-                    }}
-                  />
-                </a>
-              );
-            })}
-          </div>
-        </div>
-        <div className="col-10 session_detail">
-          <div className="tab-content" id="v-pills-tabContent">
-            {props.cinemaList.map(item => {
-              return (
-                <div
-                  key={item.maHeThongRap}
-                  className="tab-pane fade show"
-                  id={`v-pills-${item.maHeThongRap}`}
-                  role="tabpanel"
-                  aria-labelledby={`v-pills-home-${item.maHeThongRap}`}
-                >
-                  <div className="row">
-                    <div className="col-4 session_addressCinema">
-                      <div
-                        className="nav flex-column nav-pills"
-                        id="v-pills-tab"
-                        role="tablist"
-                        aria-orientation="vertical"
-                      >
-                        {props.showTimesList.map(wrap => {
-                          return wrap.lstCumRap.map(itemAddress => {
-                            return (
-                              <a
-                                key={itemAddress.maCumRap}
-                                className="nav-link"
-                                id={`v-pills-${itemAddress.maCumRap}-tab`}
-                                data-toggle="pill"
-                                href={`#v-pills-${itemAddress.maCumRap}`}
-                                role="tab"
-                                aria-controls={`v-pills-${itemAddress.maCumRap}`}
-                                aria-selected="true"
-                              >
-                                <div className="session_addressCinema_wrap">
-                                  <p className="titleCinema">
-                                    {itemAddress.tenCumRap}
-                                  </p>
-                                  <p className="addressCinema">
-                                    {itemAddress.diaChi}
-                                  </p>
-                                  <a className="detailCinema" href="/">
-                                    [chi tiết]
-                                  </a>
-                                </div>
-                              </a>
-                            );
-                          });
-                        })}
-                      </div>
-                    </div>
+    return (
+        <Typography
+            component="div"
+            role="tabpanel"
+            hidden={value !== index}
+            id={`vertical-tabpanel-${index}`}
+            aria-labelledby={`vertical-tab-${index}`}
+            {...other}
+        >
+            <Box p={2}>{children}</Box>
+        </Typography>
+    );
+}
 
-                    <div className="col-8 session_dateCinema">
-                      <div className="tab-content" id="v-pills-tabContent">
-                        {props.showTimesList.map(wrap => {
-                          return wrap.lstCumRap.map(item => {
-                            return (
-                              <div
-                                className="tab-pane fade show"
-                                id={`v-pills-${item.maCumRap}`}
-                                role="tabpanel"
-                                aria-labelledby={`v-pills-${item.maCumRap}-tab`}
-                              ></div>
-                            );
-                          });
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
 };
 
-const mapStateToProps = state => {
-  return {
-    cinemaList: state.cinemaList,
-    addressCinemaList: state.addressCinema,
-    showTimesList: state.showTimes
-  };
-};
+function Session(props) {
+    const [value, setValue] = React.useState(0);
+    const [filterShowTimesList, setFilterShowTimesList] = useState([]);
+    const [filterAddressList, setFilterAddressList] = useState([]);
 
-export default connect(mapStateToProps, {
-  getCinema,
-  getAddressCinema,
-  getShowTimes
-})(Session);
+    useEffect(() => {
+        if (_.isEmpty(props.cinemaList) && _.isEmpty(props.showTimesList)) {
+            props.getCinema()
+            props.getShowTimes('GP09')
+        }
+    }, []);
+
+    const toggleActiveCol = (index) => {
+        setValue(index);
+    }
+
+
+    const convertTime = (time) => {
+        var d = new Date(time + 'Z');
+        return d.getUTCHours() + ":" + d.getUTCMinutes();
+    }
+
+    return (
+        <div className="wrap">
+            <div className="col1_wrap">
+                {
+                    props.cinemaList.map((item, index) => {
+                        return <div className="session_logoCinema_wrap">
+                            <img className={index === value ? "session_logoCinema active" : "session_logoCinema"} src={item.logo} alt="" onClick={() => { toggleActiveCol(index) }} />
+                        </div>
+
+                    })
+                }
+            </div>
+
+            <div className="col2_wrap">
+                {
+                    
+                }
+            </div>
+        </div>
+    );
+}
+
+const mapStateToProps = (state) => {
+    return {
+        cinemaList: state.cinemaList,
+        showTimesList: state.showTimes,
+    }
+}
+
+export default connect(mapStateToProps, { getCinema, getShowTimes })(Session);
