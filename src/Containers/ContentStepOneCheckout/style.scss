@@ -94,6 +94,9 @@
               height: 100%;
               border-top-right-radius: 5px;
               border-bottom-right-radius: 5px;
+              &:disabled {
+                background: #afafaf;
+              }
             }
             .total-money {
               padding-left: 20px;

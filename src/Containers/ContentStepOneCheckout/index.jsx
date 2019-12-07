@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./style.scss";
 import _ from "lodash";
 import { useDispatch } from "react-redux";
-import { sendTypeVsQuantity } from "../../Actions/BuyTicket";
+import { sendTypeVsQuantity, reset } from "../../Actions/BuyTicket";
 import { nextStep } from "../../Actions/Stepper";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -14,6 +14,10 @@ const ContentStepOneCheckout = ({ film }) => {
   const totalMoney = ticket * 75000 + ticketVip * 90000;
   const dispatch = useDispatch();
   const refs = useRef(false);
+  useEffect(() => {
+    dispatch(reset());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const plusTicket = type => {
     if (type === "VIP") {
@@ -53,32 +57,11 @@ const ContentStepOneCheckout = ({ film }) => {
       });
     }
   };
-  // const effect = _.debounce(async () => {
-  //   for (let font = parseInt(refs.current.style.fontSize); font <= 34; font++) {
-  //     await new Promise(resolve => {
-  //       const debounce = _.debounce(
-  //         () => resolve((refs.current.style.fontSize = font + "px")),
-  //         10
-  //       );
-  //       debounce();
-  //     });
-  //   }
-  //   for (let font = 34; font >= 24; font--) {
-  //     await new Promise(resolve => {
-  //       const debounce = _.debounce(
-  //         () => resolve((refs.current.style.fontSize = font + "px")),
-  //         10
-  //       );
-  //       debounce();
-  //     });
-  //   }
-  // }, 10);
   const doneChooseTypeVsQuantity = () => {
-    const infoTicket = {
-      ticket,
-      ticketVip
+    const infoQuantity = {
+      quantity: { ticket, ticketVip }
     };
-    dispatch(sendTypeVsQuantity(infoTicket));
+    dispatch(sendTypeVsQuantity(infoQuantity));
     dispatch(nextStep());
   };
   return (
@@ -101,7 +84,6 @@ const ContentStepOneCheckout = ({ film }) => {
               className="minus"
               onClick={() => {
                 minusTicket("");
-                // effect();
               }}
             />
             <input type="number" min="0" value={ticket} readOnly />
@@ -129,7 +111,12 @@ const ContentStepOneCheckout = ({ film }) => {
               .toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ".")} đ`}</span>
           </div>
-          <button onClick={doneChooseTypeVsQuantity}>CHỌN GHẾ</button>
+          <button
+            onClick={doneChooseTypeVsQuantity}
+            disabled={(ticketVip === 0) & (ticket === 0)}
+          >
+            CHỌN GHẾ
+          </button>
         </div>
         <p className="note">
           Xin lưu ý, bạn không thể hủy hoặc thay đổi suất chiếu cho vé đã mua.

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import _ from "lodash";
 import { getCinema } from "../../Actions/Cinema";
 import { getAddressCinema } from "../../Actions/AddressCinema";
 import { getShowTimes } from "../../Actions/Cinema";
@@ -9,6 +10,7 @@ import "./style.scss";
 const Session = props => {
   useEffect(() => {
     props.getCinema();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -16,7 +18,6 @@ const Session = props => {
     props.getAddressCinema(maRap);
     props.getShowTimes(maRap);
   };
-
   return (
     <div className="session container mt-5">
       <div className="row">

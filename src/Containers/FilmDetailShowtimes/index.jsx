@@ -74,7 +74,7 @@ export default function Showtimes({ cinema }) {
                 }}
                 ref={li => (refs.current[index] = li)}
               >
-                <img src={logos[item.maHeThongRap]} alt="" />
+                <img src={logos[item.maHeThongRap]} alt="..." />
                 <p>{item.tenHeThongRap}</p>
               </li>
             );
