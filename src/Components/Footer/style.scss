@@ -1,133 +1,130 @@
-.footer {
+.App {
+  > .footer {
     background-color: #222;
 
     .footer_container {
-        .title {
-            color: #f8f8f8;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
+      .title {
+        color: #f8f8f8;
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
 
-        .rule {
-            display: block;
-            color: #949494;
-            font-size: 13px;
-            font-weight: 500;
-            text-decoration: none;
-            margin-bottom: 5px;
-            &:hover {
-                color: #fff;
-            }
+      .rule {
+        display: block;
+        color: #949494;
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+        margin-bottom: 5px;
+        &:hover {
+          color: #fff;
         }
+      }
 
-        .iconPartner {
-            width: 30px;
-            height: 30px;
-            border-radius: 30px;
-            &:hover {
-                opacity: .7;
-            }
+      .iconPartner {
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        &:hover {
+          opacity: 0.7;
         }
+      }
 
-        .line {
-            height: 1px;
-            background-color: #4a4a4a;
-        }
+      .line {
+        height: 1px;
+        background-color: #4a4a4a;
+      }
 
-        .pProductOf {
-            color: #fff;
-            font-size: 13px;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
+      .pProductOf {
+        color: #fff;
+        font-size: 13px;
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
 
-        .pAddressAndTax {
-            color: #949494;
-            font-size: 13px;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
+      .pAddressAndTax {
+        color: #949494;
+        font-size: 13px;
+        margin-bottom: 5px;
+        font-weight: 500;
+      }
 
-        .zionImg {
-            border-radius: 8px;
-            width: 80px;
-            height: 40px;
-        }
+      .zionImg {
+        border-radius: 8px;
+        width: 80px;
+        height: 40px;
+      }
 
-        .boCongThuong {
-            width: 130px;
-            height: 50px;
-        }
+      .boCongThuong {
+        width: 130px;
+        height: 50px;
+      }
     }
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
-    .pProductOf, .pAddressAndTax {
-        margin-left: 30px !important;
-    }
+  .pProductOf,
+  .pAddressAndTax {
+    margin-left: 30px !important;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
-    .rule_container {
-        width: 365%;
+  .rule_container {
+    width: 365%;
 
-        .rule_container_right {
-            display: flex !important;
-            justify-content: space-between;
-            text-align: center;
-            width: 100%;
-            margin: auto;
-        }
+    .rule_container_right {
+      display: flex !important;
+      justify-content: space-between;
+      text-align: center;
+      width: 100%;
+      margin: auto;
     }
-    
+  }
 }
 
 @media (max-width: 991.98px) {
-    .hideOnMobile {
-        display: none !important;
-    }
+  .hideOnMobile {
+    display: none !important;
+  }
 }
 
 @media (max-width: 767.98px) {
-    .social {
-        margin: auto !important;
-    }
+  .social {
+    margin: auto !important;
+  }
 
-    .zionImg {
-        display: block;
-        margin: auto;
-        margin-bottom: 20px;
-    }
+  .zionImg {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+  }
 
-    .pProductOf, .pAddressAndTax {
-        display: block;
-        margin: auto;
-        margin-left: 0 !important;
-        margin-bottom: 20px;
-        text-align: center;
-    }
+  .pProductOf,
+  .pAddressAndTax {
+    display: block;
+    margin: auto;
+    margin-left: 0 !important;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-    .boCongThuong {
-        display: block;
-        margin: auto;
-        margin-bottom: 20px;
-        text-align: center;
-    }
+  .boCongThuong {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-    .noPaddingLeft {
-        margin: auto !important;
-        text-align: center;
-    }
+  .noPaddingLeft {
+    margin: auto !important;
+    text-align: center;
+  }
 }
 
 @media (max-width: 576px) {
-    .rule_container_right {
-        text-align: center;
-    }
+  .rule_container_right {
+    text-align: center;
+  }
 }
-
-
-
-
-
-

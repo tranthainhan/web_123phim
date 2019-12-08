@@ -1,4 +1,5 @@
 import * as types from "../Constants/BuyTicket";
+// import api from "../Api/ticket";
 
 export const sendTypeVsQuantity = infoQuantity => {
   return {
@@ -24,3 +25,6 @@ export const reset = () => {
     type: types.RESET
   };
 };
+// export const doneTicket = (infoTicket) => {
+//   api.post('DatVe')
+// }
