@@ -9,7 +9,7 @@
     transition: width 0.5s;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     &.step-1-done {
-      width: calc(100% - 400px);
+      width: calc(100% - 440px);
       display: inline-flex;
     }
     .stepper {

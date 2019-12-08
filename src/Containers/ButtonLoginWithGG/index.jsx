@@ -18,6 +18,14 @@ const ButtonLoginWithGG = props => {
       };
       props.getUser(user);
       props.toggleDialog();
+      props.enqueueSnackbar(`Xin chào ${ig}`, {
+        variant: "success",
+        autoHideDuration: 3000,
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right"
+        }
+      });
     }
   };
   return (

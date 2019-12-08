@@ -1,6 +1,6 @@
 import * as types from "../Constants/Stepper";
 
-const initialState = 1;
+const initialState = 0;
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

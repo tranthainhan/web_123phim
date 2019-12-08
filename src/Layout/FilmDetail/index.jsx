@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./style.scss";
 import dataImg from "../../dataImg";
 import playVideo from "../../Assets/img/play-video.png";
@@ -38,6 +38,7 @@ const Trailer = ({ url, open, handleClose, title }) => {
 const FilmDetail = props => {
   let [film, setFilm] = useState({});
   const [openTrailer, setOpenTrailer] = useState(false);
+  const refsButton = useRef();
 
   const handleClose = () => {
     setOpenTrailer(!openTrailer);
@@ -98,7 +99,18 @@ const FilmDetail = props => {
                 {lichChieu && lichChieu[0].thoiLuong} phút - 2D/Digital
               </span>
             </div>
-            <button className="btn-buy-ticket"> Mua vé</button>
+            <button
+              className="btn-buy-ticket"
+              onClick={() => {
+                refsButton.current.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center"
+                });
+              }}
+            >
+              {" "}
+              Mua vé
+            </button>
           </div>
           <div className="rating">
             <div className="rating-wrap">
@@ -115,7 +127,7 @@ const FilmDetail = props => {
           </div>
         </div>
       </div>
-      <div className="film-detail-tabs">
+      <div className="film-detail-tabs" ref={div => (refsButton.current = div)}>
         <div className="wrap_tabs">
           <FilmDetailTabs film={film} />
         </div>

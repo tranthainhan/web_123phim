@@ -1,6 +1,8 @@
 .checkout {
   .content {
     .right {
+      display: flex;
+      flex-direction: column;
       position: fixed;
       width: 440px;
       top: -80px;
@@ -48,6 +50,7 @@
           line-height: 1;
           label {
             margin: 0;
+            width: 100%;
           }
         }
         input {
@@ -112,6 +115,71 @@
             }
           }
         }
+      }
+      .note {
+        padding-bottom: calc(60px + 4%);
+        font-size: 14px;
+        text-align: center;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        flex: 1;
+        img {
+          width: 16px;
+          height: 16px;
+          margin-right: 10px;
+        }
+      }
+      .btn-buyticket {
+        background: #afafaf;
+        height: 60px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: #e9e9e9;
+        font-size: 24px;
+        text-align: center;
+        line-height: 60px;
+        cursor: pointer;
+        &.done {
+          background-image: linear-gradient(223deg, #b4ec51 0, #429321 100%);
+        }
+      }
+    }
+  }
+}
+.dialog-buy-ticket {
+  .MuiPaper-rounded {
+    .wrap-dialog {
+      background-color: white;
+      width: 600px;
+      padding: 50px 20px;
+      text-align: center;
+      .header {
+        display: inline-flex;
+        align-items: center;
+        span {
+          font-size: 24px;
+        }
+        img {
+          width: 100px;
+          height: 30px;
+          margin-left: 10px;
+        }
+      }
+      .body {
+        img {
+          width: 200px;
+          height: 200px;
+          border: 1px solid #dadada;
+          margin: 15px auto;
+        }
+      }
+      .footer {
+        font-weight: 500;
+        font-size: 18px;
       }
     }
   }

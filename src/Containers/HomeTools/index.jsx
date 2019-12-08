@@ -1,6 +1,8 @@
 import React, { useState, memo, useEffect, useRef } from "react";
 import "./style.scss";
 import _ from "lodash";
+import { connect } from "react-redux";
+import { toggle } from "../../Actions/Dialog";
 import { withRouter } from "react-router-dom";
 import apiCinema from "../../Api/cinema";
 import apiFilm from "../../Api/film";
@@ -8,7 +10,7 @@ import IconDropDown from "@material-ui/icons/KeyboardArrowDown";
 import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 
-const HomeTools = ({ history }) => {
+const HomeTools = ({ history, user, toggle }) => {
   const [film, setFilm] = useState({
     filmList: [],
     choseFilm: {}
@@ -248,8 +250,9 @@ const HomeTools = ({ history }) => {
             )) ||
             (_.isEmpty(date.choseDate) && <li>Vui lòng chọn ngày xem</li>) ||
             showings.list[cinema.choseCinema.maRap][date.choseDate].map(
-              item => (
+              (item, index) => (
                 <li
+                  key={index}
                   onClick={() => {
                     setShowings({
                       ...showings,
@@ -268,7 +271,15 @@ const HomeTools = ({ history }) => {
         <Button
           variant="contained"
           color="secondary"
-          onClick={() => history.push("/checkout/15645")}
+          onClick={() => {
+            if (showings.choseShowings.code) {
+              if (_.isEmpty(user)) {
+                toggle();
+              } else {
+                history.push(`/checkout/${showings.choseShowings.code}`);
+              }
+            }
+          }}
         >
           Mua vé ngay
         </Button>
@@ -276,5 +287,17 @@ const HomeTools = ({ history }) => {
     </div>
   );
 };
-
-export default memo(withRouter(HomeTools));
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    toggle: () => dispatch(toggle())
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(memo(withRouter(HomeTools)));

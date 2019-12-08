@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import "./style.scss";
+import { withRouter } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toggle } from "../../../Actions/Dialog";
 import cinemaImg from "../../../Assets/img/cinema.png";
 import cinemaImg1 from "../../../Assets/img/cinema1.png";
 import img2D from "../../../Assets/img/2_0.png";
@@ -25,11 +28,12 @@ function TabPanel(props) {
   );
 }
 
-export default function TabsChild({ item }) {
+function TabsChild({ item, ...props }) {
   const [value, setValue] = useState(0);
   const [day, setDay] = useState([]);
   const [cinema, setCinema] = useState([]);
   const refs = useRef([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (_.isEmpty(day)) {
@@ -79,6 +83,10 @@ export default function TabsChild({ item }) {
       } else ReactDOM.findDOMNode(item).classList.remove("active");
     });
   };
+  const openDialogLogin = () => {
+    dispatch(toggle());
+  };
+  console.log(props);
   return (
     <div className="tab-child">
       <div className="show-date">
@@ -127,7 +135,16 @@ export default function TabsChild({ item }) {
                     <ul>
                       {itemCinema.showtimes[itemDay].map((item, index) => {
                         return (
-                          <li key={index}>
+                          <li
+                            key={index}
+                            onClick={() => {
+                              if (localStorage.getItem("user")) {
+                                props.history.push(`/checkout/${item.code}`);
+                              } else {
+                                openDialogLogin();
+                              }
+                            }}
+                          >
                             {item.showtime.slice(0, item.showtime.length - 3)}
                           </li>
                         );
@@ -143,3 +160,4 @@ export default function TabsChild({ item }) {
     </div>
   );
 }
+export default withRouter(TabsChild);

@@ -36,6 +36,7 @@ const FormLogin = props => {
               props.handleClose();
               props.enqueueSnackbar(`Xin chào ${result.data.hoTen}`, {
                 variant: "success",
+                autoHideDuration: 1500,
                 anchorOrigin: {
                   vertical: "top",
                   horizontal: "right"
@@ -98,8 +99,8 @@ const FormLogin = props => {
             </Button>
             <p className="dash-line">Hoặc</p>
             <div className="wrap-btn-login">
-              <ButtonLoginWithGG />
-              <ButtonLoginWithFB />
+              <ButtonLoginWithGG enqueueSnackbar={props.enqueueSnackbar} />
+              <ButtonLoginWithFB enqueueSnackbar={props.enqueueSnackbar} />
             </div>
             <p className="registration-question">
               Bạn chưa có tài khoản ? ->
