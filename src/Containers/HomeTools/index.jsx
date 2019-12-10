@@ -5,12 +5,11 @@ import { connect } from "react-redux";
 import { toggle } from "../../Actions/Dialog";
 import { withRouter } from "react-router-dom";
 import apiCinema from "../../Api/cinema";
-import apiFilm from "../../Api/film";
 import IconDropDown from "@material-ui/icons/KeyboardArrowDown";
 import Button from "@material-ui/core/Button";
 import classNames from "classnames";
 
-const HomeTools = ({ history, user, toggle }) => {
+const HomeTools = ({ history, user, toggle, films }) => {
   const [film, setFilm] = useState({
     filmList: [],
     choseFilm: {}
@@ -36,21 +35,9 @@ const HomeTools = ({ history, user, toggle }) => {
   const refs = useRef();
 
   useEffect(() => {
-    getFilmList();
+    !_.isEmpty(films) && setFilm({ ...film, filmList: [...films] });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const getFilmList = () => {
-    apiFilm.get("LayDanhSachPhim?maNhom=GP09").then(result => {
-      setFilm({
-        ...film,
-        filmList: result.data.map(item => ({
-          maPhim: item.maPhim,
-          tenPhim: item.tenPhim
-        }))
-      });
-    });
-  };
+  }, [films]);
 
   const getCinemaList = maPhim => {
     apiCinema.get(`LayThongTinLichChieuPhim?MaPhim=${maPhim}`).then(result => {
@@ -289,7 +276,8 @@ const HomeTools = ({ history, user, toggle }) => {
 };
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    films: state.films
   };
 };
 const mapDispatchToProps = dispatch => {

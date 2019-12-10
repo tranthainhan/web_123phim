@@ -3,6 +3,7 @@ import "./style.scss";
 import { connect } from "react-redux";
 import ContentStepOneCheckout from "../ContentStepOneCheckout";
 import ContentStepTwoCheckout from "../ContentStepTwoCheckout";
+import ContentStepThreeCheckout from "../../Components/ContentStepThreeCheckout";
 
 const ContentStepCheckout = ({ ticket, activeStep }) => {
   const getContentStep = activeStep => {
@@ -12,6 +13,8 @@ const ContentStepCheckout = ({ ticket, activeStep }) => {
       }
       case 1:
         return <ContentStepTwoCheckout ticket={ticket} />;
+      case 2:
+        return <ContentStepThreeCheckout />;
       default:
         return null;
     }

@@ -1,43 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import Loadable from "react-loadable";
+import { getFilms } from "./Actions/Films.js";
+import { login } from "./Actions/User";
+import { connect } from "react-redux";
 
 //IMPORT COMPONENT
-// import FilmDetail from "./Layout/FilmDetail";
-// import HomeLayout from "./Layout/Home";
+import FilmDetail from "./Layout/FilmDetail";
+import HomeLayout from "./Layout/Home";
 import Header from "./Containers/Header";
 import Dialog from "./Containers/Dialog";
 import Footer from "./Components/Footer";
-// import CheckoutLayout from "./Layout/CheckoutLayout";
+import CheckoutLayout from "./Layout/CheckoutLayout";
+import CheckoutAuth from "./Auth/CheckoutAuth";
 
-const DynamicImport = loadCompoennt =>
-  Loadable({
-    loader: loadCompoennt,
-    loading: () => null
-  });
-
-function App() {
+function App(props) {
+  useEffect(() => {
+    props.getFilms();
+    props.getUser(JSON.parse(localStorage.getItem("user")));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="App">
       <Switch>
-        <Route
+        <CheckoutAuth
           path="/checkout/:maLichChieu"
-          component={DynamicImport(() => import("./Layout/CheckoutLayout"))}
+          component={CheckoutLayout}
         />
         <Route path="/">
-          <Header />
+          <Route path="/" component={Header} />
           <main className="main">
             <Switch>
-              <Route
-                path="/"
-                exact
-                component={DynamicImport(() => import("./Layout/Home"))}
-              />
-              <Route
-                path="/phim/:bidanh"
-                component={DynamicImport(() => import("./Layout/FilmDetail"))}
-              />
+              <Route path="/" exact component={HomeLayout} />
+              <Route path="/phim/:bidanh" component={FilmDetail} />
             </Switch>
           </main>
           <Dialog />
@@ -47,5 +42,11 @@ function App() {
     </div>
   );
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    getFilms: () => dispatch(getFilms()),
+    getUser: user => dispatch(login(user))
+  };
+};
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);

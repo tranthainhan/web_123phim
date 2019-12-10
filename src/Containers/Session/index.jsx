@@ -56,7 +56,7 @@ function Session(props) {
       <div className="col1_wrap">
         {props.cinemaList.map((item, index) => {
           return (
-            <div className="session_logoCinema_wrap">
+            <div className="session_logoCinema_wrap" key={index}>
               <img
                 className={
                   index === value

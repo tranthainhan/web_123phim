@@ -5,15 +5,15 @@ const initialState = {};
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.LOGIN_WITH_FB: {
-      localStorage.setItem("user", action.user);
+      localStorage.setItem("user", JSON.stringify(action.user));
       return action.user;
     }
     case types.LOGIN_WITH_GG: {
-      localStorage.setItem("user", action.user);
+      localStorage.setItem("user", JSON.stringify(action.user));
       return action.user;
     }
     case types.LOGIN: {
-      localStorage.setItem("user", action.user);
+      localStorage.setItem("user", JSON.stringify(action.user));
       return action.user;
     }
     case types.LOGOUT: {

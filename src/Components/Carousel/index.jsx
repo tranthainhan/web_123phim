@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { getFilm } from "../../Actions/film";
+import React from "react";
+import { connect } from "react-redux";
 import Slider from "react-slick";
 import "./style.scss";
+import _ from "lodash";
 import CarouselItem from "../Carousel-item";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import HomeTools from "../../Containers/HomeTools";
+import Skeleton from "react-loading-skeleton";
 
 const NextArrow = ({ className, style, onClick }) => {
   return (
@@ -25,14 +27,7 @@ const PrevArrow = ({ className, style, onClick }) => {
     />
   );
 };
-const Carousel = () => {
-  const [filmList, setFilmList] = useState([]);
-  useEffect(() => {
-    getFilm().then(result => {
-      setFilmList(result.data);
-    });
-  }, []);
-
+const Carousel = ({ films }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -47,14 +42,25 @@ const Carousel = () => {
   };
   return (
     <div className="wrap-carousel">
-      <Slider {...settings} className="my-carousel">
-        {filmList.map(item => {
-          return <CarouselItem item={item} key={item.maPhim} />;
-        })}
-      </Slider>
+      {_.isEmpty(films) ? (
+        <div className="loading">
+          <Skeleton height={"800px"} width={"100%"} />
+        </div>
+      ) : (
+        <Slider {...settings} className="my-carousel">
+          {films.map(item => {
+            return <CarouselItem item={item} key={item.maPhim} />;
+          })}
+        </Slider>
+      )}
       <HomeTools />
     </div>
   );
 };
+const mapStateToProps = state => {
+  return {
+    films: state.films
+  };
+};
 
-export default Carousel;
+export default connect(mapStateToProps, null)(Carousel);

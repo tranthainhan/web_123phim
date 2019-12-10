@@ -9,18 +9,19 @@ import showTimesReducer from "./ShowTimesReducer";
 import ticket from "./TicketReducer";
 import stepper from "./Stepper";
 import buyTicket from "./BuyTicket";
+import films from "./films";
 
 const rootReducer = combineReducers({
-    toggleDialog,
-    user,
-    moviesList : movieReducer,
-    movieDetail: movieDetailReducer,
-    cinemaList: cinemaReducer,
-    showTimes: showTimesReducer,
-      ticket,
+  toggleDialog,
+  user,
+  moviesList: movieReducer,
+  movieDetail: movieDetailReducer,
+  cinemaList: cinemaReducer,
+  showTimes: showTimesReducer,
+  ticket,
   stepper,
-  buyTicket
-})
-
+  buyTicket,
+  films
+});
 
 export default rootReducer;

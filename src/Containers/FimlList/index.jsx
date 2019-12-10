@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "./style.scss";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import FilmItem from "../FilmItem";
 import { connect } from "react-redux";
-import { getFilmList } from "../../Actions/film";
-// import { getFilmPagination } from "../../Actions/film";
 import _ from "lodash";
 
 const NextArrow = ({ className, style, onClick }) => {
@@ -29,41 +27,33 @@ const PrevArrow = ({ className, style, onClick }) => {
 };
 
 const FimlList = props => {
-  useEffect(() => {
-    props.getFilmList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    if (!_.isEmpty(props.filmList)) {
+      let delay = _.debounce(() => setIsLoading(false), 1000);
+      delay();
+    }
+  }, [props.filmList]);
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    autoplay: false,
-    autoplaySpeed: 2000,
     slidesToShow: 1,
-    slidesToScroll: 1,
-    pauseOnHover: false,
     draggable: true,
-    rows: 1,
+    rows: 2,
+    slidesPerRow: 4,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />
   };
-
   const renderFilmList = () => {
-    let filmListPagination = _.chunk(props.filmList, 8);
-    return filmListPagination.map((wrap, index) => {
+    return props.filmList.map((film, index) => {
       return (
-        <div key={index}>
-          {wrap.map((film, index) => {
-            return (
-              <div
-                key={index}
-                className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container"
-              >
-                <FilmItem film={film} />
-              </div>
-            );
-          })}
+        <div
+          key={index}
+          className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container"
+        >
+          <FilmItem film={film} />
         </div>
       );
     });
@@ -71,20 +61,12 @@ const FimlList = props => {
 
   return (
     <div className="mt-5 film-list">
-      <ul
-        className="nav nav-pills mb-3 container text-center justify-content-center mb-5"
-        id="pills-tab"
-        role="tablist"
-      >
+      <ul className="nav nav-pills mb-3 container  text-center justify-content-center mb-5">
         <li className="nav-item nowShowingFilms_container">
           <a
             className="nowShowingFilms nav-link active"
-            id="pills-nowShowingFilms-tab"
             data-toggle="pill"
             href="#pills-nowShowingFilms"
-            role="tab"
-            aria-controls="pills-nowShowingFilms"
-            aria-selected="true"
           >
             Đang Chiếu
           </a>
@@ -92,36 +74,34 @@ const FimlList = props => {
         <li className="nav-item upComingFilms_container">
           <a
             className="upComingFilms nav-link"
-            id="pills-upComingFilms-tab"
             data-toggle="pill"
             href="#pills-upComingFilms"
-            role="tab"
-            aria-controls="pills-upComingFilms"
-            aria-selected="false"
           >
             Sắp Chiếu
           </a>
         </li>
       </ul>
 
-      <div className="tab-content" id="pills-tabContent">
-        <div
-          className="tab-pane fade show active"
-          id="pills-nowShowingFilms"
-          role="tabpanel"
-          aria-labelledby="pills-nowShowingFilms-tab"
-        >
+      <div className="tab-content container">
+        <div className="tab-pane fade show active" id="pills-nowShowingFilms">
           <Slider {...settings} className="film-list container">
-            {renderFilmList()}
+            {isLoading
+              ? Array.from({ length: 8 }).map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="col-md-3 col-sm-6 col-xs-12 w-25 d-inline-block film-item_container"
+                    >
+                      <FilmItem film={null} />
+                    </div>
+                  );
+                })
+              : renderFilmList()}
+            {}
           </Slider>
         </div>
-        <div
-          className="tab-pane fade"
-          id="pills-upComingFilms"
-          role="tabpanel"
-          aria-labelledby="pills-upComingFilms-tab"
-        >
-          <Slider {...settings} className="film-list container">
+        <div className="tab-pane fade" id="pills-upComingFilms" role="tabpanel">
+          <Slider {...settings} className="film-list ">
             {renderFilmList()}
           </Slider>
         </div>
@@ -132,8 +112,8 @@ const FimlList = props => {
 
 const mapStateToProps = state => {
   return {
-    filmList: state.moviesList
+    filmList: state.films
   };
 };
 
-export default connect(mapStateToProps, { getFilmList })(FimlList);
+export default connect(mapStateToProps, null)(FimlList);

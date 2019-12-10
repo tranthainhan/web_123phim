@@ -78,6 +78,7 @@ const ContentStepTwoCheckout = ({ ticket, buyTicket, addSeat, removeSeat }) => {
       }
     });
   };
+
   return (
     <div className="step-2">
       <div className="header">
@@ -106,7 +107,7 @@ const ContentStepTwoCheckout = ({ ticket, buyTicket, addSeat, removeSeat }) => {
             </div>
             {rowOfChair.map((chairItem, index) =>
               chairItem.taiKhoanNguoiDat !== null ? (
-                <div className="chair-item not-available">
+                <div className="chair-item not-available" key={index}>
                   <img src={imgNotChoose} alt="...." />
                 </div>
               ) : chairItem.loaiGhe === "Thuong" ? (

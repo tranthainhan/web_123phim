@@ -8,8 +8,9 @@
       left: 0;
       width: 100%;
       overflow: hidden;
-      img {
+      > img {
         width: 100%;
+        height: calc(100vw / 1.78);
         max-height: 800px;
         filter: blur(15px);
       }
@@ -21,8 +22,27 @@
         height: 100%;
         background: linear-gradient(to top, rgb(10, 32, 41), transparent 100%);
       }
+      &.height-loading {
+        height: calc(100vw / 1.78);
+        max-height: 800px;
+      }
+      .loading {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        span {
+          line-height: 2;
+          border-radius: 0;
+          height: 100%;
+        }
+      }
     }
     .film-detail-info {
+      &.height-loading {
+        height: 326px;
+      }
       display: flex;
       position: absolute;
       align-items: center;
@@ -32,18 +52,45 @@
       max-width: 870px;
       width: 100%;
       color: #e9e9e9;
-      img {
+      .poster {
+        position: relative;
+        padding-bottom: 330px;
+        width: 214px;
+        background-position: center, 0 0;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
         border-radius: 5px;
-        width: 219px;
+        .loading {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          div {
+            height: 100%;
+            span {
+              line-height: 2;
+            }
+          }
+        }
       }
-
       .content {
         padding: 0 15px;
         width: 45%;
         font-size: 14px;
         .film-name {
+          display: inline-block;
+          width: 100px;
           font-size: 24px;
           font-weight: 500;
+        }
+        .time {
+          display: inline-block;
+          width: 70px;
+        }
+        .show-day {
+          display: inline-block;
+          width: 70px;
         }
         .btn-buy-ticket {
           padding: 7px 25px;
@@ -55,6 +102,10 @@
           font-size: 16px;
           transition: all 0.2s;
           outline: none;
+          &.loading {
+            padding: 0;
+            background: none;
+          }
           &:hover {
             background: #b42a14;
           }
@@ -91,8 +142,19 @@
                 background-color: transparent;
               }
             }
+            .loading {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              font-size: 0;
+              z-index: 1;
+            }
           }
-
+          .loading {
+            width: 100%;
+          }
           .amount-rating {
             width: 125px;
             height: 125px;
@@ -125,6 +187,9 @@
             .MuiRating-iconEmpty {
               color: rgba(0, 0, 0, 1);
             }
+          }
+          .votes {
+            width: 100%;
           }
         }
       }
@@ -187,11 +252,14 @@
       .film-detail-info {
         position: static;
         transform: translate(0);
-        img {
+        .poster {
           display: none;
         }
         .content {
           width: 100%;
+          .btn-buy-ticket.loading {
+            display: none;
+          }
           button {
             display: none;
           }

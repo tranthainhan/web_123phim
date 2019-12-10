@@ -16,15 +16,30 @@
     }
   }
   > .showtimes {
+    min-height: 270px;
     background: white;
     border-radius: 5px;
     margin-top: 40px;
     padding-bottom: 40px;
     overflow: hidden;
+    position: relative;
     .MuiBox-root {
       display: flex;
       &[class*="MuiBox-root-"] {
         padding: 0;
+      }
+    }
+    .loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      div {
+        height: 100%;
+        span {
+          line-height: 2;
+        }
       }
     }
   }

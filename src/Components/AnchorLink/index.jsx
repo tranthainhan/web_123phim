@@ -1,31 +1,82 @@
 import React from "react";
 import "./style.scss";
+import _ from "lodash";
 
-const AnchorLink = () => {
+const AnchorLink = ({ history }) => {
   const scrollDown = location => {
     switch (location) {
       case "lichchieu": {
-        document
-          .querySelector(".main >.film-list")
-          .scrollIntoView({ behavior: "smooth", block: "center" });
+        if (history.location.pathname === "/") {
+          document
+            .querySelector(".main >.film-list")
+            .scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          Promise.resolve(history.push("/")).then(
+            _.debounce(
+              () =>
+                document
+                  .querySelector(".main >.film-list")
+                  .scrollIntoView({ behavior: "smooth", block: "center" }),
+              1000
+            )
+          );
+        }
+
         break;
       }
       case "cumrap": {
-        document
-          .querySelector(".main >.wrap")
-          .scrollIntoView({ behavior: "smooth", block: "center" });
+        if (history.location.pathname === "/") {
+          document
+            .querySelector(".main >.wrap")
+            .scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          Promise.resolve(history.push("/")).then(
+            _.debounce(
+              () =>
+                document
+                  .querySelector(".main >.wrap")
+                  .scrollIntoView({ behavior: "smooth", block: "center" }),
+              1000
+            )
+          );
+        }
+
         break;
       }
       case "tintuc": {
-        document
-          .querySelector(".main >.news-list")
-          .scrollIntoView({ behavior: "smooth", block: "center" });
+        if (history.location.pathname === "/") {
+          document
+            .querySelector(".main >.news-list")
+            .scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          Promise.resolve(history.push("/")).then(
+            _.debounce(
+              () =>
+                document
+                  .querySelector(".main >.news-list")
+                  .scrollIntoView({ behavior: "smooth", block: "center" }),
+              1000
+            )
+          );
+        }
         break;
       }
       case "ungdung": {
-        document
-          .querySelector(".main >.app_download")
-          .scrollIntoView({ behavior: "smooth", block: "center" });
+        if (history.location.pathname === "/") {
+          document
+            .querySelector(".main >.app_download")
+            .scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          Promise.resolve(history.push("/")).then(
+            _.debounce(
+              () =>
+                document
+                  .querySelector(".main >.app_download")
+                  .scrollIntoView({ behavior: "smooth", block: "center" }),
+              2500
+            )
+          );
+        }
         break;
       }
       default:
