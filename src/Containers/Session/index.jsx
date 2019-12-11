@@ -2,12 +2,15 @@ import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import classNames from 'classnames'
+import classNames from 'classnames';
 import { connect } from "react-redux";
 import _ from "lodash";
 import { getCinema } from "../../Actions/Cinema";
 import { getShowTimes } from "../../Actions/Cinema";
 import "./style.scss";
+
+import Col2 from "./Col2";
+import Col3 from "./Col3";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -35,7 +38,6 @@ TabPanel.propTypes = {
 function Session(props) {
     const [value, setValue] = React.useState(0);
     let refs = useRef([]);
-    let refs2 = useRef([]);
 
     useEffect(() => {
         if (_.isEmpty(props.cinemaList) && _.isEmpty(props.showTimesList)) {
@@ -56,16 +58,11 @@ function Session(props) {
             } else item.classList.remove("active");
         });
     };
-    const toggleActive2 = location => {
-        console.log()
-        refs2.current.map((item,index) => location === index ? item.classList.add('active') : item.classList.remove('active'))
-    };
 
     const convertTime = time => {
         var d = new Date(time + "Z");
         return d.getUTCHours() + ":" + d.getUTCMinutes();
     };
-    // console.log( props.showTimesList)
     return (
         <div className="wrap">
             <div className="col1_wrap">
@@ -91,15 +88,7 @@ function Session(props) {
                 {
                     props.showTimesList.map((wrap, index) => {
                         return <TabPanel value={value} index={index} key={index} >
-                            {
-                                wrap.lstCumRap.map((item, index) => {
-                                    return <div key={index} ref={div => refs2.current[index] = div} className={classNames("session_addressCinema_wrap", { 'active': index === 0 })} onClick={() => { toggleActive2(index);  }}>
-                                        <p className="titleCinema">{item.tenCumRap}</p>
-                                        <p className="addressCinema">{item.diaChi}</p>
-                                        <p className="detailCinema"><a href="/">[chi tiết]</a></p>
-                                    </div>
-                                })
-                            }
+                            <Col2 wrap={wrap} />
                         </TabPanel>
                     })
                 }
@@ -107,7 +96,7 @@ function Session(props) {
 
             <div className="col3_wrap">
                 {
-
+                
                 }
             </div>
         </div>
