@@ -6,27 +6,65 @@
   width: 60%;
   margin: auto;
   margin-top: 30px;
-  flex-direction: column;
-}
-
-.col1_wrap {
-  border: 1px solid #ebebec;
-  width: 10%;
-  .session_logoCinema_wrap {
-    width: 70%;
-    margin: auto;
-    border-bottom: 1px solid #ebebec;
+  .col1_wrap {
+    border: 1px solid #ebebec;
+    width: 10%;
+    flex-direction: column;
+    .session_logoCinema_wrap {
+      width: 70%;
+      margin: auto;
+      border-bottom: 1px solid #ebebec;
+      .session_logoCinema {
+        width: 100%;
+        padding: 15px 10px;
+        opacity: 0.5;
+        cursor: pointer;
+        &:hover,
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
   }
-}
 
-.session_logoCinema {
-  width: 100%;
-  padding: 15px 10px;
-  opacity: 0.5;
-  cursor: pointer;
-  &:hover,
-  &.active {
-    opacity: 1;
+  .col2_wrap {
+    width: 40%;
+    border: 1px solid #ebebec;
+    .session_addressCinema_wrap {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ebebec;
+      opacity: 0.5;
+      margin: 10px 15px 0 15px;
+      cursor: pointer;
+      &:hover,
+      &.active {
+        opacity: 1;
+      }
+      .titleCinema {
+        color: #000;
+        font-weight: 500;
+        margin-bottom: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        font-size: 16px;
+      }
+      .addressCinema {
+        color: #333;
+        margin-bottom: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        font-size: 16px;
+      }
+      .detailCinema {
+        margin-bottom: 5px;
+        font-size: 16px;
+        a {
+          text-decoration: none;
+          color: #fb4226;
+          font-weight: 500;
+        }
+      }
+    }
   }
 }
 
@@ -64,49 +102,6 @@
 
 .MuiBox-root {
   padding: 0 !important;
-}
-
-.wrap23_content {
-  height: 100%;
-  width: 100%;
-  flex-grow: 1;
-  display: flex;
-  padding: 0 !important;
-  .session_addressCinema_wrap {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ebebec;
-    opacity: 0.5;
-    margin: 10px 15px 0 15px;
-    cursor: pointer;
-    &:hover,
-    &.active {
-      opacity: 1;
-    }
-    .titleCinema {
-      color: #000;
-      font-weight: 500;
-      margin-bottom: 0;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      font-size: 16px;
-    }
-    .addressCinema {
-      color: #333;
-      margin-bottom: 0;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      font-size: 16px;
-    }
-    .detailCinema {
-      margin-bottom: 5px;
-      font-size: 16px;
-      a {
-        text-decoration: none;
-        color: #fb4226;
-        font-weight: 500;
-      }
-    }
-  }
 }
 
 .MuiBox-root-195 {
