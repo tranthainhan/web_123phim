@@ -10,7 +10,6 @@ import { getShowTimes } from "../../Actions/Cinema";
 import "./style.scss";
 
 import Col2 from "./Col2";
-import Col3 from "./Col3";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -59,10 +58,6 @@ function Session(props) {
         });
     };
 
-    const convertTime = time => {
-        var d = new Date(time + "Z");
-        return d.getUTCHours() + ":" + d.getUTCMinutes();
-    };
     return (
         <div className="wrap">
             <div className="col1_wrap">
@@ -84,7 +79,7 @@ function Session(props) {
                 }
             </div>
 
-            <div className="col2_wrap">
+            <div className="col23_wrap">
                 {
                     props.showTimesList.map((wrap, index) => {
                         return <TabPanel value={value} index={index} key={index} >
@@ -94,11 +89,7 @@ function Session(props) {
                 }
             </div>
 
-            <div className="col3_wrap">
-                {
-                
-                }
-            </div>
+            
         </div>
     );
 }
