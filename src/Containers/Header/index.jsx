@@ -7,11 +7,11 @@ import User from "../User";
 import "./style.scss";
 import MenuMobile from "../MenuMobile";
 
-const Header = props => {
+const Header = () => {
   return (
     <div className="header">
       <Logo />
-      <AnchorLink history={props.history} />
+      <AnchorLink />
       <User />
       <MenuMobile />
     </div>

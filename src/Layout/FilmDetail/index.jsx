@@ -144,7 +144,7 @@ const FilmDetail = props => {
               <span className="film-name">
                 {isLoading ? (
                   <SkeletonTheme color="#bbb4b4">
-                    <Skeleton />
+                    <Skeleton width="100px" />
                   </SkeletonTheme>
                 ) : (
                   tenPhim

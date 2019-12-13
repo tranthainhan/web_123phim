@@ -177,7 +177,7 @@ const ContentRightCheckout = ({ ticket, buyTicket, nextStep }) => {
           </span>
           <span>
             Mã vé sẽ được gửi qua tin nhắn
-            <span style={{ color: "#f79320" }}>ZMS</span> (tin nhắn Zalo) và{" "}
+            <span style={{ color: "#f79320" }}> ZMS</span> (tin nhắn Zalo) và{" "}
             <span style={{ color: "#f79320" }}>Email</span> đã nhập.
           </span>
         </div>

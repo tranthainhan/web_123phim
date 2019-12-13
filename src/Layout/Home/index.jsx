@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import { withRouter } from "react-router-dom";
 import Carousel from "../../Components/Carousel";
 import FimlList from "../../Containers/FimlList";
@@ -7,7 +7,7 @@ import Session from "../../Containers/Session";
 import AppDownload from "../../Components/AppDownload";
 import FilmsMobile from "../../Containers/FilmsMobile";
 
-const HomeLayout = props => {
+const HomeLayout = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -23,4 +23,4 @@ const HomeLayout = props => {
   );
 };
 
-export default withRouter(HomeLayout);
+export default withRouter(memo(HomeLayout));

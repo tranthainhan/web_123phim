@@ -35,9 +35,10 @@ function SimpleTabs(props) {
       delay();
     }
   }, [props.film]);
-  const handleChange = newValue => {
+  const handleChange = (e, newValue) => {
     setValue(newValue);
   };
+  console.log(value);
   return (
     <div className="film-detail_tabs">
       <Tabs

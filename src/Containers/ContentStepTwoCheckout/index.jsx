@@ -3,12 +3,20 @@ import "./style.scss";
 import imgNotChoose from "../../Assets/img/notchoose.png";
 import { connect } from "react-redux";
 import { addSeat, removeSeat } from "../../Actions/BuyTicket";
+import { prevStep } from "../../Actions/Stepper";
 import classNames from "classnames";
 import _ from "lodash";
 import imgScreen from "../../Assets/img/screen.png";
 import TimeOut from "../TimeOut";
+import Swal from "sweetalert2";
 
-const ContentStepTwoCheckout = ({ ticket, buyTicket, addSeat, removeSeat }) => {
+const ContentStepTwoCheckout = ({
+  ticket,
+  buyTicket,
+  addSeat,
+  removeSeat,
+  prevStep
+}) => {
   const [chairChoose, setChairChoose] = useState([]);
   const [chairVipChoose, setChairVipChoose] = useState([]);
   const refsChair = useRef([]);
@@ -78,6 +86,13 @@ const ContentStepTwoCheckout = ({ ticket, buyTicket, addSeat, removeSeat }) => {
       }
     });
   };
+  const timeOutTichket = () => {
+    Swal.fire({
+      title: "Bạn đã hết thời gian đặt vé",
+      showConfirmButton: false,
+      showCloseButton: true
+    }).then(() => prevStep());
+  };
 
   return (
     <div className="step-2">
@@ -93,7 +108,7 @@ const ContentStepTwoCheckout = ({ ticket, buyTicket, addSeat, removeSeat }) => {
         </div>
         <div className="time-out">
           <p>Thời gian giữ ghế:</p>
-          <TimeOut time={300} />
+          <TimeOut time={300} timeOutTichket={timeOutTichket} />
         </div>
       </div>
       <div className="screen">
@@ -199,7 +214,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addSeat: infoSeat => dispatch(addSeat(infoSeat)),
-    removeSeat: codeChair => dispatch(removeSeat(codeChair))
+    removeSeat: codeChair => dispatch(removeSeat(codeChair)),
+    prevStep: () => dispatch(prevStep())
   };
 };
 

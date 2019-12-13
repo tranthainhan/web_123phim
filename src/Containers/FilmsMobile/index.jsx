@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, memo } from "react";
 import "./style.scss";
 import { connect } from "react-redux";
 import _ from "lodash";
@@ -53,7 +53,7 @@ const FilmsMobile = ({ filmsRedux }) => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [films]);
+  }, [filmsRedux, films]);
 
   const handleActive = index => {
     refs.current = refs.current.map((item, indexItem) => {
@@ -131,4 +131,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(FilmsMobile);
+export default connect(mapStateToProps, null)(memo(FilmsMobile));

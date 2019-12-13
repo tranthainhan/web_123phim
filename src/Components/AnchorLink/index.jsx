@@ -1,22 +1,32 @@
 import React from "react";
 import "./style.scss";
 import _ from "lodash";
+import { withRouter } from "react-router-dom";
 
-const AnchorLink = ({ history }) => {
+const AnchorLink = ({ history, mobile }) => {
   const scrollDown = location => {
     switch (location) {
       case "lichchieu": {
+        // console.log(document.querySelector(".main >.film-list"));
         if (history.location.pathname === "/") {
-          document
-            .querySelector(".main >.film-list")
-            .scrollIntoView({ behavior: "smooth", block: "center" });
+          mobile
+            ? document
+                .querySelector(".main >.films-mobile")
+                .scrollIntoView({ behavior: "smooth" })
+            : document
+                .querySelector(".main >.film-list")
+                .scrollIntoView({ behavior: "smooth", block: "center" });
         } else {
           Promise.resolve(history.push("/")).then(
             _.debounce(
               () =>
-                document
-                  .querySelector(".main >.film-list")
-                  .scrollIntoView({ behavior: "smooth", block: "center" }),
+                mobile
+                  ? document
+                      .querySelector(".main >.films-mobile")
+                      .scrollIntoView({ behavior: "smooth", block: "center" })
+                  : document
+                      .querySelector(".main >.film-list")
+                      .scrollIntoView({ behavior: "smooth", block: "center" }),
               1000
             )
           );
@@ -135,4 +145,4 @@ const AnchorLink = ({ history }) => {
   );
 };
 
-export default AnchorLink;
+export default withRouter(AnchorLink);
