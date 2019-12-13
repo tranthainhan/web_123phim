@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import classNames from 'classnames';
 import { connect } from "react-redux";
 import _ from "lodash";
 import { getCinema } from "../../Actions/Cinema";
 import { getShowTimes } from "../../Actions/Cinema";
 import "./style.scss";
+
+import Col2 from "./Col2";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -33,48 +36,60 @@ TabPanel.propTypes = {
 
 function Session(props) {
   const [value, setValue] = React.useState(0);
+  let refs = useRef([]);
 
   useEffect(() => {
     if (_.isEmpty(props.cinemaList) && _.isEmpty(props.showTimesList)) {
       props.getCinema();
       props.getShowTimes("GP09");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
-  const toggleActiveCol = index => {
-    setValue(index);
+  const handleChange = newValue => {
+    setValue(newValue);
   };
 
-  // const convertTime = time => {
-  //   var d = new Date(time + "Z");
-  //   return d.getUTCHours() + ":" + d.getUTCMinutes();
-  // };
+  const toggleActive = location => {
+    refs.current.forEach((item, index) => {
+      if (location === index) {
+        item.classList.add("active");
+      } else item.classList.remove("active");
+    });
+  };
 
   return (
     <div className="wrap">
       <div className="col1_wrap">
-        {props.cinemaList.map((item, index) => {
+        {props.cinemaList && props.cinemaList.map((item, index) => {
           return (
-            <div className="session_logoCinema_wrap" key={index}>
+            <div key={index} className="session_logoCinema_wrap">
               <img
-                className={
-                  index === value
-                    ? "session_logoCinema active"
-                    : "session_logoCinema"
-                }
+                className={classNames("session_logoCinema", { 'active': index === 0 })}
                 src={item.logo}
                 alt=""
                 onClick={() => {
-                  toggleActiveCol(index);
+                  handleChange(index); toggleActive(index);
                 }}
+                ref={img => (refs.current[index] = img)}
               />
             </div>
           );
-        })}
+        })
+        }
       </div>
 
-      <div className="col2_wrap">{}</div>
+      <div className="col23_wrap">
+        {
+          props.showTimesList.map((wrap, index) => {
+            return <TabPanel value={value} index={index} key={index} >
+              <Col2 wrap={wrap} />
+            </TabPanel>
+          })
+        }
+      </div>
+
+
     </div>
   );
 }

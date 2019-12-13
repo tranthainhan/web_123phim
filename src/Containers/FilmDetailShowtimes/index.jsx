@@ -60,6 +60,7 @@ export default function Showtimes({ cinema }) {
       } else item.classList.remove("active");
     });
   };
+  console.log(refs)
   return (
     <>
       <ul className="cinema">
