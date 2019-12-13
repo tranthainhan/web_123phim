@@ -1,31 +1,92 @@
 import React from "react";
 import "./style.scss";
+import _ from "lodash";
+import { withRouter } from "react-router-dom";
 
-const AnchorLink = () => {
+const AnchorLink = ({ history, mobile }) => {
   const scrollDown = location => {
     switch (location) {
       case "lichchieu": {
-        document
-          .querySelector(".main >.film-list")
-          .scrollIntoView({ behavior: "smooth", block: "center" });
+        // console.log(document.querySelector(".main >.film-list"));
+        if (history.location.pathname === "/") {
+          mobile
+            ? document
+                .querySelector(".main >.films-mobile")
+                .scrollIntoView({ behavior: "smooth" })
+            : document
+                .querySelector(".main >.film-list")
+                .scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          Promise.resolve(history.push("/")).then(
+            _.debounce(
+              () =>
+                mobile
+                  ? document
+                      .querySelector(".main >.films-mobile")
+                      .scrollIntoView({ behavior: "smooth", block: "center" })
+                  : document
+                      .querySelector(".main >.film-list")
+                      .scrollIntoView({ behavior: "smooth", block: "center" }),
+              1000
+            )
+          );
+        }
+
         break;
       }
       case "cumrap": {
-        document
-          .querySelector(".main >.wrap")
-          .scrollIntoView({ behavior: "smooth", block: "center" });
+        if (history.location.pathname === "/") {
+          document
+            .querySelector(".main >.wrap")
+            .scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          Promise.resolve(history.push("/")).then(
+            _.debounce(
+              () =>
+                document
+                  .querySelector(".main >.wrap")
+                  .scrollIntoView({ behavior: "smooth", block: "center" }),
+              1000
+            )
+          );
+        }
+
         break;
       }
       case "tintuc": {
-        document
-          .querySelector(".main >.news-list")
-          .scrollIntoView({ behavior: "smooth", block: "center" });
+        if (history.location.pathname === "/") {
+          document
+            .querySelector(".main >.news-list")
+            .scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          Promise.resolve(history.push("/")).then(
+            _.debounce(
+              () =>
+                document
+                  .querySelector(".main >.news-list")
+                  .scrollIntoView({ behavior: "smooth", block: "center" }),
+              1000
+            )
+          );
+        }
         break;
       }
       case "ungdung": {
-        document
-          .querySelector(".main >.app_download")
-          .scrollIntoView({ behavior: "smooth", block: "center" });
+        if (history.location.pathname === "/") {
+          document
+            .querySelector(".main >.app_download")
+            .scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          Promise.resolve(history.push("/")).then(
+            _.debounce(
+              () =>
+                document
+                  .querySelector(".main >.app_download")
+                  .scrollIntoView({ behavior: "smooth", block: "center" }),
+              2500
+            )
+          );
+        }
         break;
       }
       default:
@@ -84,4 +145,4 @@ const AnchorLink = () => {
   );
 };
 
-export default AnchorLink;
+export default withRouter(AnchorLink);

@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import "./style.scss";
 import imgClose from "../../Assets/img/close.png";
 import Play from "@material-ui/icons/PlayArrow";
 import Dialog from "@material-ui/core/Dialog";
+import _ from "lodash";
 import { Link } from "react-router-dom";
 import dataImg from "../../dataImg";
+import Skeleton from "react-loading-skeleton";
 
 const CarouselItem = ({ item, ...props }) => {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleClose = () => {
     setOpen(!open);
@@ -16,8 +19,22 @@ const CarouselItem = ({ item, ...props }) => {
     <React.Fragment>
       <div className="carousel-item" {...props}>
         <Link to={`/phim/${item.maPhim}-${item.biDanh}`}>
-          <img src={dataImg[item.biDanh]} alt="hinh anh" />
+          <img
+            src={dataImg[item.biDanh]}
+            alt="hinh anh"
+            onLoad={() => {
+              let delay = _.debounce(() => {
+                setIsLoading(false);
+              }, 1500);
+              delay();
+            }}
+          />
         </Link>
+        {isLoading && (
+          <div className="loading">
+            <Skeleton height={"100%"} width={"100%"} />
+          </div>
+        )}
 
         <div className="play-trailer">
           <div className="btn-play" onClick={handleClose}>
@@ -51,4 +68,4 @@ const CarouselItem = ({ item, ...props }) => {
   );
 };
 
-export default CarouselItem;
+export default memo(CarouselItem);

@@ -16,7 +16,7 @@ import ted2 from "./Assets/img/ticket-ted-2.png";
 
 const dataImgTicket = {
   "Ant-Man": antMan,
-  "Avengers: Infinity War": avengersInfinity1,
+  "Avengers: Infinity War ": avengersInfinity1,
   "Batman v Superman: Dawn of Justicess": batmanVsuperman2,
   "Fantastic Four": fantasticFour,
   "Inside Out": insideOut,

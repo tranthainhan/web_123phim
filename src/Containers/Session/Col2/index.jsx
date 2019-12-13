@@ -58,7 +58,6 @@ const Col2 = (props) => {
 
             <div className="col3_wrap">
                 {
-                    // console.log(props.showTimesList)
                     props.wrap.lstCumRap.map((item, index) => {
                         return <TabPanel value={value} index={index} key={index}>
                             <Col3 item={item} />

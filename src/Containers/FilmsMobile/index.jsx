@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, memo } from "react";
 import "./style.scss";
-import { getFilm } from "../../Actions/film";
+import { connect } from "react-redux";
 import _ from "lodash";
 import { Typography, Box, Button } from "@material-ui/core";
 import FilmMobile from "../FilmsMobileItem";
@@ -23,7 +23,7 @@ function TabPanel(props) {
   );
 }
 
-const FilmsMobile = () => {
+const FilmsMobile = ({ filmsRedux }) => {
   const [tabIndex, setTabIndex] = useState(0);
   const [films, setFilms] = useState([]);
   const refs = useRef([]);
@@ -31,7 +31,7 @@ const FilmsMobile = () => {
   const [filmsComingSoon, setFilmsComingSoon] = useState([]);
 
   useEffect(() => {
-    _.isEmpty(films) && getFilm().then(result => setFilms(result.data));
+    _.isEmpty(films) && setFilms(filmsRedux);
     if (!_.isEmpty(films)) {
       setListShow(() => {
         let listShow = [];
@@ -53,7 +53,7 @@ const FilmsMobile = () => {
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [films]);
+  }, [filmsRedux, films]);
 
   const handleActive = index => {
     refs.current = refs.current.map((item, indexItem) => {
@@ -125,5 +125,10 @@ const FilmsMobile = () => {
     </div>
   );
 };
+const mapStateToProps = state => {
+  return {
+    filmsRedux: state.films
+  };
+};
 
-export default FilmsMobile;
+export default connect(mapStateToProps, null)(memo(FilmsMobile));

@@ -1,11 +1,16 @@
 .checkout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   .content {
+    flex: 1;
     .left {
       width: 500px;
       position: relative;
+      height: calc(100vh - 80px);
       img {
         width: 100%;
-        height: calc(100vh - 80px);
+        height: 100%;
       }
       .overlay {
         position: absolute;
@@ -14,6 +19,17 @@
         bottom: 0;
         right: 0;
         background: rgba(0, 0, 0, 0.4);
+      }
+      .loading {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        span {
+          line-height: 2;
+          border-radius: 0;
+        }
       }
       .back {
         color: white;

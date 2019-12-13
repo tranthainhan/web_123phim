@@ -6,19 +6,27 @@ import { sendTypeVsQuantity, reset } from "../../Actions/BuyTicket";
 import { nextStep } from "../../Actions/Stepper";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import Skeleton from "react-loading-skeleton";
+
+let renderCount = 0;
 
 const ContentStepOneCheckout = ({ film }) => {
   const [ticket, setTicket] = useState(0);
   const [ticketVip, setTicketVip] = useState(0);
+  const [isLoading, setIsLoading] = useState(renderCount === 0 ? true : false);
 
   const totalMoney = ticket * 75000 + ticketVip * 90000;
   const dispatch = useDispatch();
   const refs = useRef(false);
   useEffect(() => {
     dispatch(reset());
+    if (!_.isEmpty(film) && renderCount === 0) {
+      let delay = _.debounce(() => setIsLoading(false), 500);
+      delay();
+      renderCount++;
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  }, [film]);
   const plusTicket = type => {
     if (type === "VIP") {
       setTicketVip(ticketVip + 1);
@@ -67,11 +75,27 @@ const ContentStepOneCheckout = ({ film }) => {
   return (
     <div className="step-1">
       <div className="info-showtimes">
-        <img src={film && film.logoCinema} alt="..." />
+        {/* <img src={film && film.logoCinema} alt="..." /> */}
+        <div
+          className="logo-cinema"
+          style={{ backgroundImage: film && `url(${film.logoCinema})` }}
+        >
+          {isLoading && (
+            <div className="loading">
+              <Skeleton circle={true} width="100%" height="100%" />
+            </div>
+          )}
+        </div>
         <div>
-          <p>{film && film.tenCumRap}</p>
+          <p>
+            {isLoading ? <Skeleton width="100px" /> : film && film.tenCumRap}
+          </p>
           <span>
-            {film && `${film.ngayChieu} - ${film.gioChieu} - ${film.tenRap}`}
+            {isLoading ? (
+              <Skeleton width="100px" />
+            ) : (
+              film && `${film.ngayChieu} - ${film.gioChieu} - ${film.tenRap}`
+            )}
           </span>
         </div>
       </div>
