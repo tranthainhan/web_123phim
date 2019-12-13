@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { getFilm } from "../../Actions/film";
+import { connect } from "react-redux";
 import _ from "lodash";
 
 import "./style.scss";
 import NewsItem from "../NewsItem";
 
-const NewsList = () => {
+const NewsList = ({ films }) => {
   const [filmList, setFilmList] = useState([]);
   const [show, setShow] = useState({ list: [], amount: 0 });
 
   useEffect(() => {
-    if (_.isEmpty(filmList)) {
-      getFilm().then(result => {
-        setFilmList(result.data);
-        setShow({ ...show, list: [result.data[0]] });
-      });
+    if (_.isEmpty(filmList) && !_.isEmpty(films)) {
+      setFilmList(films);
+      setShow({ ...show, list: [films[0]] });
     }
     if (!_.isEmpty(show.list)) {
       document
         .getElementById("pills-nowShowingFilms-news")
         .lastElementChild.classList.add("open");
     }
-  }, [filmList, show]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [films, show]);
   const createNews = () => {
     const index = show.amount + 1;
     setShow({ list: [...show.list, filmList[index]], amount: index });
@@ -167,5 +166,10 @@ const NewsList = () => {
     </div>
   );
 };
+const mapStateToProps = state => {
+  return {
+    films: state.films
+  };
+};
 
-export default NewsList;
+export default connect(mapStateToProps, null)(NewsList);

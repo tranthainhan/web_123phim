@@ -1,5 +1,5 @@
 import React, { useState, memo, useEffect } from "react";
-const TimeOut = ({ time }) => {
+const TimeOut = ({ time, timeOutTichket }) => {
   let [timeLeft, setTimeLeft] = useState(time);
   const [minute, setMinute] = useState(Math.floor(time / 60));
   const [seconds, setSeconds] = useState(time % 60);
@@ -9,6 +9,7 @@ const TimeOut = ({ time }) => {
       if (timeLeft === 0) {
         setSeconds(timeLeft % 60);
         clearInterval(timeOut);
+        timeOutTichket && timeOutTichket();
       } else {
         setMinute(Math.floor(timeLeft / 60));
         setSeconds(timeLeft % 60);
@@ -21,7 +22,6 @@ const TimeOut = ({ time }) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return <span>{`0${minute}:${("0" + seconds).slice(-2)}`}</span>;
 };
 

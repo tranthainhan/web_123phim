@@ -15,6 +15,7 @@ export default function CheckoutLayout(props) {
 
   useEffect(() => {
     getTicket(match.params.maLichChieu, dispatch);
+    window.scrollTo(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

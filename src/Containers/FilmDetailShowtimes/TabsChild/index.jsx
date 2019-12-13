@@ -86,7 +86,6 @@ function TabsChild({ item, ...props }) {
   const openDialogLogin = () => {
     dispatch(toggle());
   };
-  console.log(props);
   return (
     <div className="tab-child">
       <div className="show-date">

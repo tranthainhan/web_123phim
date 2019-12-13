@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.scss";
 import classNames from "classnames";
+import _ from "lodash";
 import { connect } from "react-redux";
 import ContentLeftCheckout from "../../Components/ContentLeftCheckout";
 import ContentStepCheckout from "../ContentStepCheckout";
@@ -11,7 +12,7 @@ const ContentCheckout = ({ ticket, stepper }) => {
     <div className={classNames("content", { "step-1-done": stepper === 1 })}>
       <ContentLeftCheckout film={ticket.thongTinPhim} />
       <ContentStepCheckout ticket={ticket} />
-      <ContentRightCheckout />
+      {!_.isEmpty(ticket) && <ContentRightCheckout ticket={ticket} />}
     </div>
   );
 };

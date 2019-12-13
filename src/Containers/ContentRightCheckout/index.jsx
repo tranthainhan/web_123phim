@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 import { connect } from "react-redux";
 import { nextStep } from "../../Actions/Stepper";
+import { sendBuyTicket } from "../../Actions/BuyTicket";
 import classNames from "classnames";
 import imgWarning from "../../Assets/img/warning.png";
 import imgZaloPayMethod from "../../Assets/img/zalopaymethod.png";
@@ -30,31 +31,28 @@ const ContentRightCheckout = ({ ticket, buyTicket, nextStep }) => {
     }
     if (open) {
       new Promise(resolve => {
-        let delay = _.debounce(() => resolve(setOpen(false)), 1000);
+        let delay = _.debounce(() => resolve(setOpen(false)), 5000);
         delay();
       })
+        .then(() => {
+          let maLichChieu = ticket.thongTinPhim.maLichChieu;
+          let danhSachVe = buyTicket.infoSeat.map(item => ({
+            maGhe: item.codeChair,
+            giaVe: item.typeChair === "Thuong" ? 75000 : 90000
+          }));
+          let taiKhoanNguoiDung = JSON.parse(localStorage.getItem("user"))
+            .taiKhoan;
+          let infoSeat = { maLichChieu, danhSachVe, taiKhoanNguoiDung };
+          sendBuyTicket(infoSeat);
+        })
         .then(() =>
           Swal.fire({
             icon: "success",
-            showCloseButton: true,
-            title: "Thanh toán thành công. <br> Chúc bạn xem phim vui vẻ.",
+            timer: 1500,
             showConfirmButton: false
           })
         )
         .then(() => nextStep());
-      // Promise.resolve()
-      //   .then(() => {
-      //     let delay = _.debounce(() => setOpen(false), 10000);
-      //     delay();
-      //   })
-      //   .then(() => {
-      //     console.log(1);
-      //     Swal.fire({
-      //       icon: "success",
-      //       title: "Your work has been saved",
-      //       showConfirmButton: false
-      //     });
-      //   });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [buyTicket, open]);
@@ -179,7 +177,7 @@ const ContentRightCheckout = ({ ticket, buyTicket, nextStep }) => {
           </span>
           <span>
             Mã vé sẽ được gửi qua tin nhắn
-            <span style={{ color: "#f79320" }}>ZMS</span> (tin nhắn Zalo) và{" "}
+            <span style={{ color: "#f79320" }}> ZMS</span> (tin nhắn Zalo) và{" "}
             <span style={{ color: "#f79320" }}>Email</span> đã nhập.
           </span>
         </div>
@@ -236,8 +234,7 @@ const ContentRightCheckout = ({ ticket, buyTicket, nextStep }) => {
 };
 const mapStateToProps = state => {
   return {
-    buyTicket: state.buyTicket,
-    ticket: state.ticket
+    buyTicket: state.buyTicket
   };
 };
 const mapDispatchToProps = dispatch => {

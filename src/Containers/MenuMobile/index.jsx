@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { toggle } from "../../Actions/Dialog";
+import { logout } from "../../Actions/User";
 import _ from "lodash";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -8,6 +9,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
+import AnchorLink from "../../Components/AnchorLink";
 
 import "./style.scss";
 import imgMenu from "../../Assets/img/menu-mobile.png";
@@ -16,7 +18,7 @@ import userDefault from "../../Assets/img/user-default.png";
 const MenuMobile = props => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openList, setOpenList] = useState(false);
-  const { user, toggleDialog } = props;
+  const { user, toggleDialog, logout } = props;
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
@@ -50,19 +52,32 @@ const MenuMobile = props => {
         ) : (
           <React.Fragment>
             <List className="user-wrap">
-              <ListItem button onClick={toggleList} className='user-toggle'>
+              <ListItem button onClick={toggleList} className="user-toggle">
                 <div className="user-toggle-item">
-                  <img src={user.picture} alt="hinh user" />
-                  <p>{user.name}</p>
+                  <img src={user.picture || userDefault} alt="hinh user" />
+                  <p>{user.name || user.hoTen}</p>
                 </div>
                 {openList ? <ExpandLess /> : <ExpandMore />}
               </ListItem>
-              <Collapse in={openList} timeout="auto" unmountOnExit className='user-dropdown-wrap'>
-                <List component="div" disablePadding className='user-dropdown-content'>
-                  <ListItem button>
-                    Thông tin cá nhân
-                  </ListItem>
-                  <ListItem button>
+              <Collapse
+                in={openList}
+                timeout="auto"
+                unmountOnExit
+                className="user-dropdown-wrap"
+              >
+                <List
+                  component="div"
+                  disablePadding
+                  className="user-dropdown-content"
+                >
+                  <ListItem button>Thông tin cá nhân</ListItem>
+                  <ListItem
+                    button
+                    onClick={() => {
+                      logout();
+                      setOpenList(false);
+                    }}
+                  >
                     Đăng xuất
                   </ListItem>
                 </List>
@@ -70,10 +85,7 @@ const MenuMobile = props => {
             </List>
           </React.Fragment>
         )}
-        <div className="anchor-link">Lịch chiếu</div>
-        <div className="anchor-link">Cụm rạp</div>
-        <div className="anchor-link">Tin tức</div>
-        <div className="anchor-link">Ứng dụng</div>  
+        <AnchorLink mobile={true} />
       </Drawer>
     </div>
   );
@@ -85,9 +97,8 @@ const mapStateToProps = state => {
 };
 const napDispatchToProps = dispatch => {
   return {
-    toggleDialog: () => {
-      dispatch(toggle());
-    }
+    toggleDialog: () => dispatch(toggle()),
+    logout: () => dispatch(logout())
   };
 };
 export default connect(mapStateToProps, napDispatchToProps)(MenuMobile);
