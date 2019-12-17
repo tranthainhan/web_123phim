@@ -17,7 +17,9 @@ import CheckoutAuth from "./Auth/CheckoutAuth";
 function App(props) {
   useEffect(() => {
     props.getFilms();
-    props.getUser(JSON.parse(localStorage.getItem("user")));
+    localStorage.getItem("user") &&
+      props.getUser(JSON.parse(localStorage.getItem("user")));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

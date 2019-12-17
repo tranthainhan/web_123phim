@@ -15,7 +15,8 @@ import theWalking from "./Assets/img/the-walking-dead.png";
 import trainwreck from "./Assets/img/trainwreck.png";
 import trueDetective from "./Assets/img/true-detective.png";
 import ted2 from "./Assets/img/ted-2.png";
-import avatar2 from "./Assets/img/avatar-2.jpg";
+import avatar2Doc from "./Assets/img/avatar-2-doc.jpg";
+import avatar2 from "./Assets/img/avatar2.jpg";
 
 const dataImg = {
   "ant-man": antMan,
@@ -35,6 +36,7 @@ const dataImg = {
   trainwreck: trainwreck,
   "true-detective": trueDetective,
   "ted-2": ted2,
-  "avatar2-doc": avatar2
+  "avatar2-doc": avatar2Doc,
+  avatar2: avatar2
 };
 export default dataImg;
