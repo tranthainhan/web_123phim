@@ -1,4 +1,4 @@
-.wrap {
+.tabs-showtimes.wrap {
   flex-grow: 1;
   background-color: #fff;
   display: flex;
@@ -210,5 +210,10 @@
       font-size: 16px;
       padding: 10px 5px;
     }
+  }
+}
+@media screen and (max-width: 768px) {
+  .tabs-showtimes.wrap {
+    display: none;
   }
 }

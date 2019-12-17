@@ -23,8 +23,20 @@
           color: #fa5238;
         }
       }
+      .active + .tab-pane {
+        opacity: 1;
+      }
     }
     .tab-pane {
+      animation: tabPaneEffect 0.5s;
+      @keyframes tabPaneEffect {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
       .MuiBox-root {
         margin: 0 10px;
       }

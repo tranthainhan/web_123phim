@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import classNames from 'classnames';
+import classNames from "classnames";
 import { connect } from "react-redux";
 import _ from "lodash";
 import { getCinema } from "../../Actions/Cinema";
@@ -43,7 +43,7 @@ function Session(props) {
       props.getCinema();
       props.getShowTimes("GP09");
     }
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = newValue => {
@@ -59,37 +59,38 @@ function Session(props) {
   };
 
   return (
-    <div className="wrap">
+    <div className="tabs-showtimes wrap">
       <div className="col1_wrap">
-        {props.cinemaList && props.cinemaList.map((item, index) => {
-          return (
-            <div key={index} className="session_logoCinema_wrap">
-              <img
-                className={classNames("session_logoCinema", { 'active': index === 0 })}
-                src={item.logo}
-                alt=""
-                onClick={() => {
-                  handleChange(index); toggleActive(index);
-                }}
-                ref={img => (refs.current[index] = img)}
-              />
-            </div>
-          );
-        })
-        }
+        {props.cinemaList &&
+          props.cinemaList.map((item, index) => {
+            return (
+              <div key={index} className="session_logoCinema_wrap">
+                <img
+                  className={classNames("session_logoCinema", {
+                    active: index === 0
+                  })}
+                  src={item.logo}
+                  alt=""
+                  onClick={() => {
+                    handleChange(index);
+                    toggleActive(index);
+                  }}
+                  ref={img => (refs.current[index] = img)}
+                />
+              </div>
+            );
+          })}
       </div>
 
       <div className="col23_wrap">
-        {
-          props.showTimesList.map((wrap, index) => {
-            return <TabPanel value={value} index={index} key={index} >
+        {props.showTimesList.map((wrap, index) => {
+          return (
+            <TabPanel value={value} index={index} key={index}>
               <Col2 wrap={wrap} />
             </TabPanel>
-          })
-        }
+          );
+        })}
       </div>
-
-
     </div>
   );
 }
